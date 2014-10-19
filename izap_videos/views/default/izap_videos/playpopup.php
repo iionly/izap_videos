@@ -64,7 +64,9 @@ $list_body = elgg_view('object/elements/summary', $params);
 $params = array('class' => 'mbs');
 $summary = elgg_view_image_block($owner_icon, $list_body, $params);
 
-echo $summary;
+$title = elgg_view_title($video->title);
+
+echo '<div style="max-width:640px;">' . $title . $summary;
 
 // Display the video player to allow for the video to be played
 echo '<div align="center" class="izapPlayer">';
@@ -75,4 +77,4 @@ echo '<div class="mbm">' . elgg_view('output/url', array(
 	'is_trusted' => true,
 	'class' => 'elgg-button elgg-button-action'
 )) . '</div>';
-echo '</div>';
+echo '</div></div';

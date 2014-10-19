@@ -314,7 +314,7 @@ class IzapVideos extends ElggFile {
 	 *
 	 * @return boolean
 	 */
-	public function delete_izap_video() {
+	public function delete() {
 		// delete entity from queue and trash with related media
 		$queue_object = new izapQueue();
 		$queue_object->delete_from_trash($this->guid, true);
@@ -335,7 +335,7 @@ class IzapVideos extends ElggFile {
 		$orignal_file = $this->getFilenameOnFilestore();
 		file_exists($orignal_file) && @unlink($orignal_file);
 
-		return $this->delete(true);
+		return parent::delete();
   }
 
 	/**

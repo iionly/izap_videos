@@ -1,6 +1,6 @@
 iZAP Videos plugin for Elgg 1.9 - revised edition by iionly
-Latest Version: 1.9.0
-Released: 2014-10-18
+Latest Version: 1.9.1
+Released: 2014-10-19
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (C) iZAP Web Solutions 2008-2014 (Original developer) / (C) iionly 2014 (for this fork)
@@ -52,6 +52,17 @@ Installation:
 
 
 Changelog:
+
+1.9.1 (by iionly)
+
+- Updated version 1.8.1 for Elgg 1.9.
+
+
+1.8.1 (by iionly)
+
+- Fixed a previous "fix" with handling of deletion of videos within the delete method of the IzapVideos class to correctly call the parent's class (ElggFile) delete method.
+- Made the lightbox popup in the river "nicer" by setting a max-width to not fill the whole width of the screen if not necessary.
+
 
 1.9.0 (by iionly)
 

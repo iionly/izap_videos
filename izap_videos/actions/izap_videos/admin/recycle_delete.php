@@ -37,7 +37,7 @@ if ($posted_array['send_message_'.$guid] == 'yes') {
 }
 
 // delete data from trash
-if (get_entity($guid)->delete_izap_video()) {
+if (get_entity($guid)->delete()) {
 	system_message(elgg_echo('izap_videos:adminSettings:deleted_from_trash'));
 	izapTrigger_izap_videos();
 }

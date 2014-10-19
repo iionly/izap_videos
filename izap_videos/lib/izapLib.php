@@ -225,7 +225,7 @@ function izapEmptyQueue_izap_videos() {
 	$pending_videos = izapGetNotConvertedVideos_izap_videos();
 	if ($pending_videos) {
 		foreach($pending_videos as $video) {
-			$video->delete_izap_video();
+			$video->delete();
 		}
 	}
 
