@@ -1,6 +1,6 @@
 iZAP Videos plugin for Elgg 1.9 - revised edition by iionly
-Latest Version: 1.9.1
-Released: 2014-10-19
+Latest Version: 1.9.2
+Released: 2014-11-03
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (C) iZAP Web Solutions 2008-2014 (Original developer) / (C) iionly 2014 (for this fork)
@@ -33,7 +33,8 @@ This option allows uploading of videos directly to the server the Elgg site is h
 - PDO-sqlite php extension must be installed, enabled and working,
 - Supported video formats: avi, flv, 3gp, mp4, wmv, mpg and mpeg (other formats might works, i.e. are supported by FFMPEG, but this hasn't been tested and therefore such other formats are currently declined on upload),
 - Maximum file size for uploads possible depend on server settings of upload_max_filesize, post_max_size, max_input_time, max_execution_time, memory_limit and by how much webspace you can provide. For support of uploading of larger videos you have to increase the variables to suitable values,
-- All uploaded video files are converted to flv format (not necessary for uploads of flv files). The video player included in the iZAP Videos plugin requires a Flash plugin to be installed on the client side browser to be able to view on-server videos.
+- All uploaded video files are converted to flv format (not necessary for uploads of flv files). The video player included in the iZAP Videos plugin requires a Flash plugin to be installed on the client side browser to be able to view on-server videos,
+- Conversion of uploaded videos is triggered by a cronjob and you must have configured the Elgg cronjob for the interval selected in iZAP Videos plugin settings.
 
 
 3. Adding videos by Embed-code
@@ -52,6 +53,19 @@ Installation:
 
 
 Changelog:
+
+1.9.2 (by iionly)
+
+- Updated version 1.8.2 for Elgg 1.9,
+- Minimum Elgg version required is now Elgg 1.9.5 because only with this Elgg version the fatal error on activating the iZAP Videos plugin if there had been an older version of the original iZAP Video plugin had been previously installed will no longer occur.
+
+
+1.8.2 (by iionly)
+
+- Video conversion no longer done by a cli php script but triggered only via a cronjob (because the cli php script might not work anymore on some servers due to changes introduced by patches for the "shellshock" bash bug),
+- Don't check filesize of a video currently in queue for conversion if conversion has not yet started,
+- Show correct summary line for river entries of comments on videos.
+
 
 1.9.1 (by iionly)
 

@@ -38,7 +38,11 @@ $queuedVideos = $queue_object->get();
 				$ORIGNAL_size = izapFormatBytes(filesize($queuedVideo['main_file']));
 
 				$FLV_name = basename($outputPath . '_c.flv');
-				$FLV_size = izapFormatBytes(filesize($outputPath . '_c.flv'));
+				if (file_exists($outputPath . '_c.flv')) {
+					$FLV_size = izapFormatBytes(filesize($outputPath . '_c.flv'));
+				} else {
+					$FLV_size = '0 KB';
+				}
 	?>
 				<tr class="<?php echo (!$i && izapIsQueueRunning_izap_videos()) ? 'queue_selected' : '';?>">
 				<td>

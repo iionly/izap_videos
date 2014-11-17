@@ -161,7 +161,6 @@ function izapSaveFileInfoForConverting_izap_videos($file, $video, $defined_acces
 	}
 	$queue = new izapQueue();
 	$queue->put($video, $file, $defined_access_id);
-	izapTrigger_izap_videos();
 }
 
 /**
@@ -170,10 +169,13 @@ function izapSaveFileInfoForConverting_izap_videos($file, $video, $defined_acces
  * @global <type> $CONFIG
  */
 function izapTrigger_izap_videos() {
-	$PHPpath = izapGetPhpPath_izap_videos();
 	if (!izapIsQueueRunning_izap_videos()) {
-		time();
-		exec($PHPpath . ' ' . elgg_get_plugins_path() . 'izap_videos/izap_convert_video.php izap web > /dev/null 2>&1 &', $output);
+		ini_set('max_execution_time', 0);
+		ini_set('memory_limit', izapAdminSettings_izap_videos('izapMaxFileSize') + 100 . 'M');
+
+		izapGetAccess_izap_videos(); // get the complete access to the system
+		izapRunQueue_izap_videos();
+		izapRemoveAccess_izap_videos(); // remove the access from the system
 	}
 }
 

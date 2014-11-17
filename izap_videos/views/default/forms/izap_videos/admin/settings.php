@@ -91,8 +91,9 @@ $form .= elgg_view('input/select', array(
 				'hourly' => elgg_echo('izap_videos:adminSettings:hourly'),
 				'none' => elgg_echo('izap_videos:adminSettings:cron_off'),
 			),
-			'value' => izapAdminSettings_izap_videos('izap_cron_time', 'hourly', false),
+			'value' => izapAdminSettings_izap_videos('izap_cron_time', 'minute', false),
 ));
+$form .= elgg_view("output/longtext", array("value" => elgg_echo('izap_videos:adminSettings:info:izap_cron_time'), 'class' => 'elgg-subtext'));
 $form .= "</div>";
 
 $form .= "<div class='mbm'>";

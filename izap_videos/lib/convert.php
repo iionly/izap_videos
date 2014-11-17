@@ -173,7 +173,7 @@ function izapConvertVideo_izap_videos($file, $videoId, $videoTitle, $videoUrl, $
 			$file_values = $video->getValues();
 			$izap_videofile = 'izap_videos/uploaded/' . $file_values['filename'];
 			$izap_origfile = 'izap_videos/uploaded/' . $file_values['origname'];
-			$izap_videos = new IzapVideos($videoId);
+			$izap_videos = get_entity($videoId);
 			$izap_videos->setFilename($izap_videofile);
 			$izap_videos->open("write");
 			$izap_videos->write($file_values['filecontent']);

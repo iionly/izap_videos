@@ -77,4 +77,4 @@ echo '<div class="mbm">' . elgg_view('output/url', array(
 	'is_trusted' => true,
 	'class' => 'elgg-button elgg-button-action'
 )) . '</div>';
-echo '</div></div';
+echo '</div></div>';
