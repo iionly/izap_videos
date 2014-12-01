@@ -98,6 +98,7 @@ function init_izap_videos() {
 	elgg_register_action('izap_videos/admin/recycle', "$action_path/admin/recycle.php", 'admin');
 	elgg_register_action('izap_videos/admin/recycle_delete', "$action_path/admin/recycle_delete.php", 'admin');
 	elgg_register_action('izap_videos/admin/reset', "$action_path/admin/reset.php", 'admin');
+	elgg_register_action('izap_videos/admin/upgrade', "$action_path/admin/upgrade.php", 'admin');
 	elgg_register_action('izap_videos/addEdit', "$action_path/addEdit.php", 'logged_in');
 	elgg_register_action('izap_videos/delete', "$action_path/delete.php", 'logged_in');
 	elgg_register_action('izap_videos/favorite_video', "$action_path/favorite_video.php", 'logged_in');

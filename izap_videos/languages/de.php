@@ -41,6 +41,9 @@ return array (
 	'izap_videos:OFFSERVER:supported_sites' => '(Unterstützte Webseiten: Dailymotion.com, Vimeo.com und Youtube.com)',
 	'izap_videos:ONSERVER:supported_formats' => '(Unterstützte Videoformate: avi, flv, 3gp, mp4, wmv, mpg und mpeg)',
 
+	'izap_videos:upgrade' => 'Aktualisieren',
+	'izap_videos:upgrade:success' => 'Das Upgrade des iZAP Videos-Plugins war erfolgreich.',
+
 	// Error messages
 	'izap_videos:error:notUploaded' => 'Beim Hochladen der Datei ist ein Fehler aufgetreten.',
 	'izap_videos:error:videoOptionBlank' => 'Es muss eine Video-Option ausgewählt sein.',

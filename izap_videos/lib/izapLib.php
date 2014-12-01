@@ -507,3 +507,18 @@ function izap_remove_favorited($video, $user_guid = 0) {
 
 	return true;
 }
+
+function izap_videos_is_upgrade_available() {
+	require_once elgg_get_plugins_path() . "izap_videos/version.php";
+
+	$local_version = elgg_get_plugin_setting('local_version', 'izap_videos');
+	if ($local_version === false) {
+		$local_version = 0;
+	}
+
+	if ($local_version == $version) {
+		return false;
+	} else {
+		return true;
+	}
+}

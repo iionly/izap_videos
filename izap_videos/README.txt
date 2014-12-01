@@ -1,6 +1,6 @@
 iZAP Videos plugin for Elgg 1.9 - revised edition by iionly
-Latest Version: 1.9.2
-Released: 2014-11-03
+Latest Version: 1.9.3
+Released: 2014-12-01
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (C) iZAP Web Solutions 2008-2014 (Original developer) / (C) iionly 2014 (for this fork)
@@ -48,11 +48,22 @@ Installation:
 (0. If any older version of the iZAP Videos plugin is installed, disable it on your site and remove the old plugin folder from the mod directory,)
 1. Copy the izap_videos folder in your mod directory,
 2. Enable the iZAP Videos plugin on your site,
-3. Check the plugin settings ("Administer" - "Utilities" - "iZAP Videos") and configure the settings according to your likings. If you want to allow for on-server videos you need to have the necessary additional requirements described above fulfilled.
+3. Check the plugin settings ("Administer" - "Utilities" - "iZAP Videos") for a pending iZAP Videos-specific upgrade and configure the settings according to your likings. If you want to allow for on-server videos you need to have the necessary additional requirements described above fulfilled.
 
 
 
 Changelog:
+
+1.9.3 (by iionly)
+
+- Updated version 1.8.3 for Elgg 1.9,
+- Minimum Elgg version required is now Elgg 1.9.6 because only with this Elgg version deletion of videos works again (a regression within the ElggDiskstore core class has been fixed).
+
+
+1.8.3 (by iionly)
+
+- Fix in izap_videos class to prevent orphaned metadata remaining after deleting a video. This change made the upgrade script necessary that you need to execute by clicking on the "Upgrade" button on the iZAP Videos settings page to prevent any orphaned entries for videos deleted in the future and to remove and orphaned metadata for videos already deleted in the past.
+
 
 1.9.2 (by iionly)
 

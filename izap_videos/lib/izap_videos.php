@@ -20,16 +20,6 @@ class IzapVideos extends ElggFile {
 
 	public function __construct($row = null) {
 		parent::__construct($row);
-
-		// set some initial values so that old videos can work
-		if (empty($this->videosrc)) {
-			$this->videosrc = $this->IZAPSETTINGS->filesPath . 'file/' . $this->guid . '/' . elgg_get_friendly_title($this->title) . '.flv';
-		}
-
-		// sets the default value for the old videos, if not set yet
-		if (empty($this->converted)) {
-			$this->converted = 'yes';
-		}
 	}
 
 	protected function initializeAttributes() {
