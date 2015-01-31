@@ -54,7 +54,7 @@ $queuedVideos = $queue_object->get();
 				<td>
 				<?php
 					if ($queuedVideo['conversion'] != IN_PROCESS) {
-						echo elgg_view('output/confirmlink',array(
+						echo elgg_view('output/url',array(
 							'href' => elgg_get_site_url() . 'action/izap_videos/admin/reset?guid=' . $queuedVideo['guid'],
 							'text' => '',
 							'is_action' => true,

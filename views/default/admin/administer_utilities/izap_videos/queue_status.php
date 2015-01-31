@@ -36,7 +36,7 @@ switch ($action) {
 </div>
 <div align="right" class="mtm">
 	<?php
-		echo elgg_view("output/confirmlink", array(
+		echo elgg_view("output/url", array(
 			'href' => elgg_get_site_url() . 'action/izap_videos/admin/reset',
 			'text' => elgg_echo('izap_videos:adminSettings:resetQueueAll'),
 			'is_action' => true,

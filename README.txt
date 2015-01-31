@@ -1,5 +1,5 @@
-iZAP Videos plugin for Elgg 1.9 - revised edition by iionly
-Latest Version: 1.9.4
+iZAP Videos plugin for Elgg 1.10 - revised edition by iionly
+Latest Version: 1.10.4
 Released: 2015-01-31
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
@@ -53,6 +53,12 @@ Installation:
 
 
 Changelog:
+
+1.10.4 (by iionly)
+
+- Based on version 1.9.4,
+- Fix of deprecation issues occuring on Elgg 1.10 (namely changing output/confirmlink view to output/url view).
+
 
 1.9.4 (by iionly)
 
