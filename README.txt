@@ -1,9 +1,9 @@
 iZAP Videos plugin for Elgg 1.9 - revised edition by iionly
-Latest Version: 1.9.3
-Released: 2014-12-01
+Latest Version: 1.9.4
+Released: 2015-01-31
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
-Copyright: (C) iZAP Web Solutions 2008-2014 (Original developer) / (C) iionly 2014 (for this fork)
+Copyright: (C) iZAP Web Solutions 2008-2015 (Original developer) / (C) iionly 2014-2015 (for this fork)
 
 
 Video plugin for Elgg. Supports addition of both on-server and off-server videos.
@@ -53,6 +53,16 @@ Installation:
 
 
 Changelog:
+
+1.9.4 (by iionly)
+
+- Updated version 1.8.4 for Elgg 1.9.
+
+
+1.8.4 (by iionly)
+
+- Enhancement in sidebar entries (Most viewed videos, Most commented videos, Highest rated videos etc.).
+
 
 1.9.3 (by iionly)
 

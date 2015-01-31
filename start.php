@@ -117,6 +117,7 @@ function izap_videos_pagehandler($page) {
 	}
 
 	$base = elgg_get_plugins_path() . 'izap_videos/pages/videos';
+	$base_lists = elgg_get_plugins_path() . 'izap_videos/pages/lists';
 	switch ($page[0]) {
 		case "all":
 			require "$base/all.php";
@@ -194,6 +195,93 @@ function izap_videos_pagehandler($page) {
 		case "thumbs":
 			require "$base/thumbs.php";
 			break;
+		case "mostviewed":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostviewedvideos.php";
+			break;
+		case "mostviewedtoday":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostviewedvideostoday.php";
+			break;
+		case "mostviewedthismonth":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostviewedvideosthismonth.php";
+			break;
+		case "mostviewedlastmonth":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostviewedvideoslastmonth.php";
+			break;
+		case "mostviewedthisyear":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostviewedvideosthisyear.php";
+			break;
+		case "mostcommented":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostcommentedvideos.php";
+			break;
+		case "mostcommentedtoday":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostcommentedvideostoday.php";
+			break;
+		case "mostcommentedthismonth":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostcommentedvideosthismonth.php";
+			break;
+		case "mostcommentedlastmonth":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostcommentedvideoslastmonth.php";
+			break;
+		case "mostcommentedthisyear":
+			if (isset($page[1])) {
+				set_input('username', $page[1]);
+			}
+			require "$base_lists/mostcommentedvideosthisyear.php";
+			break;
+		case "recentlyviewed":
+			require "$base_lists/recentlyviewed.php";
+			break;
+		case "recentlycommented":
+			require "$base_lists/recentlycommented.php";
+			break;
+		case "recentvotes":
+			if(elgg_is_active_plugin('elggx_fivestar')) {
+				require "$base_lists/recentvotes.php";
+				break;
+			} else {
+				return false;
+			}
+		case "highestrated":
+			if(elgg_is_active_plugin('elggx_fivestar')) {
+				require "$base_lists/highestrated.php";
+				break;
+			} else {
+				return false;
+			}
+		case "highestvotecount":
+			if(elgg_is_active_plugin('elggx_fivestar')) {
+				require "$base_lists/highestvotecount.php";
+				break;
+			} else {
+				return false;
+			}
 		default:
 			return false;
 	}

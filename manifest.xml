@@ -3,12 +3,12 @@
 	<name>iZAP Videos - revised edition by iionly</name>
 	<id>izap_videos</id>
 	<author>iionly (for Elgg 1.8 and newer), iZAP Team</author>
-	<version>1.9.3</version>
+	<version>1.9.4</version>
 	<category>content</category>
 	<category>multimedia</category>
 	<description>Video plugin for Elgg. Supports addition of both on-server and off-server videos.</description>
 	<website>https://github.com/iionly</website>
-	<copyright>(c) iionly 2014 (version for Elgg 1.8 and newer), (C) iZAP Web Solutions 2008-2014</copyright>
+	<copyright>(c) iionly 2014-2015 (version for Elgg 1.8 and newer), (C) iZAP Web Solutions 2008-2015</copyright>
 	<license>GNU Public License version 2</license>
 	<requires>
 		<type>elgg_release</type>

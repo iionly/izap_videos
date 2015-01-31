@@ -63,6 +63,7 @@ $body = elgg_view_layout('content', array(
 	'filter_override' => elgg_view('izap_videos/nav', array('selected' => 'friends')),
 	'content' => $area2,
 	'title' => $title,
+	'sidebar' => elgg_view('izap_videos/sidebar', array('page' => 'friends')),
 ));
 
 echo elgg_view_page($title, $body);

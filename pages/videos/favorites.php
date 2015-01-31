@@ -54,6 +54,7 @@ $params = array(
 	'filter_override' => elgg_view('izap_videos/nav', array('selected' => 'favorites')),
 	'content' => $content,
 	'title' => $title,
+	'sidebar' => elgg_view('izap_videos/sidebar', array('page' => 'favorites')),
 );
 
 $body = elgg_view_layout('content', $params);

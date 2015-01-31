@@ -36,6 +36,7 @@ $body = elgg_view_layout('content', array(
 	'content' => $content,
 	'title' => $title,
 	'filter' => '',
+	'sidebar' => elgg_view('izap_videos/sidebar', array('page' => 'edit')),
 ));
 
 echo elgg_view_page($title, $body);
