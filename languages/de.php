@@ -118,6 +118,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 
 	// Admin settings
 	'izap_videos:adminSettings:tabs_settings' => 'Einstellungen',
+	'izap_videos:adminSettings:tabs_api_keys' => 'API-Keys',
 	'izap_videos:adminSettings:tabs_queue_status' => 'Warteschlange (%s)',
 	'izap_videos:adminSettings:tabs_recycle_bin' => 'Papierkorb (%s)',
 	'izap_videos:adminSettings:tabs_server_analysis' => 'Server-Informationen',
@@ -161,6 +162,9 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:adminSettings:thumbnails_medium' => "Bild in Größe 'medium'",
 	'izap_videos:adminSettings:thumbnails_large' => "Bild in Größe 'large'",
 	'izap_videos:adminSettings:thumbnails_none' => "Kein Bild",
+
+	'izap_videos:adminSettings:youtube_api_key' => 'Youtube (Google API-Key):',
+	'izap_videos:adminSettings:youtube_api_key_description' => "(Bitte gehe zu <a href=\"https://developers.google.com/youtube/registering_an_application\">https://developers.google.com/youtube/registering_an_application</a>, um zu erfahren, wie Du den notwendigen \"API-Key\" registrieren kannst, damit das Hinzufügen von Youtube-Videos funktioniert. Nachdem Du den \"API-Key\" registriert hast füge ihn in das obige Eingabefeld ein)",
 
 	'izap_videos:server_analysis:success' => 'Erfolg',
 	'izap_videos:server_analysis:fail' => 'Fehler',

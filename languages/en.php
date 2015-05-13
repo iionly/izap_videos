@@ -132,6 +132,7 @@ View and comment on the video:
 
 	// Admin settings
 	'izap_videos:adminSettings:tabs_settings' => 'Settings',
+	'izap_videos:adminSettings:tabs_api_keys' => 'API Keys',
 	'izap_videos:adminSettings:tabs_queue_status' => 'Queue status (%s)',
 	'izap_videos:adminSettings:tabs_recycle_bin' => 'Trash (%s)',
 	'izap_videos:adminSettings:tabs_server_analysis' => 'Server analysis',
@@ -175,6 +176,9 @@ View and comment on the video:
 	'izap_videos:adminSettings:thumbnails_medium' => "Image in size 'medium'",
 	'izap_videos:adminSettings:thumbnails_large' => "Image in size 'large'",
 	'izap_videos:adminSettings:thumbnails_none' => "No preview image",
+
+	'izap_videos:adminSettings:youtube_api_key' => 'Youtube (Google API key):',
+	'izap_videos:adminSettings:youtube_api_key_description' => "(Please visit <a href=\"https://developers.google.com/youtube/registering_an_application\">https://developers.google.com/youtube/registering_an_application</a> to learn how to register the necessary \"API key\" for adding of Youtube videos to work, then register an \"API key\" and enter the key you've obtained above)",
 
 	'izap_videos:server_analysis:success' => 'Success',
 	'izap_videos:server_analysis:fail' => 'Fail',

@@ -33,6 +33,11 @@ if(!in_array('ONSERVER', $activated_options)) {
 				'selected' => ($tab == 'settings'),
 			),
 			array(
+				'text' => elgg_echo('izap_videos:adminSettings:tabs_api_keys'),
+				'href' => '/admin/administer_utilities/izap_videos?tab=api_keys',
+				'selected' => ($tab == 'api_keys'),
+			),
+			array(
 				'text' => elgg_echo('izap_videos:adminSettings:tabs_queue_status', array($count_queue)),
 				'href' => '/admin/administer_utilities/izap_videos?tab=queue_status',
 				'selected' => ($tab == 'queue_status'),
@@ -52,6 +57,10 @@ if(!in_array('ONSERVER', $activated_options)) {
 }
 
 switch ($tab) {
+	case 'api_keys':
+		echo elgg_view('admin/administer_utilities/izap_videos/api_keys');
+		break;
+
 	case 'queue_status':
 		echo elgg_view('admin/administer_utilities/izap_videos/queue_status');
 		break;

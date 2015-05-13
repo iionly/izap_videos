@@ -54,30 +54,21 @@ class GetFeed {
 	}
 
 	function youtube() {
-		$this->mainArray = $this->feedArray['entry']['media:group'];
-		if (empty($this->mainArray)) {
+		$this->mainArray = json_decode($this->fileRead, true);
+		if (empty($this->mainArray['items'][0])) {
 			return 101;
 		}
-
-		$this->returnArray['title'] = $this->mainArray['media:title'];
-		$this->returnArray['description'] = $this->mainArray['media:description'];
-		$this->returnArray['videoThumbnail'] = $this->mainArray['media:thumbnail']['1_attr']['url'];
-		$this->returnArray['videoSrc'] = $this->mainArray['media:content_attr']['url'];
-		if (empty($this->returnArray['videoSrc'])) {
-			$this->returnArray['videoSrc'] = $this->mainArray['media:content']['0_attr']['url'];
-		}
-		if ($this->mainArray['media:keywords'] && (is_array($this->mainArray['media:keywords']))) {
-			$this->returnArray['videoTags'] = implode(",", $this->mainArray['media:keywords']);
-		} else if ($this->mainArray['media:keywords'] && (is_string($this->mainArray['media:keywords'])) && (!empty($this->mainArray['media:keywords']))) {
-			$this->returnArray['videoTags'] = $this->mainArray['media:keywords'];
+		
+		$this->returnArray['title'] = $this->mainArray['items'][0]['snippet']['title'];
+		$this->returnArray['description'] = $this->mainArray['items'][0]['snippet']['description'];
+		$this->returnArray['videoThumbnail'] = $this->mainArray['items'][0]['snippet']['thumbnails']['standard']['url'];
+		$this->returnArray['videoSrc'] = 'https://www.youtube.com/embed/'.$this->mainArray['items'][0]['id'];
+		if ($this->mainArray['items'][0]['snippet']['tags'] && (is_array($this->mainArray['items'][0]['snippet']['tags']))) {
+			$this->returnArray['videoTags'] = implode(",", $this->mainArray['items'][0]['snippet']['tags']);
 		} else {
 			$this->returnArray['videoTags'] = '';
 		}
 
-		// if still empty videoSrc, then test if it is a restricted video
-		if (!empty($this->feedArray['entry']['app:control']['yt:state'])) {
-			$this->returnArray['error'] = $this->feedArray['entry']['app:control']['yt:state'];
-		}
 		return $this->returnArray;
 	}
 
@@ -91,7 +82,7 @@ class GetFeed {
 		$this->returnArray['title'] = $this->mainArray['title'];
 		$this->returnArray['description'] = $this->mainArray['caption'];
 		$this->returnArray['videoThumbnail'] = $this->mainArray['thumbnail_large'];
-		$this->returnArray['videoSrc'] = 'http://player.vimeo.com/video/'.$this->mainArray['id'].'?portrait=0&color=333';
+		$this->returnArray['videoSrc'] = 'https://player.vimeo.com/video/'.$this->mainArray['id'].'?portrait=0&color=333';
 		$this->returnArray['videoTags'] = $this->mainArray['tags'];
 
 		return $this->returnArray;
@@ -106,7 +97,7 @@ class GetFeed {
 		$this->returnArray['title'] = $this->mainArray['title'];
 		$this->returnArray['description'] = $this->mainArray['description'];
 		$this->returnArray['videoThumbnail'] = $this->mainArray['thumbnail_url'];
-		$this->returnArray['videoSrc'] = 'http://www.dailymotion.com/embed/video/'.$this->mainArray['id'];
+		$this->returnArray['videoSrc'] = 'https://www.dailymotion.com/embed/video/'.$this->mainArray['id'];
 		if ($this->mainArray['tags'] && (is_array($this->mainArray['tags']))) {
 			$this->returnArray['videoTags'] = implode(",", $this->mainArray['tags']);
 		} else {
