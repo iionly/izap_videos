@@ -1,6 +1,6 @@
-iZAP Videos plugin for Elgg 1.10 - revised edition by iionly
-Latest Version: 1.10.4
-Released: 2015-01-31
+iZAP Videos plugin for Elgg 1.10/1.11 - revised edition by iionly
+Latest Version: 1.10.5
+Released: 2015-05-13
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (C) iZAP Web Solutions 2008-2015 (Original developer) / (C) iionly 2014-2015 (for this fork)
@@ -19,7 +19,7 @@ This option allows to embed videos for specific sites by providing the videos' u
 
 - Dailymotion.com,
 - Vimeo.com and
-- Youtube.com
+- Youtube.com (requires an Google API key for Youtube Data API v3)
 
 For this option to work cURL has to be installed on the server to allow for connecting to the original site. The feed is not processed by any external feed server but still the original site the video is hosted on has of course to be contacted.
 
@@ -48,11 +48,28 @@ Installation:
 (0. If any older version of the iZAP Videos plugin is installed, disable it on your site and remove the old plugin folder from the mod directory,)
 1. Copy the izap_videos folder in your mod directory,
 2. Enable the iZAP Videos plugin on your site,
-3. Check the plugin settings ("Administer" - "Utilities" - "iZAP Videos") for a pending iZAP Videos-specific upgrade and configure the settings according to your likings. If you want to allow for on-server videos you need to have the necessary additional requirements described above fulfilled.
+3. Check the plugin settings ("Administer" - "Utilities" - "iZAP Videos") for a pending iZAP Videos-specific upgrade and configure the settings according to your likings. If you want to allow for on-server videos you need to have the necessary additional requirements described above fulfilled. For adding of Youtube off-server videos to work you need to register a Google API key.
 
 
 
 Changelog:
+
+1.10.5 (by iionly)
+
+- Updated version 1.9.5 for Elgg 1.10 and 1.11.
+
+
+1.9.5 (by iionly)
+
+- Updated version 1.8.5 for Elgg 1.9.
+
+
+1.8.5 (by iionly)
+
+- Usage of Youtube Data API version 3 (version 2 is no longer supported) for adding of Youtube off-server videos. You'll need to register a Google API key for the addition of Youtube videos to work (unfortunately, doesn't work anymore without),
+- Youtube off-server videos get embedded in an iframe now (already worked this way for Vimeo and Dailymotion),
+- Youtube, Vimeo and Dailymotion off-server videos get embedded with "https" urls regardless if the user provided a "http" or "https" url for the video. Hopefully, this avoids issues (browser warnings) due to mix-up of http / https content within a https-Elgg site (there's no change for already existing videos though but only for newly added entries).
+
 
 1.10.4 (by iionly)
 

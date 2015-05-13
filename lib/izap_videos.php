@@ -177,7 +177,7 @@ class IzapVideos extends ElggFile {
 
 		switch ($this->videotype) {
 			case 'youtube':
-				$html = "<object width=\"$width\" height=\"$height\"><param name=\"movie\" value=\"{$this->videosrc}&hl=en&fs=1&autoplay={$autoPlay}\"></param><param name=\"wmode\" value=\"transparent\"></param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"{$this->videosrc}&hl=en&fs=1&autoplay={$autoPlay} \" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" width=\"$width\" height=\"$height\" wmode=\"transparent\"></embed></object>";
+				$html = "<iframe src=\"{$this->videosrc}?rel=0&amp;autoplay={$autoPlay}\" width=\"$width\" height=\"$height\" wmode=\"transparent\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
 				break;
 			case 'vimeo':
 				$html = "<iframe src=\"{$this->videosrc}&amp;autoplay={$autoPlay}\" width=\"$width\" height=\"$height\" wmode=\"transparent\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";

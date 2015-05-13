@@ -94,6 +94,7 @@ function init_izap_videos() {
 	// Register some actions
 	$action_path = elgg_get_plugins_path() . 'izap_videos/actions/izap_videos';
 	elgg_register_action('izap_videos/admin/settings', "$action_path/admin/settings.php", 'admin');
+	elgg_register_action('izap_videos/admin/api_keys', "$action_path/admin/api_keys.php", 'admin');
 	elgg_register_action('izap_videos/admin/resetSettings', "$action_path/admin/resetSettings.php", 'admin');
 	elgg_register_action('izap_videos/admin/recycle', "$action_path/admin/recycle.php", 'admin');
 	elgg_register_action('izap_videos/admin/recycle_delete', "$action_path/admin/recycle_delete.php", 'admin');

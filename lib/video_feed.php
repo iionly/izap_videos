@@ -15,9 +15,9 @@
  */
 
 class UrlFeed extends GetFeed {
-	private $youtube_api_capture = array('api_location'=>'https://gdata.youtube.com/feeds/api/videos/');
+	private $youtube_api_capture = array('api_location' => 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=');
 	private $vimeo_api_capture = array('api_location' => 'https://vimeo.com/api/v2/video/');
-	private $dailymotion_api_capture = array('api_location'=>'https://api.dailymotion.com/video/');
+	private $dailymotion_api_capture = array('api_location' => 'https://api.dailymotion.com/video/');
 	private $feed;
 	public  $type;
 	private $video_id;
@@ -33,11 +33,12 @@ class UrlFeed extends GetFeed {
 
 		switch($this->type) {
 			case 'youtube':
+				$youtube_api_key = elgg_get_plugin_setting('youtube_api_key', 'izap_videos');
 				$url_pram = explode("?", $url);
 				$url_pram = explode("&", $url_pram[1]);
 				$url_pram = explode("=", $url_pram[0]);
 				$this->video_id = $url_pram[1];
-				$this->feed = array('url' => $this->youtube_api_capture['api_location'] . $this->video_id, 'type' => 'youtube');
+				$this->feed = array('url' => $this->youtube_api_capture['api_location'] . $this->video_id . '&key=' . $youtube_api_key, 'type' => 'youtube');
 				break;
 			case 'vimeo':
 				$explode_char = '/';
