@@ -62,7 +62,7 @@ if ($izap_videos) {
 	header("Pragma: public");
 	header("Cache-Control: public");
 	header("Content-Length: " . strlen($contents));
-    header("Content-type: {$type}");
+    header("Content-Type: {$type}");
 
 	echo $contents;
 }

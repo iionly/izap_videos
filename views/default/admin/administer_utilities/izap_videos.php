@@ -4,8 +4,8 @@ global $IZAPSETTINGS;
 
 // tabs array
 $activated_options = izapGetVideoOptions_izap_videos();
+$tab = get_input('tab', 'settings');
 if(!in_array('ONSERVER', $activated_options)) {
-	$tab = 'settings';
 
 	echo elgg_view('navigation/tabs', array(
 		'tabs' => array(
@@ -14,12 +14,20 @@ if(!in_array('ONSERVER', $activated_options)) {
 				'href' => '/admin/administer_utilities/izap_videos',
 				'selected' => ($tab == 'settings'),
 			),
+			array(
+				'text' => elgg_echo('izap_videos:adminSettings:tabs_api_keys'),
+				'href' => '/admin/administer_utilities/izap_videos?tab=api_keys',
+				'selected' => ($tab == 'api_keys'),
+			),
+			array(
+				'text' => elgg_echo('izap_videos:adminSettings:tabs_server_analysis'),
+				'href' => '/admin/administer_utilities/izap_videos?tab=server_analysis',
+				'selected' => ($tab == 'server_analysis'),
+			),
 		)
 	));
 
 } else {
-
-	$tab = get_input('tab', 'settings');
 
 	$queue_object_status = new izapQueue();
 	$count_queue = $queue_object_status->count();
