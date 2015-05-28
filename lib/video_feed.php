@@ -23,7 +23,7 @@ class UrlFeed extends GetFeed {
 	private $video_id;
 
 	function setUrl($url = '') {
-		if (preg_match('/(https?:\/\/)?(www\.)?(youtube\.com\/)(.*)/', $url, $matches)) {
+		if (preg_match('/(https?:\/\/)?((youtu\.be\/)|((www\.)?(youtube\.com\/)))(.*)/', $url, $matches)) {
 			$this->type = 'youtube';
 		} elseif (preg_match('/(https?:\/\/)?(www\.)?(vimeo\.com\/)(.*)/', $url, $matches)) {
 			$this->type = 'vimeo';
@@ -34,10 +34,16 @@ class UrlFeed extends GetFeed {
 		switch($this->type) {
 			case 'youtube':
 				$youtube_api_key = elgg_get_plugin_setting('youtube_api_key', 'izap_videos');
-				$url_pram = explode("?", $url);
-				$url_pram = explode("&", $url_pram[1]);
-				$url_pram = explode("=", $url_pram[0]);
-				$this->video_id = $url_pram[1];
+				if (preg_match('/(https?:\/\/)?(youtu\.be\/)(.*)/', $url, $matches)) {
+					$explode_char = '/';
+					$url_pram = explode($explode_char, $url);
+					$this->video_id = sanitise_string(end($url_pram));
+				} else {
+					$url_pram = explode("?", $url);
+					$url_pram = explode("&", $url_pram[1]);
+					$url_pram = explode("=", $url_pram[0]);
+					$this->video_id = $url_pram[1];
+				}
 				$this->feed = array('url' => $this->youtube_api_capture['api_location'] . $this->video_id . '&key=' . $youtube_api_key, 'type' => 'youtube');
 				break;
 			case 'vimeo':

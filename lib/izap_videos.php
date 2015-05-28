@@ -305,10 +305,14 @@ class IzapVideos extends ElggFile {
 	 * @return boolean
 	 */
 	public function delete() {
-		// delete entity from queue and trash with related media
-		$queue_object = new izapQueue();
-		$queue_object->delete_from_trash($this->guid, true);
-		$queue_object->delete($this->guid, true);
+		// in case of an uploaded video make sure it's also deleted from queue and trash
+		// with related media if it still remained there
+		if ($this->videotype == 'uploaded') {
+			$queue_object = new izapQueue();
+			$queue_object->delete_from_trash($this->guid, true);
+			$queue_object->delete($this->guid, true);
+		}
+
 		$imagesrc = $this->imagesrc;
 		$filesrc = $this->videofile;
 		$ofilesrc = $this->orignalfile;
@@ -326,7 +330,7 @@ class IzapVideos extends ElggFile {
 		file_exists($orignal_file) && @unlink($orignal_file);
 
 		return parent::delete();
-  }
+	}
 
 	/**
 	 * Returns the url for the owner video list

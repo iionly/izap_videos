@@ -1,0 +1,104 @@
+== Changelog ==
+
+=== 1.10.6 (by iionly) ===
+
+- Updated version 1.9.6 for Elgg 1.10 and 1.11.
+
+
+=== 1.9.6 (by iionly) ===
+
+- Updated version 1.8.6 for Elgg 1.9.
+
+
+=== 1.8.6 (by iionly) ===
+
+- Display API key and Server analysis tabs on plugin settings page also when on-server video option is disabled,
+- On deletion of off-server video entries the pdo_sqlite extension is no longer required (by no longer calling the video conversion queue and trash unnecessarily in these cases),
+- Adding of Youtube videos now also works with short urls ("youtu.be").
+
+
+=== 1.10.5 (by iionly) ===
+
+- Updated version 1.9.5 for Elgg 1.10 and 1.11.
+
+
+=== 1.9.5 (by iionly) ===
+
+- Updated version 1.8.5 for Elgg 1.9.
+
+
+=== 1.8.5 (by iionly) ===
+
+- Usage of Youtube Data API version 3 (version 2 is no longer supported) for adding of Youtube off-server videos. You'll need to register a Google API key for the addition of Youtube videos to work (unfortunately, doesn't work anymore without),
+- Youtube off-server videos get embedded in an iframe now (already worked this way for Vimeo and Dailymotion),
+- Youtube, Vimeo and Dailymotion off-server videos get embedded with "https" urls regardless if the user provided a "http" or "https" url for the video. Hopefully, this avoids issues (browser warnings) due to mix-up of http / https content within a https-Elgg site (there's no change for already existing videos though but only for newly added entries).
+
+
+=== 1.10.4 (by iionly) ===
+
+- Based on version 1.9.4,
+- Fix of deprecation issues occuring on Elgg 1.10 (namely changing output/confirmlink view to output/url view).
+
+
+=== 1.9.4 (by iionly) ===
+
+- Updated version 1.8.4 for Elgg 1.9.
+
+
+=== 1.8.4 (by iionly) ===
+
+- Enhancement in sidebar entries (Most viewed videos, Most commented videos, Highest rated videos etc.).
+
+
+=== 1.9.3 (by iionly) ===
+
+- Updated version 1.8.3 for Elgg 1.9,
+- Minimum Elgg version required is now Elgg 1.9.6 because only with this Elgg version deletion of videos works again (a regression within the ElggDiskstore core class has been fixed).
+
+
+=== 1.8.3 (by iionly) ===
+
+- Fix in izap_videos class to prevent orphaned metadata remaining after deleting a video. This change made the upgrade script necessary that you need to execute by clicking on the "Upgrade" button on the iZAP Videos settings page to prevent any orphaned entries for videos deleted in the future and to remove and orphaned metadata for videos already deleted in the past.
+
+
+=== 1.9.2 (by iionly) ===
+
+- Updated version 1.8.2 for Elgg 1.9,
+- Minimum Elgg version required is now Elgg 1.9.5 because only with this Elgg version the fatal error on activating the iZAP Videos plugin if there had been an older version of the original iZAP Video plugin had been previously installed will no longer occur.
+
+
+=== 1.8.2 (by iionly) ===
+
+- Video conversion no longer done by a cli php script but triggered only via a cronjob (because the cli php script might not work anymore on some servers due to changes introduced by patches for the "shellshock" bash bug),
+- Don't check filesize of a video currently in queue for conversion if conversion has not yet started,
+- Show correct summary line for river entries of comments on videos.
+
+
+=== 1.9.1 (by iionly) ===
+
+- Updated version 1.8.1 for Elgg 1.9.
+
+
+=== 1.8.1 (by iionly) ===
+
+- Fixed a previous "fix" with handling of deletion of videos within the delete method of the IzapVideos class to correctly call the parent's class (ElggFile) delete method.
+- Made the lightbox popup in the river "nicer" by setting a max-width to not fill the whole width of the screen if not necessary.
+
+
+=== 1.9.0 (by iionly) ===
+
+- Updated version 1.8.0 for Elgg 1.9.
+
+
+=== 1.8.0 (by iionly) ===
+
+- Initial release of this version of the iZAP Videos plugin,
+- Updated for Elgg 1.8 based on version 3.71b of the original iZAP Videos plugin for Elgg 1.7,
+- Code cleaning, re-organization and fixing of bugs,
+- Dropping dependency on external feed server,
+- Adding / fixing support for off-server videos from Dailymotion.com, Vimeo.com and Youtube.com without the need of an external feed server,
+- Adding support for Widget Manager plugin (if available),
+- German translations added,
+- Custom list view for videos to be displayed in search results,
+- Preview images in river activity entries,
+- Starting video played directly from activity river in lightbox popup.
