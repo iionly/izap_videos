@@ -44,13 +44,7 @@ if ($comments_count != 0) {
 	$comments_link = '';
 }
 
-if (elgg_is_active_plugin('elggx_fivestar')) {
-	$fivestar = elgg_view("elggx_fivestar/voting", array('entity' => $video, 'subclass' => 'mts mbs'));
-} else {
-	$fivestar = '';
-}
-
-$subtitle = "$author_text $date $comments_link $categories $fivestar";
+$subtitle = "$author_text $date $comments_link $categories";
 
 $metadata = elgg_view_menu('entity', array(
 	'entity' => $video,

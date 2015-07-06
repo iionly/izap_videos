@@ -6,7 +6,7 @@ if (get_subtype_id('object', 'izap_videos')) {
 	add_subtype('object', 'izap_videos', 'IzapVideos');
 }
 
-$new_version = '1.10.6';
+$new_version = '1.10.7';
 $old_version = elgg_get_plugin_setting('version_izap_videos', 'izap_videos');
 
 if (!$old_version) {
@@ -25,6 +25,6 @@ if (!$old_version) {
 		delete_data($del_queue_object_query);
 	}
 	elgg_set_plugin_setting('version_izap_videos', $new_version, 'izap_videos');
-} elseif (version_compare($new_version, $old_version)) {
+} elseif (version_compare($new_version, $old_version, '!=')) {
 	elgg_set_plugin_setting('version_izap_videos', $new_version, 'izap_videos');
 }

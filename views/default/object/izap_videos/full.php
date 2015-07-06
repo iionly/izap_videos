@@ -25,12 +25,6 @@ if ($comments_count != 0) {
 	$comments_link = '';
 }
 
-if (elgg_is_active_plugin('elggx_fivestar')) {
-	$fivestar = elgg_view("elggx_fivestar/voting", array('entity' => $video, 'subclass' => 'mts mbs'));
-} else {
-	$fivestar = '';
-}
-
 $owner_icon = elgg_view_entity_icon($video->getOwnerEntity(), 'tiny');
 
 $metadata = elgg_view_menu('entity', array(
@@ -40,7 +34,7 @@ $metadata = elgg_view_menu('entity', array(
 	'class' => 'elgg-menu-hz',
 ));
 
-$subtitle = "$author_text $date $comments_link $categories $fivestar";
+$subtitle = "$author_text $date $comments_link $categories";
 
 $params = array(
 	'entity' => $video,

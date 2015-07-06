@@ -14,6 +14,8 @@
  *
  */
 
+elgg_require_js('izap_videos/video_form');
+
 global $IZAPSETTINGS;
 
 $remove_access_id = false;
@@ -162,16 +164,3 @@ $izapLoadedValues->container_guid = elgg_get_page_owner_guid();
 		</div>
 	</form>
 </div>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#video_form').submit(function() {
-			$('#submit_button').hide();
-			$('#progress_button').show();
-		});
-	});
-</script>
-
-<?php
-// unset the session when from is loaded
-unset($_SESSION['izapVideos']);

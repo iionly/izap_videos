@@ -14,6 +14,8 @@
  *
  */
 
+elgg_require_js('izap_videos/queue_status');
+
 // get action for queue
 $action = get_input('action');
 switch ($action) {
@@ -49,11 +51,3 @@ switch ($action) {
 		echo elgg_view("output/longtext", array("value" => elgg_echo('izap_videos:adminSettings:resetQueue_info'), 'class' => 'mtm elgg-subtext'));
 	?>
 </div>
-
-<script type="text/javascript">
-	$(document).live('ready', function() {
-		var refreshId = setInterval( function() {
-			$('#videoQueue').load(elgg.normalize_url('ajax/view/izap_videos/admin/getQueue'));
-		}, 5000);
-});
-</script>

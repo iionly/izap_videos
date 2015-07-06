@@ -20,7 +20,6 @@ $owner_link = elgg_view('output/url', array(
 ));
 $author_text = elgg_echo('byline', array($owner_link));
 $date = elgg_view_friendly_time($video->time_created);
-$categories = elgg_view('output/categories', $vars);
 
 $comments_count = $video->countComments();
 //only display if there are commments
@@ -35,29 +34,16 @@ if ($comments_count != 0) {
 	$comments_link = '';
 }
 
-if (elgg_is_active_plugin('elggx_fivestar')) {
-	$fivestar = elgg_view("elggx_fivestar/voting", array('entity' => $video, 'subclass' => 'mts mbs'));
-} else {
-	$fivestar = '';
-}
-
 $owner_icon = elgg_view_entity_icon($video->getOwnerEntity(), 'tiny');
 
-$metadata = elgg_view_menu('entity', array(
-	'entity' => $video,
-	'handler' => 'videos',
-	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz',
-));
-
-$subtitle = "$author_text $date $comments_link $categories $fivestar";
+$subtitle = "$author_text $date $comments_link";
 
 $params = array(
 	'entity' => $video,
 	'title' => false,
-	'metadata' => $metadata,
+	'metadata' => '',
 	'subtitle' => $subtitle,
-	'tags' => $tags,
+	'tags' => false,
 );
 $list_body = elgg_view('object/elements/summary', $params);
 

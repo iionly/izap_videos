@@ -1,5 +1,13 @@
 == Changelog ==
 
+=== 1.10.7 (by iionly) ===
+
+- JS code moved into AMD modules,
+- Removal on entity menu, categories view and Fivestar rating from video view lightbox popup (unfortunately, there were issues with JS/CSS not correctly loaded within the lightbox and I was unable to get it working correctly - most likely due to these issues already caused by the Elgg core lightbox implementation). On the plus side: the lightbox popup is slightly more compact now...
+- Removal of code to add the Fivestar rating widget to the output (only relevant if you use the Elggx Fivestar plugin). Starting with version 1.10.10 the Fivestar plugin offers the necessary view to display the Fivestar rating widget for iZAP Videos entries, so it's no longer necessary to handle this in a custom way within the iZAP Videos plugin. This means you would have to update to version 1.10.10 of the Fivestar plugin, if you want the rating to continue to work,
+- Fix in activate.php for the version check to work correctly.
+
+
 === 1.10.6 (by iionly) ===
 
 - Updated version 1.9.6 for Elgg 1.10 and 1.11.
