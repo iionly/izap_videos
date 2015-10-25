@@ -23,4 +23,15 @@ $videos_html = elgg_list_entities(array(
 
 elgg_set_context($prev_context);
 
+if (elgg_is_logged_in()) {
+	$group = get_entity(elgg_get_page_owner_guid());
+	if ($group->isMember(elgg_get_logged_in_user_entity())) {
+		$videos_html .= elgg_view('output/url', array(
+			'href' => "videos/add/" . elgg_get_page_owner_guid(),
+			'text' => elgg_echo('izap_videos:add'),
+			'is_trusted' => true,
+		));
+	}
+}
+
 echo $videos_html;

@@ -1,104 +1,115 @@
-== Changelog ==
+Changelog
+=========
 
-=== 1.10.7 (by iionly) ===
+1.10.8
+------
+
+- Adding a group video does really add the video to the group and not to the uploading user,
+- Don't show filter tabs on group videos page,
+- Added new video link added in Widget Manager video group widget,
+- No longer show entity menu in index page widget,
+- composer.json added.
+
+1.10.7
+------
 
 - JS code moved into AMD modules,
 - Removal on entity menu, categories view and Fivestar rating from video view lightbox popup (unfortunately, there were issues with JS/CSS not correctly loaded within the lightbox and I was unable to get it working correctly - most likely due to these issues already caused by the Elgg core lightbox implementation). On the plus side: the lightbox popup is slightly more compact now...
 - Removal of code to add the Fivestar rating widget to the output (only relevant if you use the Elggx Fivestar plugin). Starting with version 1.10.10 the Fivestar plugin offers the necessary view to display the Fivestar rating widget for iZAP Videos entries, so it's no longer necessary to handle this in a custom way within the iZAP Videos plugin. This means you would have to update to version 1.10.10 of the Fivestar plugin, if you want the rating to continue to work,
 - Fix in activate.php for the version check to work correctly.
 
-
-=== 1.10.6 (by iionly) ===
+1.10.6
+------
 
 - Updated version 1.9.6 for Elgg 1.10 and 1.11.
 
-
-=== 1.9.6 (by iionly) ===
+1.9.6
+-----
 
 - Updated version 1.8.6 for Elgg 1.9.
 
-
-=== 1.8.6 (by iionly) ===
+1.8.6
+-----
 
 - Display API key and Server analysis tabs on plugin settings page also when on-server video option is disabled,
 - On deletion of off-server video entries the pdo_sqlite extension is no longer required (by no longer calling the video conversion queue and trash unnecessarily in these cases),
 - Adding of Youtube videos now also works with short urls ("youtu.be").
 
-
-=== 1.10.5 (by iionly) ===
+1.10.5
+-----
 
 - Updated version 1.9.5 for Elgg 1.10 and 1.11.
 
-
-=== 1.9.5 (by iionly) ===
+1.9.5
+-----
 
 - Updated version 1.8.5 for Elgg 1.9.
 
-
-=== 1.8.5 (by iionly) ===
+1.8.5
+-----
 
 - Usage of Youtube Data API version 3 (version 2 is no longer supported) for adding of Youtube off-server videos. You'll need to register a Google API key for the addition of Youtube videos to work (unfortunately, doesn't work anymore without),
 - Youtube off-server videos get embedded in an iframe now (already worked this way for Vimeo and Dailymotion),
 - Youtube, Vimeo and Dailymotion off-server videos get embedded with "https" urls regardless if the user provided a "http" or "https" url for the video. Hopefully, this avoids issues (browser warnings) due to mix-up of http / https content within a https-Elgg site (there's no change for already existing videos though but only for newly added entries).
 
-
-=== 1.10.4 (by iionly) ===
+1.10.4
+-----
 
 - Based on version 1.9.4,
 - Fix of deprecation issues occuring on Elgg 1.10 (namely changing output/confirmlink view to output/url view).
 
-
-=== 1.9.4 (by iionly) ===
+1.9.4
+-----
 
 - Updated version 1.8.4 for Elgg 1.9.
 
-
-=== 1.8.4 (by iionly) ===
+1.8.4
+-----
 
 - Enhancement in sidebar entries (Most viewed videos, Most commented videos, Highest rated videos etc.).
 
-
-=== 1.9.3 (by iionly) ===
+1.9.3
+-----
 
 - Updated version 1.8.3 for Elgg 1.9,
 - Minimum Elgg version required is now Elgg 1.9.6 because only with this Elgg version deletion of videos works again (a regression within the ElggDiskstore core class has been fixed).
 
-
-=== 1.8.3 (by iionly) ===
+1.8.3
+-----
 
 - Fix in izap_videos class to prevent orphaned metadata remaining after deleting a video. This change made the upgrade script necessary that you need to execute by clicking on the "Upgrade" button on the iZAP Videos settings page to prevent any orphaned entries for videos deleted in the future and to remove and orphaned metadata for videos already deleted in the past.
 
-
-=== 1.9.2 (by iionly) ===
+1.9.2
+-----
 
 - Updated version 1.8.2 for Elgg 1.9,
 - Minimum Elgg version required is now Elgg 1.9.5 because only with this Elgg version the fatal error on activating the iZAP Videos plugin if there had been an older version of the original iZAP Video plugin had been previously installed will no longer occur.
 
-
-=== 1.8.2 (by iionly) ===
+1.8.2
+-----
 
 - Video conversion no longer done by a cli php script but triggered only via a cronjob (because the cli php script might not work anymore on some servers due to changes introduced by patches for the "shellshock" bash bug),
 - Don't check filesize of a video currently in queue for conversion if conversion has not yet started,
 - Show correct summary line for river entries of comments on videos.
 
-
-=== 1.9.1 (by iionly) ===
+1.9.1
+-----
 
 - Updated version 1.8.1 for Elgg 1.9.
 
-
-=== 1.8.1 (by iionly) ===
+1.8.1
+-----
 
 - Fixed a previous "fix" with handling of deletion of videos within the delete method of the IzapVideos class to correctly call the parent's class (ElggFile) delete method.
 - Made the lightbox popup in the river "nicer" by setting a max-width to not fill the whole width of the screen if not necessary.
 
-
-=== 1.9.0 (by iionly) ===
+1.9.0
+-----
 
 - Updated version 1.8.0 for Elgg 1.9.
 
-
-=== 1.8.0 (by iionly) ===
+1.8.0
+-----
 
 - Initial release of this version of the iZAP Videos plugin,
 - Updated for Elgg 1.8 based on version 3.71b of the original iZAP Videos plugin for Elgg 1.7,

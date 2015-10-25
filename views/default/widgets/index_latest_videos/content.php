@@ -10,8 +10,7 @@ if(empty($count)){
 	$count = 4;
 }
 
-$prev_context = elgg_get_context();
-elgg_set_context('front');
+elgg_push_context('front');
 $videos_html = elgg_list_entities(array(
 	'type' => 'object',
 	'subtype' => 'izap_videos',
@@ -20,5 +19,5 @@ $videos_html = elgg_list_entities(array(
 	'list_type_toggle' => false,
 	'pagination' => false,
 ));
-elgg_set_context($prev_context);
+elgg_pop_context();
 echo $videos_html;

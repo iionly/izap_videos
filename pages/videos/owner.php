@@ -47,7 +47,7 @@ if (!$content) {
 if (elgg_is_logged_in()) {
 	elgg_register_menu_item('title', array(
 		'name' => 'add',
-		'href' => 'videos/add/' . elgg_get_logged_in_user_guid(),
+		'href' => 'videos/add/' . $owner->getGUID(),
 		'text' => elgg_echo("videos:add"),
 		'link_class' => 'elgg-button elgg-button-action',
 	));
@@ -64,9 +64,8 @@ $params = array(
 // don't show filter if out of filter context
 if ($owner instanceof ElggGroup) {
 	$params['filter'] = false;
-}
-
-if ($owner->getGUID() != elgg_get_logged_in_user_guid()) {
+	$params['filter_override'] = '';
+} else if ($owner->getGUID() != elgg_get_logged_in_user_guid()) {
 	$params['filter_override'] = elgg_view('izap_videos/nav', array('selected' => ''));
 	$params['filter_context'] = '';
 }
