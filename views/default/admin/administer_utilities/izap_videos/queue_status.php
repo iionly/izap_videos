@@ -34,7 +34,7 @@ switch ($action) {
 ?>
 
 <div id="videoQueue" align="center">
-	<img src="<?php echo elgg_get_site_url() . 'mod/izap_videos/_graphics/queue.gif';?>" alt="queue">
+	<img src="<?php echo elgg_get_simplecache_url('izap_videos/queue.gif');?>" alt="queue">
 </div>
 <div align="right" class="mtm">
 	<?php

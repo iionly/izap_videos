@@ -1,6 +1,6 @@
 <?php
 
-$guid = (int)get_input('guid');
+$guid = elgg_extract('guid', $vars);
 
 if (!$video = get_entity($guid)) {
 	// @todo either deleted or do not have access

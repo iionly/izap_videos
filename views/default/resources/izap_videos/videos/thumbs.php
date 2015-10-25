@@ -24,10 +24,10 @@ if(!$guid) {
 
 // if nothing found yet..
 if (!$guid) {
-	$guid = get_input('videoID');
+	$guid = elgg_extract('videoID', $vars);
 }
 
-$what = get_input("what");
+$what = elgg_extract('what', $vars);
 $izap_videos = izapVideoCheck_izap_videos($guid);
 
 if ($izap_videos) {
@@ -49,10 +49,9 @@ if ($izap_videos) {
 	}
 
 	if ($contents == '') {
-		$contents = file_get_contents(elgg_get_plugins_path() . 'izap_videos/_graphics/izapdesign_logo.gif');
-	}
-
-	if ($what == 'image') {
+		$contents = elgg_view("izap_videos/izapdesign_logo.gif");
+		$type = 'image/gif';
+	} elseif ($what == 'image') {
 		$type = 'image/jpeg';
 	} elseif (!isset($what) || empty($what) || $what == 'file') {
 		$type = 'application/x-flv';

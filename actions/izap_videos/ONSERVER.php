@@ -37,7 +37,7 @@ $izap_videos->videotype = $videoValues->type;
 if ($videoValues->thumb) {
 	$izap_videos->imagesrc = $videoValues->thumb;
 } else {
-	$izap_videos->imagesrc = elgg_get_site_url() . '_graphics/ajax_loader.gif';
+	$izap_videos->imagesrc = elgg_get_simplecache_url('ajax_loader.gif');
 }
 
 // Defining new preview attribute to be saved with the video entity

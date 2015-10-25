@@ -160,7 +160,7 @@ $izapLoadedValues->container_guid = elgg_get_page_owner_guid();
 			?>
 		</div>
 		<div id="progress_button" style="display: none;">
-			<?php echo elgg_echo('izap_videos:please_wait');?><img src="<?php echo elgg_get_site_url() . 'mod/izap_videos/_graphics/form_submit.gif' ;?>" />
+			<?php echo elgg_echo('izap_videos:please_wait');?><img src="<?php echo elgg_get_simplecache_url('izap_videos/form_submit.gif');?>" />
 		</div>
 	</form>
 </div>

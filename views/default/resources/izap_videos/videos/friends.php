@@ -5,12 +5,12 @@ gatekeeper();
 $owner = elgg_get_page_owner_entity();
 
 if (!$owner) {
-	$guid = get_input('guid');
+	$guid = elgg_extract('guid', $vars);
 	$owner = get_user($guid);
 }
 
 if (!$owner) {
-	$username = get_input('username');
+	$username = elgg_extract('username', $vars);
 	$owner = get_user_by_username($username);
 }
 

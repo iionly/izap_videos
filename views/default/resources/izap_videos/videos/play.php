@@ -1,7 +1,7 @@
 <?php
 
 // get the video id as input
-$video = (int)get_input('guid');
+$video = elgg_extract('guid', $vars);
 $izap_videos = izapVideoCheck_izap_videos($video);
 
 elgg_set_page_owner_guid($izap_videos->getContainerGUID());

@@ -88,6 +88,9 @@ function init_izap_videos() {
 		elgg_register_plugin_hook_handler("entity:url", "object", "izap_videos_widget_urls");
 	}
 
+	// Allow liking of videos
+	elgg_register_plugin_hook_handler('likes:is_likable', 'object:izap_videos', 'Elgg\Values::getTrue');
+
 	// Register for search
 	elgg_register_entity_type('object','izap_videos');
 
@@ -113,172 +116,153 @@ function init_izap_videos() {
  * @return boolean
  */
 function izap_videos_pagehandler($page) {
-	if (!isset($page[0])) {
-		return false;
-	}
+	$page_type = elgg_extract(0, $page, 'all');
 
-	$base = elgg_get_plugins_path() . 'izap_videos/pages/videos';
-	$base_lists = elgg_get_plugins_path() . 'izap_videos/pages/lists';
+	$resource_vars = array();
 	switch ($page[0]) {
 		case "all":
-			require "$base/all.php";
+			echo elgg_view_resource('izap_videos/videos/all');
 			break;
 		case "owner":
 			if(!empty($page[2]) && is_numeric($page[2])) {
-				$username = $page[1];
-				$guid = $page[2];
-				set_input('guid', $guid);
-				set_input('username', $username);
+				$resource_vars['username'] = $page[1];
+				$resource_vars['guid'] = (int)$page[2];
 			} elseif(!empty($page[1]) && is_string($page[1])) {
-				$username = $page[1];
-				set_input('username',$username);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base/owner.php";
+			echo elgg_view_resource('izap_videos/videos/owner', $resource_vars);
 			break;
 		case "group":
 			if(!empty($page[1]) && is_numeric($page[1])) {
-				$guid = $page[1];
-				set_input('guid', $guid);
+				$resource_vars['guid'] = (int)$page[1];
 			}
-			require "$base/owner.php";
+			echo elgg_view_resource('izap_videos/videos/owner', $resource_vars);
 			break;
 		case "friends":
 			if(!empty($page[2]) && is_numeric($page[2])) {
-				$username = $page[1];
-				$guid = $page[2];
-				set_input('guid', $guid);
-				set_input('username', $username);
+				$resource_vars['username'] = $page[1];
+				$resource_vars['guid'] = (int)$page[2];
 			} elseif(!empty($page[1]) && is_string($page[1])) {
-				$username = $page[1];
-				set_input('username',$username);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base/friends.php";
+			echo elgg_view_resource('izap_videos/videos/friends', $resource_vars);
 			break;
 		case "favorites":
 			if(!empty($page[2]) && is_numeric($page[2])) {
-				$username = $page[1];
-				$guid = $page[2];
-				set_input('guid', $guid);
-				set_input('username', $username);
+				$resource_vars['username'] = $page[1];
+				$resource_vars['guid'] = (int)$page[2];
 			} elseif(!empty($page[1]) && is_string($page[1])) {
-				$username = $page[1];
-				set_input('username',$username);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base/favorites.php";
+			echo elgg_view_resource('izap_videos/videos/favorites', $resource_vars);
 			break;
 		case "play":
 			if(!empty($page[2]) && is_numeric($page[2])) {
-				$username = $page[1];
-				$guid = $page[2];
-				set_input('guid', $guid);
-				set_input('username', $username);
+				$resource_vars['username'] = $page[1];
+				$resource_vars['guid'] = (int)$page[2];
 			} elseif(!empty($page[1]) && is_string($page[1])) {
-				$username = $page[1];
-				set_input('username',$username);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base/play.php";
+			echo elgg_view_resource('izap_videos/videos/play', $resource_vars);
 			break;
 		case "add":
-			require "$base/add.php";
+			echo elgg_view_resource('izap_videos/videos/add');
 			break;
 		case "edit":
 			if(!empty($page[2]) && is_numeric($page[2])) {
-				$username = $page[1];
-				$guid = $page[2];
-				set_input('guid', $guid);
-				set_input('username', $username);
+				$resource_vars['username'] = $page[1];
+				$resource_vars['guid'] = (int)$page[2];
 			} elseif(!empty($page[1]) && is_string($page[1])) {
-				$username = $page[1];
-				set_input('username',$username);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base/edit.php";
+			echo elgg_view_resource('izap_videos/videos/edit', $resource_vars);
 			break;
 		case "thumbs":
-			require "$base/thumbs.php";
+			echo elgg_view_resource('izap_videos/videos/thumbs');
 			break;
 		case "mostviewed":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostviewedvideos.php";
+			echo elgg_view_resource('izap_videos/lists/mostviewedvideos', $resource_vars);
 			break;
 		case "mostviewedtoday":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostviewedvideostoday.php";
+			echo elgg_view_resource('izap_videos/lists/mostviewedvideostoday', $resource_vars);
 			break;
 		case "mostviewedthismonth":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostviewedvideosthismonth.php";
+			echo elgg_view_resource('izap_videos/lists/mostviewedvideosthismonth', $resource_vars);
 			break;
 		case "mostviewedlastmonth":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostviewedvideoslastmonth.php";
+			echo elgg_view_resource('izap_videos/lists/mostviewedvideoslastmonth', $resource_vars);
 			break;
 		case "mostviewedthisyear":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostviewedvideosthisyear.php";
+			echo elgg_view_resource('izap_videos/lists/mostviewedvideosthisyear', $resource_vars);
 			break;
 		case "mostcommented":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostcommentedvideos.php";
+			echo elgg_view_resource('izap_videos/lists/mostcommentedvideos', $resource_vars);
 			break;
 		case "mostcommentedtoday":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostcommentedvideostoday.php";
+			echo elgg_view_resource('izap_videos/lists/mostcommentedvideostoday', $resource_vars);
 			break;
 		case "mostcommentedthismonth":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostcommentedvideosthismonth.php";
+			echo elgg_view_resource('izap_videos/lists/mostcommentedvideosthismonth', $resource_vars);
 			break;
 		case "mostcommentedlastmonth":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostcommentedvideoslastmonth.php";
+			echo elgg_view_resource('izap_videos/lists/mostcommentedvideoslastmonth', $resource_vars);
 			break;
 		case "mostcommentedthisyear":
 			if (isset($page[1])) {
-				set_input('username', $page[1]);
+				$resource_vars['username'] = $page[1];
 			}
-			require "$base_lists/mostcommentedvideosthisyear.php";
+			echo elgg_view_resource('izap_videos/lists/mostcommentedvideosthisyear', $resource_vars);
 			break;
 		case "recentlyviewed":
-			require "$base_lists/recentlyviewed.php";
+			echo elgg_view_resource('izap_videos/lists/recentlyviewed');
 			break;
 		case "recentlycommented":
-			require "$base_lists/recentlycommented.php";
+			echo elgg_view_resource('izap_videos/lists/recentlycommented');
 			break;
 		case "recentvotes":
 			if(elgg_is_active_plugin('elggx_fivestar')) {
-				require "$base_lists/recentvotes.php";
+				echo elgg_view_resource('izap_videos/lists/recentvotes');
 				break;
 			} else {
 				return false;
 			}
 		case "highestrated":
 			if(elgg_is_active_plugin('elggx_fivestar')) {
-				require "$base_lists/highestrated.php";
+				echo elgg_view_resource('izap_videos/lists/highestrated');
 				break;
 			} else {
 				return false;
 			}
 		case "highestvotecount":
 			if(elgg_is_active_plugin('elggx_fivestar')) {
-				require "$base_lists/highestvotecount.php";
+				echo elgg_view_resource('izap_videos/lists/highestvotecount');
 				break;
 			} else {
 				return false;
@@ -297,9 +281,9 @@ function izap_videos_pagehandler($page) {
  * @param array $page
  */
 function izap_videos_files_pagehandler($page) {
-	set_input('what', $page[0]);
-	set_input('videoID', $page[1]);
-	include ('pages/videos/thumbs.php');
+	$resource_vars['what'] = $page[0];
+	$resource_vars['videoID'] = $page[1];
+	echo elgg_view_resource('izap_videos/videos/thumbs', $resource_vars);
 }
 
 
@@ -376,7 +360,7 @@ function izap_videos_entity_menu_setup($hook, $type, $menu, $params) {
 
 				$params = array(
 					'href' => $url,
-					'text' => '<img src="' . elgg_get_site_url() . 'mod/izap_videos/_graphics/favorite_remove.png' . '" alt="' . elgg_echo('izap_videos:remove_favorite') . '"/>',
+					'text' => '<img src="' . elgg_get_simplecache_url('izap_videos/favorite_remove.png') . '" alt="' . elgg_echo('izap_videos:remove_favorite') . '"/>',
 					'title' => elgg_echo('izap_videos:remove_favorite'),
 					'is_action' => true,
 					'is_trusted' => true,
@@ -395,7 +379,7 @@ function izap_videos_entity_menu_setup($hook, $type, $menu, $params) {
 
 				$params = array(
 					'href' => $url,
-					'text' => '<img src="' . elgg_get_site_url() . 'mod/izap_videos/_graphics/favorite_add.png' . '" alt="' . elgg_echo('izap_videos:save_favorite') . '"/>',
+					'text' => '<img src="' . elgg_get_simplecache_url('izap_videos/favorite_add.png') . '" alt="' . elgg_echo('izap_videos:save_favorite') . '"/>',
 					'title' => elgg_echo('izap_videos:save_favorite'),
 					'is_action' => true,
 					'is_trusted' => true,
