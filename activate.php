@@ -6,7 +6,7 @@ if (get_subtype_id('object', 'izap_videos')) {
 	add_subtype('object', 'izap_videos', 'IzapVideos');
 }
 
-$new_version = '2.0.0';
+$new_version = '2.0.1';
 $old_version = elgg_get_plugin_setting('version_izap_videos', 'izap_videos');
 
 if (!$old_version) {

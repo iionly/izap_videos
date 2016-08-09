@@ -248,9 +248,9 @@ class IzapVideos extends ElggFile {
 	 * @uses getThumb()
 	 * @return url
 	 */
-	public function getIcon() {
-		return $this->getThumb(true);
-	}
+// 	public function getIcon($size, $type = 'icon') {
+// 		return $this->getThumb(true);
+// 	}
 
 	/**
 	 * Updates the video views

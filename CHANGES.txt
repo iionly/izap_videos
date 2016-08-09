@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0.1
+-----
+
+- Fixed Fatal error showing up on Elgg 2.2 due to incompatible declaration of IzapVideos::getIcon() (already declared in Elgg\\EntityIcon::getIcon($size, $type = 'icon')). As this method is not used apparently at the moment the fix consists of commenting out the function...
+
 2.0.0
 -----
 
