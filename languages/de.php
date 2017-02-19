@@ -187,9 +187,10 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:server_analysis:memory_limit' => 'Limitierung des maximal zur Verfügung gestellten Hauptspeichers für einen PHP-Thread. Setzte das Limit in .htaccess hoch genug, um die fehlerfreie Verarbeitung der größten zu erwartenden Dateien durch FFPMEG zu ermöglichen.',
 
 	// Info messages
-	'izap_videos:adminSettings:info:convert-command' => '(Befehl für optimierte Videos: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b 330k -s 480x360 -acodec libmp3lame -ar 22050 -ab 48k [outputVideoPath] )',
+	'izap_videos:adminSettings:info:convert-command' => '(Befehl für optimierte Videos: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec libmp3lame -ar 22050 -ab 48k [outputVideoPath] )',
 	'izap_videos:adminSettings:info:bg-color' => '(Gebe den Hex-Wert der Farbe ohne # an. Z.B. #FFFFFF ist weiss, also gebe "FFFFFF" ein)',
 	'izap_videos:adminSettings:info:izapKeepOriginal' => '(Option abwählen, wenn Du die hochgeladene Original-Videodatei nach dem Konvertieren nicht zusätzlich auf dem Server behalten möchtest)',
+	'izap_videos:adminSettings:info:izapMaxFileSize' => '(Die maximal zulässige Dateigröße für hochgeladene Videos kann nicht größer sein als der Wert der PHP-Variablen upload_max_filesize, der in .htaccess oder php.ini definiert ist. Wenn ein größeres Limit eingegeben wird, wird es auf den Wert von upload_max_filesize reduziert)',
 
 	// Add/edit form
 	'izap_videos:addEditForm:ONSERVER' => 'Video hochladen',

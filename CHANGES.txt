@@ -1,6 +1,17 @@
 Changelog
 =========
 
+1.10.9
+------
+
+- Rework of playpopup view code,
+- Fixed href of "Reset to defaults" button on plugin settings page,
+- Do not enable EMBED video option by default or on resetting to defaults,
+- On saving plugin settings check value entered for max allowed video file size setting against value set for php variable upload_max_filzesize and reduce limit to this value if necessary (upload_max_filzesize is the server-side absolute upper limit),
+- Trigger video conversion queue on deletion of a video only if it's an on-server video,
+- Suggested optimized convert command updated to match current ffmpeg option names again (tested with ffmpeg version 3.0 - 3.2),
+-  When using the Widget Manager plugin display/not display Tidypics group widgets according to each groups' settings.
+
 1.10.8
 ------
 

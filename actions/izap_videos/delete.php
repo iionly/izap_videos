@@ -18,9 +18,13 @@ $guid = (int)get_input('guid');
 $izap_videos = izapVideoCheck_izap_videos($guid, true);
 $owner = get_entity($izap_videos->container_guid);
 
+$uploaded = $izap_videos->videotype == 'uploaded';
+
 if($izap_videos->delete()) {
 	system_message(elgg_echo('izap_videos:deleted'));
-	izapTrigger_izap_videos();
+	if ($uploaded) {
+		izapTrigger_izap_videos();
+	}
 } else {
 	register_error(elgg_echo('izap_videos:notdeleted'));
 }

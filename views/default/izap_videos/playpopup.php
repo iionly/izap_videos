@@ -35,28 +35,23 @@ if ($comments_count != 0) {
 }
 
 $owner_icon = elgg_view_entity_icon($video->getOwnerEntity(), 'tiny');
-
 $subtitle = "$author_text $date $comments_link";
+$title = elgg_view_title($video->title);
 
 $params = array(
 	'entity' => $video,
 	'title' => false,
 	'metadata' => '',
 	'subtitle' => $subtitle,
-	'tags' => false,
 );
 $list_body = elgg_view('object/elements/summary', $params);
 
-$params = array('class' => 'mbs');
 $summary = elgg_view_image_block($owner_icon, $list_body, $params);
 
-$title = elgg_view_title($video->title);
-
-echo '<div style="max-width:640px;">' . $title . $summary;
-
-// Display the video player to allow for the video to be played
+echo '<div>';
+echo '<div  style="max-width:600px;">' . $title . $summary . '</div>';
 echo '<div align="center" class="izapPlayer">';
-echo '<div class="mbm">' . $video->getPlayer() . '</div>';
+echo '<div  style="height:360px; width:600px;" class="mbm">' . $video->getPlayer() . '</div>';
 echo '<div class="mbm">' . elgg_view('output/url', array(
 	'href' => $video->getURL() . '#comments',
 	'text' => elgg_echo('generic_comments:add'),
