@@ -13,10 +13,10 @@
 
 $entity = $vars['entity'];
 
-$sizes = array('small', 'medium', 'large', 'tiny', 'master', 'topbar');
+$icon_sizes = elgg_get_icon_sizes('object', 'izap_videos');
 // Get size
-if (!in_array($vars['size'], $sizes)) {
-	$vars['size'] = "medium";
+if (!array_key_exists($vars['size'], $icon_sizes)) {
+	$vars['size'] = 'medium';
 }
 
 $class = elgg_extract('img_class', $vars, '');
@@ -32,9 +32,7 @@ if (isset($vars['href'])) {
 	$url = $vars['href'];
 }
 
-$icon_sizes = elgg_get_config('icon_sizes');
 $size = $vars['size'];
-
 if (!isset($vars['width'])) {
 	$vars['width'] = $size != 'master' ? $icon_sizes[$size]['w'] : null;
 }

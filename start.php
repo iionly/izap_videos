@@ -86,6 +86,8 @@ function init_izap_videos() {
 
 		//register title urls for widgets
 		elgg_register_plugin_hook_handler("entity:url", "object", "izap_videos_widget_urls");
+		// handle the availability of the iZAP Videos group widget
+		elgg_register_plugin_hook_handler("group_tool_widgets", "widget_manager", "izap_videos_tool_widget_handler");
 	}
 
 	// Allow liking of videos
@@ -484,4 +486,32 @@ function izap_videos_river_comment($hook_name, $entity_type, $return_value, $par
 
 function izap_queue_cron($hook, $entity_type, $returnvalue, $params) {
 	izapTrigger_izap_videos();
+}
+
+// Add or remove a group's iZAP Videos widget based on the corresponding group tools option
+function izap_videos_tool_widget_handler($hook, $type, $return_value, $params) {
+	if (!empty($params) && is_array($params)) {
+		$entity = elgg_extract("entity", $params);
+
+		if (!empty($entity) && elgg_instanceof($entity, "group")) {
+			if (!is_array($return_value)) {
+				$return_value = array();
+			}
+
+			if (!isset($return_value["enable"])) {
+				$return_value["enable"] = array();
+			}
+			if (!isset($return_value["disable"])) {
+				$return_value["disable"] = array();
+			}
+
+			if ($entity->izap_videos_enable == "yes") {
+				$return_value["enable"][] = "groups_latest_videos";
+			} else {
+				$return_value["disable"][] = "groups_latest_videos";
+			}
+		}
+	}
+
+	return $return_value;
 }

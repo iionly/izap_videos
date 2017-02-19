@@ -23,7 +23,7 @@ $form .=  elgg_view('input/checkboxes', array(
 				(extension_loaded('pdo_sqlite') ? elgg_echo('izap_videos:adminSettings:onServerVideos_okay') : elgg_echo('izap_videos:adminSettings:onServerVideos_notokay')) => 'ONSERVER',
 				elgg_echo('izap_videos:adminSettings:embedCode') => 'EMBED',
 			),
-			'value' => izapAdminSettings_izap_videos('izapVideoOptions', array('OFFSERVER', 'EMBED')),
+			'value' => izapAdminSettings_izap_videos('izapVideoOptions', array('OFFSERVER')),
 ));
 $form .= "</div>";
 
@@ -102,6 +102,7 @@ $form .= elgg_view('input/text', array(
 			'name' => 'izap[izapMaxFileSize]',
 			'value' => izapAdminSettings_izap_videos('izapMaxFileSize', '5'),
 ));
+$form .= elgg_view("output/longtext", array("value" => elgg_echo('izap_videos:adminSettings:info:izapMaxFileSize'), 'class' => 'elgg-subtext'));
 $form .= "</div>";
 
 $form .= "<div class='mbm'>";

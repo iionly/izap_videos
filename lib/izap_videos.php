@@ -117,12 +117,9 @@ class IzapVideos extends ElggFile {
 				if ($this->write($retValues['imagecontent'])) {
 					$orignal_file_path = $this->getFilenameOnFilestore();
 
-					$thumb = get_resized_image_from_existing_file($orignal_file_path, 120, 90);
 					$this->setFilename('izap_videos/uploaded/' . $retValues['imagename']);
-					$this->open("write");
-					$this->write($thumb);
+					elgg_save_resized_image($orignal_file_path, $this->getFilenameOnFilestore(), ['w' => 120, 'h' => 90, 'square' => true, 'upscale' => true]);
 
-					$this->close();
 					$returnValue->thumb = 'izap_videos/uploaded/' . $retValues['imagename'];
 					// Defining new preview attribute of standard object
 					$returnValue->preview_400 = 'izap_videos/uploaded/preview_400';

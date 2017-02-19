@@ -71,12 +71,8 @@ if ($_FILES['izap']['error']['videoImage'] == 0 && in_array(strtolower(end(explo
 	$izap_videos->setFilename($izap_videos->imagesrc);
 	$izap_videos->open("write");
 	$izap_videos->write(file_get_contents($_FILES['izap']['tmp_name']['videoImage']));
-
-	$thumb = get_resized_image_from_existing_file($izap_videos->getFilenameOnFilestore(), 120, 90, true);
-
-	$izap_videos->setFilename($izap_videos->imagesrc);
-	$izap_videos->open("write");
-	$izap_videos->write($thumb);
+	$izap_videos->close();
+	elgg_save_resized_image($izap_videos->getFilenameOnFilestore(), $izap_videos->getFilenameOnFilestore(), ['w' => 120, 'h' => 90, 'square' => true, 'upscale' => true]);
 }
 
 if (!$izap_videos->save()) {

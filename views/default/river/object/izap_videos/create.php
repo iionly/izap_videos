@@ -3,9 +3,6 @@
  * Video added river view
  */
 
-elgg_load_js('lightbox');
-elgg_load_css('lightbox');
-
 $object = $vars['item']->getObjectEntity();
 $excerpt = strip_tags($object->description);
 $excerpt = elgg_get_excerpt($excerpt);
@@ -18,6 +15,7 @@ if($size != 'none') {
 		'title' => $object->title,
 		'img_class' => 'screenshot',
 		'link_class' => 'elgg-lightbox',
+		'data-colorboxOpts' => "{maxWidth:'95%', maxHeight:'95%'}",
 	));
 }
 

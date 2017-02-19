@@ -3,9 +3,6 @@
  * Post comment on videos river view
  */
 
-elgg_load_js('lightbox');
-elgg_load_css('lightbox');
-
 $item = $vars['item'];
 
 $subject = $item->getSubjectEntity();
@@ -34,6 +31,7 @@ if($size != 'none') {
 		'title' => $target->title,
 		'img_class' => 'screenshot',
 		'link_class' => 'elgg-lightbox',
+		'data-colorboxOpts' => "{maxWidth:'95%', maxHeight:'95%'}",
 	));
 }
 
