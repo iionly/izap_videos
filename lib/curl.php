@@ -22,7 +22,7 @@ class curl {
 	var $m_status;
 	var $m_followed;
 
-	function curl($theURL=null) {
+	public function __construct($theURL=null) {
 		if (!function_exists('curl_init')) {
 			trigger_error('PHP was not built with --with-curl, rebuild PHP to use the curl class.', E_USER_ERROR);
 		}
@@ -197,7 +197,8 @@ class curl {
 
 
 class xml2array {
-	function xml2array($xml) {
+
+	public function __construct($xml) {
 		if (file_exists($xml)) {
 			$xml = file_get_contents($xml);
 		}

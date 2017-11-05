@@ -24,7 +24,7 @@ class izapConvert {
 
 	public $format = 'flv';
 
-	public function izapConvert($in = '') {
+	public function __construct($in = '') {
 		$this->invideo = $in;
 		$extension_length = strlen(izap_get_file_extension($this->invideo));
 		$outputPath = substr($this->invideo, 0, '-' . ($extension_length + 1));

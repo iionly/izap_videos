@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.3.3
+-----
+
+- Class constructors updated to stop PHP 7.X complaining with a deprecation notice (iZAP Videos still works on PHP 5).
+
 2.3.2
 -----
 
