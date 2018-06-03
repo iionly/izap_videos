@@ -301,7 +301,7 @@ class IzapVideos extends ElggFile {
 	 *
 	 * @return boolean
 	 */
-	public function delete() {
+	public function delete($follow_symlinks = true) {
 		// in case of an uploaded video make sure it's also deleted from queue and trash
 		// with related media if it still remained there
 		if ($this->videotype == 'uploaded') {
@@ -326,7 +326,7 @@ class IzapVideos extends ElggFile {
 		$orignal_file = $this->getFilenameOnFilestore();
 		file_exists($orignal_file) && @unlink($orignal_file);
 
-		return parent::delete();
+		return parent::delete($follow_symlinks);
 	}
 
 	/**
