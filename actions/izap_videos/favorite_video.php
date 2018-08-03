@@ -14,19 +14,26 @@
  *
  */
 
-$user_guid = elgg_get_logged_in_user_guid();
-$video = get_entity(get_input('guid', 0));
+$video_guid = (int) get_input('guid', 0);
+$video = get_entity($video_guid);
 
-if (get_input('izap_action', false) == 'remove') {
-	izap_remove_favorited($video);
-	system_message(elgg_echo('izap_videos:favorite_removed'));
-} else if ($video instanceof IzapVideos) {
-	izapGetAccess_izap_videos();
-	$old_array = $video->favorited_by;
-	$new_array = array_merge((array)$old_array, (array)$user_guid);
-	$video->favorited_by = array_unique($new_array);
-	izapRemoveAccess_izap_videos();
-	system_message(elgg_echo('izap_videos:favorite_saved'));
+if (!($video instanceof IzapVideos)) {
+	return elgg_error_response(elgg_echo('izap_videos:favorite_error'));
 }
 
-forward(REFERER);
+$izap_action = get_input('izap_action', false);
+
+// Removing from favorite list
+if ($izap_action == 'remove') {
+	izap_remove_favorited($video);
+	return elgg_ok_response('', elgg_echo('izap_videos:favorite_removed'), REFERER);
+}
+
+// Adding to favorite list
+izapGetAccess_izap_videos();
+$old_array = $video->favorited_by;
+$new_array = array_merge((array) $old_array, (array) elgg_get_logged_in_user_guid());
+$video->favorited_by = array_unique($new_array);
+izapRemoveAccess_izap_videos();
+
+return elgg_ok_response('', elgg_echo('izap_videos:favorite_saved'), REFERER);

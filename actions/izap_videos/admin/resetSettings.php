@@ -16,10 +16,8 @@
 
 $cleared = elgg_unset_all_plugin_settings('izap_videos');
 
-if ($cleared) {
-	system_message(elgg_echo('izap_videos:success:adminSettingsReset'));
-} else {
-	register_error(elgg_echo('izap_videos:error:adminSettingsReset'));
+if (!$cleared) {
+	return elgg_error_response(elgg_echo('izap_videos:error:adminSettingsReset'));
 }
 
-forward(REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:success:adminSettingsReset'), REFERER);

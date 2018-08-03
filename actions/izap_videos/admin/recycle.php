@@ -14,12 +14,13 @@
  *
  */
 
-$guid = get_input('guid');
-$queue_object = new izapQueue();
+$guid = (int) get_input('guid');
+$queue_object = new IzapQueue();
 
-if ($queue_object->restore($guid)) {
-	system_message(elgg_echo('izap_videos:adminSettings:restore_video'));
-	izapTrigger_izap_videos();
+if (!($queue_object->restore($guid))) {
+	return elgg_error_response(elgg_echo('izap_videos:adminSettings:restore_video_error'));
 }
 
-forward(REFERER);
+izapTrigger_izap_videos();
+
+return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:restore_video'), REFERER);

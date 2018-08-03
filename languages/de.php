@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
 	'admin:administer_utilities:izap_videos' => 'iZAP Videos',
 	'izap_videos' => "iZAP Videos",
 	'item:object:izap_videos' => "Videos",
@@ -93,6 +93,7 @@ return array (
 	'izap_videos:error:unsupported' => 'Das Videoformat wird nicht unterstützt.',
 	'izap_videos:error:emptyEmbedCode' => 'Bitte gebe einen Einbettungscode ein.',
 	'izap_videos:error:sqliteDrivers' => 'Bitte installiere bzw. Aktiviere die PDO-sqlite-Unterstützung auf dem Server, die für die Onserver-Video-Option notwendig ist.',
+	'izap_videos:upgrade:not_required' => 'Es ist keine Aktualisierung notwendig.',
 
 	// Success message
 	'izap_videos:success:adminSettingsSaved' => 'Die Einstellungen wurden gespeichert.',
@@ -109,7 +110,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:notifySub:videoConverted' => 'Video-Konvertierung abgeschlossen',
 	'izap_videos:notifyMsg:videoConverted' => 'Dein Video wurde erfolgreich konvertiert. Folge dem Link, um Dein Video anzuschauen: %s',
 	'izap_videos:notifySub:videoNotConverted' => 'Video-Konvertierung fehlgeschlagen',
-	'izap_videos:notifyAdminMsg:videoNotConverted' => 'Bei der Konvertierung eines Videos ist ein Fehler aufgetreten.<br />Fehler: <b>%s</b>',
+	'izap_videos:notifyAdminMsg:videoNotConverted' => "Bei der Konvertierung eines Videos ist ein Fehler aufgetreten.<br>Fehler: <b>%s</b>",
 	'izap_videos:notifySub:video_deleted' => 'Dein Video wurde gelöscht',
 
 	// River
@@ -132,9 +133,6 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:adminSettings:izapPhpInterpreter' => 'Pfad zum PHP-Interpreter:',
 	'izap_videos:adminSettings:izapVideoCommand' => 'Befehl für die Videokonvertierung:',
 	'izap_videos:adminSettings:izapVideoThumb' => 'Befehl für die Erstellung des Vorschaubildes:',
-	'izap_videos:adminSettings:izapBorderColor1' => 'Farbe für den Fortschrittsbalken des Videoplayers:',
-	'izap_videos:adminSettings:izapBorderColor2' => 'Textfarbe des Videoplayers:',
-	'izap_videos:adminSettings:izapBorderColor3' => 'Farbe für die Bedienknöpfe des Videoplayers:',
 	'izap_videos:adminSettings:izapMaxFileSize' => 'Maximal zulässige Dateigröße für hochgeladene Videodateien (in MB):',
 	'izap_videos:adminSettings:izapKeepOriginal' => 'Originaldatei von hochgeladenen Videodateien behalten?',
 	'izap_videos:adminSettings:keep-original' => 'Ja',
@@ -155,8 +153,11 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:adminSettings:save' => 'Einstellungen speichern',
 	'izap_videos:adminSettings:messages_plugin_missing' => '<em class="elgg-subtext">Aktiviere das messages-Plugin, um Benutzer über den Grund für das Löschen eines Videos informieren zu können.</em>',
 	'izap_videos:adminSettings:deleted_from_trash' => 'Video wurde aus dem Papierkorb gelöscht.',
+	'izap_videos:adminSettings:deleted_from_trash_error' => 'Das Löschen des Videos aus dem Papierkorb ist fehlgeschlagen.',
 	'izap_videos:adminSettings:reset_queue' => 'Die Warteschlange ist nun leer.',
-	'izap_videos:adminSettings:restore_video' => 'Video erfolgreich widerhergestellt.',
+	'izap_videos:adminSettings:reset_queue_error' => 'Beim Zurücksetzen der Warteschlange ist ein Fehler aufgetreten.',
+	'izap_videos:adminSettings:restore_video' => 'Video erfolgreich wiederhergestellt.',
+	'izap_videos:adminSettings:restore_video_error' => 'Das Wiederherstellen des Videos ist fehlgeschlagen.',
 	'izap_videos:adminSettings:izap_river_thumbnails' => 'Vorschaubild in River-Einträgen (Einträge bei neu hinzugefügten Videos und Kommentaren zu Videos):',
 	'izap_videos:adminSettings:thumbnails_small' => "Bild in Größe 'small'",
 	'izap_videos:adminSettings:thumbnails_medium' => "Bild in Größe 'medium'",
@@ -187,8 +188,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:server_analysis:memory_limit' => 'Limitierung des maximal zur Verfügung gestellten Hauptspeichers für einen PHP-Thread. Setzte das Limit in .htaccess hoch genug, um die fehlerfreie Verarbeitung der größten zu erwartenden Dateien durch FFPMEG zu ermöglichen.',
 
 	// Info messages
-	'izap_videos:adminSettings:info:convert-command' => '(Befehl für optimierte Videos: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec libmp3lame -ar 22050 -ab 48k [outputVideoPath] )',
-	'izap_videos:adminSettings:info:bg-color' => '(Gebe den Hex-Wert der Farbe ohne # an. Z.B. #FFFFFF ist weiss, also gebe "FFFFFF" ein)',
+	'izap_videos:adminSettings:info:convert-command' => '(Befehl für optimierte Videos: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath] )',
 	'izap_videos:adminSettings:info:izapKeepOriginal' => '(Option abwählen, wenn Du die hochgeladene Original-Videodatei nach dem Konvertieren nicht zusätzlich auf dem Server behalten möchtest)',
 	'izap_videos:adminSettings:info:izapMaxFileSize' => '(Die maximal zulässige Dateigröße für hochgeladene Videos kann nicht größer sein als der Wert der PHP-Variablen upload_max_filesize, der in .htaccess oder php.ini definiert ist. Wenn ein größeres Limit eingegeben wird, wird es auf den Wert von upload_max_filesize reduziert)',
 
@@ -218,6 +218,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:save_favorite' => 'Zu den Lieblingsvideos hinzufügen',
 	'izap_videos:favorite_saved' => 'Das Video wurde zu Deinen Lieblingsvideos hinzugefügt.',
 	'izap_videos:favorite_removed' => 'Das Video wurde aus der Liste Deiner Lieblingsvideos entfernt.',
+	'izap_videos:favorite_error' => 'Es ist ein Fehler aufgetreten. Das Video wurde nicht gefunden.',
 	'izap_videos:remove_favorite' => 'Aus Lieblingsvideos entfernen',
-	'izap_videos:no_favorites' => 'Noch keine Lieblingsvideos vorhanden.'
-);
+	'izap_videos:no_favorites' => 'Noch keine Lieblingsvideos vorhanden.',
+];

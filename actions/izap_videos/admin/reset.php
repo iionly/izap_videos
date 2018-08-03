@@ -14,10 +14,13 @@
  *
  */
 
-$queue_object = new izapQueue();
-foreach ($queue_object->get(get_input('guid')) as $key => $prods) {
-	get_entity($prods['guid'])->delete();
+$guid = (int) get_input('guid');
+
+$queue_object = new IzapQueue();
+foreach ($queue_object->get($guid) as $key => $prods) {
+	if (!get_entity($prods['guid'])->delete()) {
+		return elgg_error_response(elgg_echo('izap_videos:adminSettings:reset_queue_error'));
+	}
 }
 
-system_message(elgg_echo('izap_videos:adminSettings:reset_queue'));
-forward(REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:reset_queue'), REFERER);

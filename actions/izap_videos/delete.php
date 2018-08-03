@@ -14,19 +14,36 @@
  *
  */
 
-$guid = (int)get_input('guid');
-$izap_videos = izapVideoCheck_izap_videos($guid, true);
+$guid = (int) get_input('guid');
+
+$izap_videos = get_entity($guid);
+if (!($izap_videos instanceof IzapVideos)) {
+	// unable to get Elgg entity
+	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERER);
+}
+
+if (!$izap_videos->canEdit()) {
+	// user doesn't have permissions
+	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERER);
+}
+
 $owner = get_entity($izap_videos->container_guid);
+
+$forward_url = REFERER;
+if ($owner instanceof ElggUser) {
+	$forward_url = "videos/owner/$owner->username";
+} else if ($owner instanceof ElggGroup) {
+	$forward_url = "videos/group/$owner->guid";
+}
 
 $uploaded = $izap_videos->videotype == 'uploaded';
 
-if($izap_videos->delete()) {
-	system_message(elgg_echo('izap_videos:deleted'));
-	if ($uploaded) {
-		izapTrigger_izap_videos();
-	}
-} else {
-	register_error(elgg_echo('izap_videos:notdeleted'));
+if (!$izap_videos->delete()) {
+	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERER);
 }
 
-forward('videos/owner/' . $owner->username);
+if ($uploaded) {
+	izapTrigger_izap_videos();
+}
+
+return elgg_ok_response('', elgg_echo('izap_videos:deleted'), $forward_url);

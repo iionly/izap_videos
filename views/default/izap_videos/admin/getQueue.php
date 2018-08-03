@@ -15,71 +15,51 @@
  */
 
 $queueStatus = (izapIsQueueRunning_izap_videos()) ? elgg_echo('izap_videos:running') : elgg_echo('izap_videos:notRunning');
-$queue_object = new izapQueue();
+$queue_object = new IzapQueue();
 $queuedVideos = $queue_object->get();
-?>
 
-<div>
-	<h3>
-		<?php echo elgg_echo('izap_videos:queueStatus') . $queueStatus . ' (' . izap_count_queue() . ')';?>
-	</h3>
-<?php
-	if (count($queuedVideos)) {
-?>
-		<table class="izap_table">
-		<tbody>
-	<?php
-			$i = 0;
-			foreach($queuedVideos as $queuedVideo) {
-				$extension_length = strlen(izap_get_file_extension($queuedVideo['main_file']));
-				$outputPath = substr($queuedVideo['main_file'], 0, '-' . ($extension_length + 1));
+$content = elgg_format_element('h3', [], elgg_echo('izap_videos:queueStatus') . $queueStatus . ' (' . izap_count_queue() . ')');
 
-				$ORIGNAL_name = basename($queuedVideo['main_file']);
-				$ORIGNAL_size = izapFormatBytes(filesize($queuedVideo['main_file']));
+if (count($queuedVideos)) {
+	$rows = [];
+	$i = 0;
+	foreach($queuedVideos as $queuedVideo) {
+		$row = [];
 
-				$FLV_name = basename($outputPath . '_c.flv');
-				if (file_exists($outputPath . '_c.flv')) {
-					$FLV_size = izapFormatBytes(filesize($outputPath . '_c.flv'));
-				} else {
-					$FLV_size = '0 KB';
-				}
-	?>
-				<tr class="<?php echo (!$i && izapIsQueueRunning_izap_videos()) ? 'queue_selected' : '';?>">
-				<td>
-					<?php echo $ORIGNAL_name . '<br>' . $FLV_name;?>
-				</td>
-				<td>
-					<?php echo $ORIGNAL_size . '<br>' . $FLV_size;?>
-				</td>
-				<td>
-				<?php
-					if ($queuedVideo['conversion'] != IN_PROCESS) {
-						echo elgg_view('output/url',array(
-							'href' => elgg_get_site_url() . 'action/izap_videos/admin/reset?guid=' . $queuedVideo['guid'],
-							'text' => elgg_view_icon('delete-alt'),
-							'is_action' => true,
-							'is_trusted' => true,
-							'confirm'=> elgg_echo('izap_videos:adminSettings:resetQueue_confirm')
-						));
-					}
-				?>
-				</td>
-				</tr>
-		<?php
-				$i++;
-			}
-		?>
-		</tbody>
-		</table>
-<?php
-	} else {
-?>
-		<div align="center">
-		<?php
-			echo elgg_view("output/longtext", array("value" => elgg_echo('izap_videos:queueStatus:none'), 'class' => 'mtm'));
-		?>
-		</div>
-	<?php
+		$extension_length = strlen(izap_get_file_extension($queuedVideo['main_file']));
+		$outputPath = substr($queuedVideo['main_file'], 0, '-' . ($extension_length + 1));
+
+		$ORIGNAL_name = basename($queuedVideo['main_file']);
+		$ORIGNAL_size = izapFormatBytes(filesize($queuedVideo['main_file']));
+
+		$VIDEO_name = basename($outputPath . '_c.mp4');
+		if (file_exists($outputPath . '_c.mp4')) {
+			$VIDEO_size = izapFormatBytes(filesize($outputPath . '_c.mp4'));
+		} else {
+			$VIDEO_size = '0 KB';
+		}
+
+		$row[] = elgg_format_element('td', [], $ORIGNAL_name . '<br>' . $VIDEO_name);
+		$row[] = elgg_format_element('td', [], $ORIGNAL_size . '<br>' . $VIDEO_size);
+		$link = '';
+		if ($queuedVideo['conversion'] != IN_PROCESS) {
+			$link = elgg_view('output/url', [
+				'href' => elgg_http_add_url_query_elements('action/izap_videos/admin/reset', ['guid' => $queuedVideo['guid']]),
+				'text' => elgg_view_icon('delete-alt'),
+				'is_action' => true,
+				'is_trusted' => true,
+				'confirm'=> elgg_echo('izap_videos:adminSettings:resetQueue_confirm'),
+			]);
+		}
+		$row[] = elgg_format_element('td', [], $link);
+
+		$rows[] = elgg_format_element('tr', ['class' => (!$i && izapIsQueueRunning_izap_videos()) ? 'queue_selected' : ''], implode('', $row));
+		$i++;
 	}
-?>
-</div>
+	$table_content = elgg_format_element('tbody', [], implode('', $rows));
+	$content .= elgg_format_element('table', ['class' => 'izap_table'], $table_content);
+} else {
+	$content .= elgg_format_element('div', ['align' => 'center'], elgg_view('output/longtext', ['value' => elgg_echo('izap_videos:queueStatus:none'), 'class' => 'mtm']));
+}
+
+echo elgg_format_element('div', [], $content);

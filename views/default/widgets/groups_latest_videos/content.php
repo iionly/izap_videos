@@ -5,33 +5,36 @@
  */
 
 // get widget settings
-$count = sanitise_int($vars["entity"]->latest_videos_count, false);
-if(empty($count)){
-	$count = 4;
+/* @var $widget ElggWidget */
+$widget = elgg_extract('entity', $vars);
+
+$limit = (int) $widget->latest_videos_count;
+if ($limit < 1) {
+	$limit = 4;
 }
 
-$prev_context = elgg_get_context();
-elgg_set_context('groups');
-$videos_html = elgg_list_entities(array(
-	'type' => 'object',
-	'subtype' => 'izap_videos',
-	'container_guid' => elgg_get_page_owner_guid(),
-	'limit' => 6,
-	'full_view' => false,
-	'pagination' => false,
-));
+$container_guid = elgg_get_page_owner_guid();
 
-elgg_set_context($prev_context);
+elgg_push_context('groups');
+echo elgg_list_entities([
+	'type' => 'object',
+	'subtype' => IzapVideos::SUBTYPE,
+	'container_guid' => $container_guid,
+	'limit' => $limit,
+	'full_view' => false,
+	'list_type_toggle' => false,
+	'pagination' => false,
+	'no_results' => elgg_echo('izap_videos:notfound'),
+]);
+elgg_pop_context();
 
 if (elgg_is_logged_in()) {
-	$group = get_entity(elgg_get_page_owner_guid());
+	$group = get_entity($container_guid);
 	if ($group->isMember(elgg_get_logged_in_user_entity())) {
-		$videos_html .= elgg_view('output/url', array(
-			'href' => "videos/add/" . elgg_get_page_owner_guid(),
+		echo elgg_view('output/url', [
+			'href' => "videos/add/" . $container_guid,
 			'text' => elgg_echo('izap_videos:add'),
 			'is_trusted' => true,
-		));
+		]);
 	}
 }
-
-echo $videos_html;

@@ -1,16 +1,16 @@
 <?php
 ?>
 
-#screenshot {
-	position:absolute;
-	border:2px solid #fff;
-	padding:0px;
-	display:none;
-	color: #fff;
+.izap-photo {
+	margin-left: 7px;
+}
+.izapPopup {
+	max-width:600px;
 }
 .izapPlayer {
-	background-color:#FFFFFF;
-	color:#000000;
+	width:100%;
+	height:auto;
+	background-color:#000;
 }
 .izap_table {
 	width: 100%;

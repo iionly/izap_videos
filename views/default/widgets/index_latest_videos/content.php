@@ -5,19 +5,22 @@
  */
 
 // get widget settings
-$count = sanitise_int($vars["entity"]->latest_videos_count, false);
-if(empty($count)){
-	$count = 4;
+/* @var $widget ElggWidget */
+$widget = elgg_extract('entity', $vars);
+
+$limit = (int) $widget->latest_videos_count;
+if ($limit < 1) {
+	$limit = 4;
 }
 
 elgg_push_context('front');
-$videos_html = elgg_list_entities(array(
+echo elgg_list_entities([
 	'type' => 'object',
-	'subtype' => 'izap_videos',
-	'limit' => $count,
+	'subtype' => IzapVideos::SUBTYPE,
+	'limit' => $limit,
 	'full_view' => false,
 	'list_type_toggle' => false,
 	'pagination' => false,
-));
+	'no_results' => elgg_echo('izap_videos:notfound'),
+]);
 elgg_pop_context();
-echo $videos_html;

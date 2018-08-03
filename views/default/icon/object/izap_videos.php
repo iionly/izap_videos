@@ -13,7 +13,7 @@
 
 $entity = $vars['entity'];
 
-$icon_sizes = elgg_get_icon_sizes('object', 'izap_videos');
+$icon_sizes = elgg_get_icon_sizes('object', IzapVideos::SUBTYPE);
 // Get size
 if (!array_key_exists($vars['size'], $icon_sizes)) {
 	$vars['size'] = 'medium';
@@ -25,7 +25,8 @@ $title = $entity->title;
 if (isset($vars['title'])) {
 	$title = $vars['title'];
 }
-$title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8', false);
+$title = htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+
 
 $url = $entity->getURL();
 if (isset($vars['href'])) {
@@ -40,10 +41,10 @@ if (!isset($vars['height'])) {
 	$vars['height'] = $size != 'master' ? $icon_sizes[$size]['h'] : null;
 }
 
-$img_params = array(
+$img_params = [
 	'src' => $entity->getThumb(true),
 	'alt' => $title,
-);
+];
 
 if (!empty($class)) {
 	$img_params['class'] = $class;
@@ -60,11 +61,11 @@ if (!empty($vars['height'])) {
 $img = elgg_view('output/img', $img_params);
 
 if ($url) {
-	$params = array(
+	$params = [
 		'href' => $url,
 		'text' => $img,
 		'is_trusted' => true,
-	);
+	];
 	$class = elgg_extract('link_class', $vars, '');
 	if ($class) {
 		$params['class'] = $class;

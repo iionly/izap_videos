@@ -14,7 +14,7 @@
  *
  */
 
-return array (
+return [
 	'admin:administer_utilities:izap_videos' => 'iZAP Videos',
 	'izap_videos' => "iZAP Videos",
 	'item:object:izap_videos' => "Videos",
@@ -107,6 +107,7 @@ return array (
 	'izap_videos:error:unsupported' => 'Unsupported file format.',
 	'izap_videos:error:emptyEmbedCode' => 'Please provide the embed code.',
 	'izap_videos:error:sqliteDrivers' => 'Please install PDO sqlite drivers to enable onserver support.',
+	'izap_videos:upgrade:not_required' => 'No upgrade required.',
 
 	// Success message
 	'izap_videos:success:adminSettingsSaved' => 'Settings have been saved successfully.',
@@ -123,7 +124,7 @@ View and comment on the video:
 	'izap_videos:notifySub:videoConverted' => 'Video has been converted',
 	'izap_videos:notifyMsg:videoConverted' => 'Your video has been converted successfully. Click here to see your converted video: %s',
 	'izap_videos:notifySub:videoNotConverted' => 'Video not converted',
-	'izap_videos:notifyAdminMsg:videoNotConverted' => 'There was an error while one of the user was trying to upload a video.<br />Error: <b>%s</b>',
+	'izap_videos:notifyAdminMsg:videoNotConverted' => "There was an error while one of the user was trying to upload a video.<br>Error: <b>%s</b>",
 	'izap_videos:notifySub:video_deleted' => 'Your video has been deleted',
 
 	// River
@@ -146,9 +147,6 @@ View and comment on the video:
 	'izap_videos:adminSettings:izapPhpInterpreter' => 'Path for the PHP interpreter:',
 	'izap_videos:adminSettings:izapVideoCommand' => 'Video converting command:',
 	'izap_videos:adminSettings:izapVideoThumb' => 'Video thumbnail command:',
-	'izap_videos:adminSettings:izapBorderColor1' => 'Color for progress bar of on server video player:',
-	'izap_videos:adminSettings:izapBorderColor2' => 'Color for texts of on server video player:',
-	'izap_videos:adminSettings:izapBorderColor3' => 'Color for buttons of on server video player:',
 	'izap_videos:adminSettings:izapMaxFileSize' => 'Enter max allowed video file size (in MB):',
 	'izap_videos:adminSettings:izapKeepOriginal' => 'Keep original file on server?',
 	'izap_videos:adminSettings:keep-original' => 'Yes',
@@ -169,8 +167,11 @@ View and comment on the video:
 	'izap_videos:adminSettings:save' => 'Save settings',
 	'izap_videos:adminSettings:messages_plugin_missing' => '<em class="elgg-subtext">Enable messages plugin to inform user about reason for the permanent deletion of a video.</em>',
 	'izap_videos:adminSettings:deleted_from_trash' => 'Deleted successfully from trash.',
-	'izap_videos:adminSettings:reset_queue' => 'Now queue is empty.',
+	'izap_videos:adminSettings:deleted_from_trash_error' => 'Deletion from trash failed.',
+	'izap_videos:adminSettings:reset_queue' => 'The queue is now empty.',
+	'izap_videos:adminSettings:reset_queue_error' => 'An error occured on resetting the queue.',
 	'izap_videos:adminSettings:restore_video' => 'Restored successfully.',
+	'izap_videos:adminSettings:restore_video_error' => 'There was an error. Restoring failed.',
 	'izap_videos:adminSettings:izap_river_thumbnails' => 'Preview image size in activity river entries (new videos added and comments on videos):',
 	'izap_videos:adminSettings:thumbnails_small' => "Image in size 'small'",
 	'izap_videos:adminSettings:thumbnails_medium' => "Image in size 'medium'",
@@ -201,8 +202,7 @@ View and comment on the video:
 	'izap_videos:server_analysis:memory_limit' => 'Memory limit for a PHP thread. Set the limit high enough in .htaccess to allow processing of the largest to be expected files by ffmpeg.',
 
 	// Info messages
-	'izap_videos:adminSettings:info:convert-command' => '(Optimized command: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec libmp3lame -ar 22050 -ab 48k [outputVideoPath] )',
-	'izap_videos:adminSettings:info:bg-color' => '(Give hex value of color without #. For example #FFFFFF is white, so insert "FFFFFF")',
+	'izap_videos:adminSettings:info:convert-command' => '(Optimized command: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath] )',
 	'izap_videos:adminSettings:info:izapKeepOriginal' => '(Uncheck, if you don\'t want to keep the original files on the server)',
 	'izap_videos:adminSettings:info:izapMaxFileSize' => '(Max allowed video file size can\'t be larger than the value of the php variable upload_max_filesize set in .htaccess or php.ini. If a larger limit is entered it will be reduced to the value of upload_max_filesize)',
 
@@ -232,6 +232,7 @@ View and comment on the video:
 	'izap_videos:save_favorite' => 'Save as favorite',
 	'izap_videos:favorite_saved' => 'Video has been added to your favorite list.',
 	'izap_videos:favorite_removed' => 'Video removed from your favorite list.',
+	'izap_videos:favorite_error' => 'An error occured. Video not found.',
 	'izap_videos:remove_favorite' => 'Remove from favorite list',
-	'izap_videos:no_favorites' => 'No favorite videos yet.'
-);
+	'izap_videos:no_favorites' => 'No favorite videos yet.',
+];

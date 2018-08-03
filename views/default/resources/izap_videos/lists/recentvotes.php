@@ -5,40 +5,34 @@
  *
  */
 
+$title = elgg_echo('izap_videos:recentlyvoted');
+
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-elgg_push_breadcrumb(elgg_echo('izap_videos:recentlyvoted'));
+elgg_push_breadcrumb($title);
 
-$offset = (int)get_input('offset', 0);
-$limit = (int)get_input('limit', 10);
+$offset = (int) get_input('offset', 0);
+$limit = (int) get_input('limit', 10);
 
-$options = array(
+$result = elgg_list_entities_from_annotations([
 	'type' => 'object',
-	'subtype' => 'izap_videos',
+	'subtype' => IzapVideos::SUBTYPE,
 	'limit' => $limit,
 	'offset' => $offset,
 	'annotation_name' => 'fivestar',
 	'order_by_annotation' => "n_table.time_created desc",
 	'full_view' => false,
-);
-
-$result = elgg_list_entities_from_annotations($options);
-
-$title = elgg_echo('izap_videos:recentlyvoted');
+	'no_results' => elgg_echo('izap_videos:recentlyvoted:nosuccess'),
+]);
 
 elgg_register_title_button('videos');
 
-if (!empty($result)) {
-	$area2 = $result;
-} else {
-	$area2 = elgg_echo('izap_videos:recentlyvoted:nosuccess');
-}
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('content', [
 	'filter_override' => '',
-	'content' => $area2,
+	'content' => $result,
 	'title' => $title,
-	'sidebar' => elgg_view('izap_videos/sidebar', array('page' => 'all')),
-));
+	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'all']),
+]);
 
 // Draw it
-echo elgg_view_page(elgg_echo('izap_videos:recentlyvoted'), $body);
+echo elgg_view_page($title, $body);

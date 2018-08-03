@@ -1,3 +1,3 @@
 <?php
 
-update_subtype('object', 'izap_videos');
+update_subtype('object', IzapVideos::SUBTYPE);

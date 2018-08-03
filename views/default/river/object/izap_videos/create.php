@@ -9,18 +9,18 @@ $excerpt = elgg_get_excerpt($excerpt);
 
 $attachments = '';
 $size = izapAdminSettings_izap_videos('izap_river_thumbnails');
-if($size != 'none') {
-	$attachments = elgg_view_entity_icon($object, $size, array(
+if ($size != 'none') {
+	$attachments = elgg_view_entity_icon($object, $size, [
 		'href' => 'ajax/view/izap_videos/playpopup?guid=' . $object->getGUID(),
 		'title' => $object->title,
-		'img_class' => 'screenshot',
+		'img_class' => 'elgg-photo izap-photo',
 		'link_class' => 'elgg-lightbox',
 		'data-colorboxOpts' => "{maxWidth:'95%', maxHeight:'95%'}",
-	));
+	]);
 }
 
-echo elgg_view('river/elements/layout', array(
+echo elgg_view('river/elements/layout', [
 	'item' => $vars['item'],
 	'attachments' => $attachments,
 	'message' => $excerpt,
-));
+]);

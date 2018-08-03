@@ -2,31 +2,29 @@
 
 elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
 
-$offset = (int)get_input('offset', 0);
-$limit = (int)get_input('limit', 10);
+$offset = (int) get_input('offset', 0);
+$limit = (int) get_input('limit', 10);
 
-$content = elgg_list_entities(array(
+$result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => 'izap_videos',
+	'subtype' => IzapVideos::SUBTYPE,
 	'limit' => $limit,
 	'offset' => $offset,
 	'full_view' => false,
 	'list_type_toggle' => false,
-));
-if (!$content) {
-	$content = elgg_echo('izap_videos:notfound');
-}
+	'no_results' => elgg_echo('izap_videos:notfound'),
+]);
 
 $title = elgg_echo('videos');
 
 elgg_register_title_button('videos');
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('content', [
 	'filter_context' => 'all',
-	'filter_override' => elgg_view('izap_videos/nav', array('selected' => 'all')),
-	'content' => $content,
+	'filter_override' => elgg_view('izap_videos/nav', ['selected' => 'all']),
+	'content' => $result,
 	'title' => $title,
-	'sidebar' => elgg_view('izap_videos/sidebar', array('page' => 'all')),
-));
+	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'all']),
+]);
 
 echo elgg_view_page($title, $body);

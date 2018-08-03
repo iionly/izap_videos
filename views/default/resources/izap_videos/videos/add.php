@@ -1,28 +1,33 @@
 <?php
 
+elgg_gatekeeper();
+elgg_group_gatekeeper();
+
 $owner = elgg_get_page_owner_entity();
 
-gatekeeper();
-group_gatekeeper();
+$owner_link = '';
+if ($owner instanceof ElggUser) {
+	$owner_link = "videos/owner/$owner->username";
+} else if ($owner instanceof ElggGroup) {
+	$owner_link = "videos/group/$owner->guid";
+} else {
+	forward('', '404');
+}
 
 $title = elgg_echo('izap_videos:add');
 
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-if (elgg_instanceof($owner, 'user')) {
-	elgg_push_breadcrumb($owner->name, "videos/owner/$owner->username");
-} else {
-	elgg_push_breadcrumb($owner->name, "videos/group/$owner->guid");
-}
+elgg_push_breadcrumb($owner->name, $owner_link);
 elgg_push_breadcrumb($title);
 
-$content = elgg_view('izap_videos/forms/_partial');
+$content = elgg_view('izap_videos/addedit_video');
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('content', [
 	'content' => $content,
 	'title' => $title,
 	'filter' => '',
-	'sidebar' => elgg_view('izap_videos/sidebar', array('page' => 'add')),
-));
+	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'add']),
+]);
 
 echo elgg_view_page($title, $body);

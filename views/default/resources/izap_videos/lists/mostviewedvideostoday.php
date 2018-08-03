@@ -5,45 +5,50 @@
  *
  */
 
+$title = elgg_echo('izap_videos:mostviewedtoday');
+
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-elgg_push_breadcrumb(elgg_echo('izap_videos:mostviewedtoday'));
+elgg_push_breadcrumb($title);
 
-$offset = (int)get_input('offset', 0);
-$limit = (int)get_input('limit', 10);
+$offset = (int) get_input('offset', 0);
+$limit = (int) get_input('limit', 10);
 
-$start = mktime(0,0,0, date("m"), date("d"), date("Y"));
+$start = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 $end = time();
 
 $db_prefix = elgg_get_config('dbprefix');
-$options = array(
+$result = elgg_list_entities_from_metadata([
 	'type' => 'object',
-	'subtype' => 'izap_videos',
+	'subtype' => IzapVideos::SUBTYPE,
 	'limit' => $limit,
 	'offset' => $offset,
-	'order_by_metadata' =>  array('name' => 'views', 'direction' => DESC, 'as' => integer),
-	'joins' => array("JOIN {$db_prefix}metadata mdi ON mdi.entity_guid = e.guid"),
-	'wheres' => array("mdi.time_created BETWEEN {$start} AND {$end}"),
+	'metadata_name_value_pairs' => [
+		[
+			'name' => 'views',
+			'value' => 0,
+			'operand' => '>',
+		],
+	],
+	'order_by_metadata' => [
+		'name' => 'views',
+		'direction' => DESC,
+		'as' => 'integer',
+	],
+	'joins' => ["JOIN {$db_prefix}metadata mdi ON mdi.entity_guid = e.guid"],
+	'wheres' => ["mdi.time_created BETWEEN {$start} AND {$end}"],
 	'full_view' => false,
-);
-$options['metadata_name_value_pairs'] = array(array('name' => 'views', 'value' => 0,  'operand' => '>'));
-$result = elgg_list_entities_from_metadata($options);
-
-$title = elgg_echo('izap_videos:mostviewedtoday');
+	'no_results' => elgg_echo('izap_videos:mostviewedtoday:nosuccess'),
+]);
 
 elgg_register_title_button('videos');
 
-if (!empty($result)) {
-	$area2 = $result;
-} else {
-	$area2 = elgg_echo('izap_videos:mostviewedtoday:nosuccess');
-}
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('content', [
 	'filter_override' => '',
-	'content' => $area2,
+	'content' => $result,
 	'title' => $title,
-	'sidebar' => elgg_view('izap_videos/sidebar', array('page' => 'all')),
-));
+	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'all']),
+]);
 
 // Draw it
-echo elgg_view_page(elgg_echo('izap_videos:mostviewedtoday'), $body);
+echo elgg_view_page($title, $body);

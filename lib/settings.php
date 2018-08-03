@@ -18,6 +18,5 @@ global $IZAPSETTINGS;
 
 $IZAPSETTINGS = new stdClass();
 
-$IZAPSETTINGS->filesPath = elgg_get_site_url() . 'izap_videos_files/';
-$IZAPSETTINGS->playerPath = elgg_get_site_url() . 'mod/izap_videos/player/izap_player.swf';
-$IZAPSETTINGS->allowedExtensions = array('avi', 'flv', '3gp', 'mp4', 'wmv', 'mpg', 'mpeg');
+$IZAPSETTINGS->filesPath = elgg_get_site_url() . '/izap_videos_files/';
+$IZAPSETTINGS->allowedExtensions = ['avi', 'flv', '3gp', 'mp4', 'wmv', 'mpg', 'mpeg'];

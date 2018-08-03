@@ -14,32 +14,32 @@
  *
  */
 
-$posted_array = get_input('izap');
-if (is_array($posted_array)) {
-	foreach($posted_array  as $key => $value) {
-		if(is_integer($key)) {
-			$guid = $key;
-			break;
-		}
+$params = (array) get_input('params');
+
+foreach($params  as $key => $value) {
+	if (is_integer($key)) {
+		$guid = $key;
+		break;
 	}
 }
 
-$queue_object = new izapQueue();
+$queue_object = new IzapQueue();
 $video_to_be_deleted = $queue_object->get_from_trash($guid);
 
 //Send posted comment to user who uploaded this video
-if ($posted_array['send_message_'.$guid] == 'yes') {
+if ($params['send_message_' . $guid] == 'yes') {
 	notify_user($video_to_be_deleted[0]['owner_id'],
 		elgg_get_site_entity()->getGUID(),
 		elgg_echo('izap_videos:notifySub:video_deleted'),
-		$posted_array['user_message_'.$guid]
+		$params['user_message_' . $guid]
 	);
 }
 
 // delete data from trash
-if (get_entity($guid)->delete()) {
-	system_message(elgg_echo('izap_videos:adminSettings:deleted_from_trash'));
-	izapTrigger_izap_videos();
+if (!get_entity($guid)->delete()) {
+	return elgg_error_response(elgg_echo('izap_videos:adminSettings:deleted_from_trash_error'));
 }
 
-forward(REFERER);
+izapTrigger_izap_videos();
+
+return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:deleted_from_trash'), REFERER);

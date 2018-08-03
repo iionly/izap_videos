@@ -14,24 +14,25 @@
  *
  */
 
-global $IZAPSETTINGS;
+$guid = (int) get_input("id");
 
-$guid = get_input("id");
-
-if(!$guid) {
-	$guid = current(explode('.', get_input("file")));
+if (!$guid) {
+	$guid = (int) current(explode('.', get_input("file")));
 }
 
 // if nothing found yet..
 if (!$guid) {
-	$guid = elgg_extract('videoID', $vars);
+	$guid = (int) elgg_extract('videoID', $vars);
 }
 
-$what = elgg_extract('what', $vars);
-$izap_videos = izapVideoCheck_izap_videos($guid);
+$what = (string) elgg_extract('what', $vars);
 
+$izap_videos = 0;
+if ($guid) {
+	$izap_videos = get_entity($guid);
+}
 $contents = '';
-if ($izap_videos) {
+if ($izap_videos && ($izap_videos instanceof IzapVideos)) {
 	// check what is needed
 	if ($what == 'image') {
 		$filename = $izap_videos->imagesrc;
