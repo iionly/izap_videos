@@ -96,12 +96,12 @@ return [
 	'izap_videos:error:adminSettingsReset' => 'An error occured on resetting. Settings haven\'t been reset.',
 	'izap_videos:error:notValidUrl' => 'This url is invalid.',
 	'izap_videos:error:code:101' => 'Can\'t get the video from the site. Site is not responding.',
+	'izap_videos:error:code:102' => 'Unknown error while fetching the video. This might be because of limited rights assigned to the video.',
 	'izap_videos:error:code:103' => 'This url is not supported.',
 	'izap_videos:error:code:104' => 'There was an error on uploding the file.',
 	'izap_videos:error:code:105' => 'The provided file is empty or no valid input file.',
 	'izap_videos:error:code:106' => 'The file format is not supported.',
 	'izap_videos:error:code:107' => 'The provided file is larger than the maximum allowed size.',
-	'izap_videos:error:code:Array' => 'Unknown error while fetching the video. This might be because of limited rights assigned to the video.',
 	'izap_videos:error:emptyTitle' => 'Video title can\'t be left blank.',
 	'izap_videos:error:save' => 'Error in saving the video.',
 	'izap_videos:error:unsupported' => 'Unsupported file format.',
@@ -179,7 +179,7 @@ View and comment on the video:
 	'izap_videos:adminSettings:thumbnails_none' => "No preview image",
 
 	'izap_videos:adminSettings:youtube_api_key' => 'Youtube (Google API key):',
-	'izap_videos:adminSettings:youtube_api_key_description' => "(Please visit <a href=\"https://developers.google.com/youtube/registering_an_application\">https://developers.google.com/youtube/registering_an_application</a> to learn how to register the necessary \"API key\" for adding of Youtube videos to work, then register an \"API key\" and enter the key you've obtained above)",
+	'izap_videos:adminSettings:youtube_api_key_description' => "(Please visit <a href=\"https://developers.google.com/youtube/registering_an_application\">https://developers.google.com/youtube/registering_an_application</a> to learn how to register the necessary \"API key\" for adding of Youtube videos to work, then register an \"API key\" and enter the key you've obtained above. You need to configure usage of the API key without restrictions, e.g. no IP or domain restrictions. The API key is only used internally and not available to users of your site, so it can be misused by others. Make sure usage of Youtube Data API v3 is enabled for the API key after you created it)",
 
 	'izap_videos:server_analysis:success' => 'Success',
 	'izap_videos:server_analysis:fail' => 'Fail',

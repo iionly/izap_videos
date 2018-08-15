@@ -80,11 +80,12 @@ class IzapUrlFeed extends IzapGetFeed {
 		$obj->videoThumbnail = $arry['videoThumbnail'];
 		$obj->videoTags = $arry['videoTags'];
 		$obj->videoSrc = $arry['videoSrc'];
+
 		if (empty($obj->title) or empty($obj->videoSrc) or empty($obj->videoThumbnail)) {
 			if (!empty($arry['error'])) {
 				return $arry['error'];
 			} else {
-				return $arry;
+				return 102;
 			}
 		}
 		$obj->fileName = time() . $this->video_id . ".jpg";

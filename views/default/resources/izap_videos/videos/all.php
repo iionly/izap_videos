@@ -19,12 +19,19 @@ $title = elgg_echo('videos');
 
 elgg_register_title_button('videos');
 
-$body = elgg_view_layout('content', [
+$params = [
 	'filter_context' => 'all',
 	'filter_override' => elgg_view('izap_videos/nav', ['selected' => 'all']),
 	'content' => $result,
 	'title' => $title,
 	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'all']),
-]);
+];
+
+if (!elgg_is_logged_in()) {
+	$params['filter_context'] = '';
+	$params['filter_override'] = '';
+}
+
+$body = elgg_view_layout('content', $params);
 
 echo elgg_view_page($title, $body);

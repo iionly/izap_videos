@@ -1,6 +1,15 @@
 Changelog
 =========
 
+2.3.5
+-----
+
+- Group videos page accessible again,
+- No filter menu displayed anymore when logged out viewing All videos page or a user's videos page,
+- Video.js updated to version 7.2.2,
+- Improved fetching of thumbnail images when adding off-server youtube videos (no longer fail adding the video if the url of the largest image is not available but try then the availability the url for other thumbnail sizes from largest to smallest image and only fail if no image url at all is provided),
+- Display a meaningful error message if adding a off-server video fails and no longer display fetched data as "error message" (adding fails if title or video url or thumnnail image url are not fetched and the likely reason for missing data is the video is not allowed to be embedded on other sites).
+
 2.3.4
 -----
 

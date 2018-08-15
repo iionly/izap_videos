@@ -82,12 +82,12 @@ return [
 	'izap_videos:error:adminSettingsReset' => 'Beim Zurücksetzen der Einstellungen ist ein Fehler aufgetreten. Die Einstellungen wurden nicht zurückgesetzt.',
 	'izap_videos:error:notValidUrl' => 'Die Url ist keine gültige Url.',
 	'izap_videos:error:code:101' => 'Das Video kann derzeit nicht von der Webseite eingebunden werden. Die Webseite antwortet nicht.',
+	'izap_videos:error:code:102' => 'Beim Einbinden des Videos ist ein unbekannter Fehler aufgetreten. Eventuell ist die Fehlerursache eine Beschränkung der Zugriffsrechte für dieses Video.',
 	'izap_videos:error:code:103' => 'Diese Url wird nicht unterstützt.',
 	'izap_videos:error:code:104' => 'Beim Hochladen der Datei ist ein Fehler aufgetreten.',
 	'izap_videos:error:code:105' => 'Die ausgewählte Datei ist leer oder keine gültige Datei.',
 	'izap_videos:error:code:106' => 'Das Videoformat der Datei wird nicht unterstützt.',
 	'izap_videos:error:code:107' => 'Die ausgewählte Datei ist größer als die maximal zulässige Dateigröße.',
-	'izap_videos:error:code:Array' => 'Beim Einbinden des Videos ist ein unbekannter Fehler aufgetreten. Eventuell ist die Fehlerursache eine Beschränkung der Zugriffsrechte für dieses Video.',
 	'izap_videos:error:emptyTitle' => 'Der Titel des Videos darf nicht leer sein.',
 	'izap_videos:error:save' => 'Beim Speichern des Videos ist ein Fehler aufgetreten.',
 	'izap_videos:error:unsupported' => 'Das Videoformat wird nicht unterstützt.',
@@ -165,7 +165,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:adminSettings:thumbnails_none' => "Kein Bild",
 
 	'izap_videos:adminSettings:youtube_api_key' => 'Youtube (Google API-Key):',
-	'izap_videos:adminSettings:youtube_api_key_description' => "(Bitte gehe zu <a href=\"https://developers.google.com/youtube/registering_an_application\">https://developers.google.com/youtube/registering_an_application</a>, um zu erfahren, wie Du den notwendigen \"API-Key\" registrieren kannst, damit das Hinzufügen von Youtube-Videos funktioniert. Nachdem Du den \"API-Key\" registriert hast füge ihn in das obige Eingabefeld ein)",
+	'izap_videos:adminSettings:youtube_api_key_description' => "(Bitte gehe zu <a href=\"https://developers.google.com/youtube/registering_an_application\">https://developers.google.com/youtube/registering_an_application</a>, um zu erfahren, wie Du den notwendigen \"API-Key\" registrieren kannst, damit das Hinzufügen von Youtube-Videos funktioniert. Nachdem Du den \"API-Key\" registriert hast füge ihn in das obige Eingabefeld ein. Du darfst für den API-Key keine Beschränkungen, beispielsweise IP- oder Domain-Beschränkungen, konfigurieren. Da der API-Key nur intern verwendet wird und die Benutzer Deiner Seite den API-Key nicht sehen können, ist ein Missbrauch nicht möglich. Stelle außerdem sicher, dass die Verwendung der Youtube Data API v3 für den API-Key aktiviert ist, nachdem Du ihn generiert hast)",
 
 	'izap_videos:server_analysis:success' => 'Erfolg',
 	'izap_videos:server_analysis:fail' => 'Fehler',

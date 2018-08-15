@@ -58,10 +58,22 @@ class IzapGetFeed {
 		if (empty($this->mainArray['items'][0])) {
 			return 101;
 		}
-		
+
+		// Thumbnail image url might not be available in all sizes, so trying from largest (maxres not considered - seems too large) to smallest
+		$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['standard']['url'];
+		if (!$videoThumbnail_url) {
+			$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['high']['url'];
+		}
+		if (!$videoThumbnail_url) {
+			$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['medium']['url'];
+		}
+		if (!$videoThumbnail_url) {
+			$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['default']['url'];
+		}
+
 		$this->returnArray['title'] = $this->mainArray['items'][0]['snippet']['title'];
 		$this->returnArray['description'] = $this->mainArray['items'][0]['snippet']['description'];
-		$this->returnArray['videoThumbnail'] = $this->mainArray['items'][0]['snippet']['thumbnails']['standard']['url'];
+		$this->returnArray['videoThumbnail'] = $videoThumbnail_url;
 		$this->returnArray['videoSrc'] = 'https://www.youtube.com/embed/'.$this->mainArray['items'][0]['id'];
 		if ($this->mainArray['items'][0]['snippet']['tags'] && (is_array($this->mainArray['items'][0]['snippet']['tags']))) {
 			$this->returnArray['videoTags'] = implode(",", $this->mainArray['items'][0]['snippet']['tags']);

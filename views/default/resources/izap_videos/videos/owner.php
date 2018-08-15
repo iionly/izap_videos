@@ -1,6 +1,6 @@
 <?php
 
-elgg_gatekeeper();
+elgg_group_gatekeeper();
 
 $owner = elgg_get_page_owner_entity();
 
@@ -18,7 +18,7 @@ if (!$owner) {
 	$owner = elgg_get_logged_in_user_entity();
 }
 
-if (!($owner instanceof ElggUser)) {
+if (!($owner instanceof ElggUser || $owner instanceof ElggGroup)) {
 	forward('', '404');
 }
 
@@ -63,9 +63,11 @@ $params = [
 if ($owner instanceof ElggGroup) {
 	$params['filter'] = false;
 	$params['filter_override'] = '';
-} else if ($owner->getGUID() != elgg_get_logged_in_user_guid()) {
-	$params['filter_override'] = elgg_view('izap_videos/nav', ['selected' => '']);
+}
+
+if (elgg_get_logged_in_user_guid() != elgg_get_page_owner_guid()) {
 	$params['filter_context'] = '';
+	$params['filter_override'] = '';
 }
 
 $body = elgg_view_layout('content', $params);

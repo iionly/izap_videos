@@ -1,8 +1,8 @@
 iZAP Videos plugin for Elgg 2.3 and newer Elgg 2.X - revised edition by iionly
 ==============================================================================
 
-Latest Version: 2.3.4  
-Released: 2018-08-02  
+Latest Version: 2.3.5  
+Released: 2018-08-15  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  
 Copyright: (C) iZAP Web Solutions 2008 (Original developer) / (C) iionly 2014 (for this fork)
@@ -21,7 +21,7 @@ There are three video options available in this present version of the iZAP Vide
 1. Off-server videos: This option allows to embed videos for specific sites by providing the videos' url from the original site. For this option to work cURL has to be installed on the server to allow for connecting to the original site. The feed is not processed by any external feed server but still the original site the video is hosted on has of course to be contacted. This option is currently available for videos of
   - Dailymotion.com,
   - Vimeo.com and
-  - Youtube.com (requires an Google API key for Youtube Data API v3)
+  - Youtube.com (requires an Google API key for Youtube Data API v3; follow the link on the API key settings tab to learn how to create an API key; you need to create an API key without restrictions on IP address or domain usage; also make sure the Youtube Data API v3 usage is enabled for the API key you've created).
 
 2. On-server videos: This option allows uploading of videos directly to the server the Elgg site is hosted on. There are some additional requirements to be able to use this video option:
   - for Linux servers only (it might work on Windows servers but this is untested),

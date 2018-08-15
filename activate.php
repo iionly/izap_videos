@@ -16,5 +16,6 @@ if (get_subtype_id('object', IzapVideos::SUBTYPE)) {
 require_once(dirname(__FILE__) . '/version.php');
 elgg_set_plugin_setting('local_version', $version, 'izap_videos');
 
-$new_version = '2.3.4';
+// save current version number
+$new_version = '2.3.5';
 elgg_set_plugin_setting('version_izap_videos', $new_version, 'izap_videos');
