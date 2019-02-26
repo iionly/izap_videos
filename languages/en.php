@@ -149,7 +149,7 @@ View and comment on the video:
 	'izap_videos:adminSettings:izapVideoThumb' => 'Video thumbnail command:',
 	'izap_videos:adminSettings:izapMaxFileSize' => 'Enter max allowed video file size (in MB):',
 	'izap_videos:adminSettings:izapKeepOriginal' => 'Keep original file on server?',
-	'izap_videos:adminSettings:keep-original' => 'Yes',
+	'izap_videos:adminSettings:extended_sidebar_menu' => 'Display additional iZAP Videos menu entries in sidebar for additional listing options?',
 	'izap_videos:adminSettings:resetSettings' => 'Reset to defaults',
 	'izap_videos:adminSettings:resetSettings_confirm' => 'Do you really want to reset the settings to default values?',
 	'izap_videos:adminSettings:resetQueueAll' => 'Empty Queue',
@@ -204,6 +204,7 @@ View and comment on the video:
 	// Info messages
 	'izap_videos:adminSettings:info:convert-command' => '(Optimized command: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath] )',
 	'izap_videos:adminSettings:info:izapKeepOriginal' => '(Uncheck, if you don\'t want to keep the original files on the server)',
+	'izap_videos:adminSettings:info:extended_sidebar_menu' => '(There will be additional menu entries in the pages menu to allow for sorting video listing for example by number of views, number of comments, rating and more)',
 	'izap_videos:adminSettings:info:izapMaxFileSize' => '(Max allowed video file size can\'t be larger than the value of the php variable upload_max_filesize set in .htaccess or php.ini. If a larger limit is entered it will be reduced to the value of upload_max_filesize)',
 
 	// Add/edit form

@@ -37,7 +37,7 @@ class IzapUrlFeed extends IzapGetFeed {
 				if (preg_match('/(https?:\/\/)?(youtu\.be\/)(.*)/', $url, $matches)) {
 					$explode_char = '/';
 					$url_pram = explode($explode_char, $url);
-					$this->video_id = sanitise_string(end($url_pram));
+					$this->video_id = sanitize_string(end($url_pram));
 				} else {
 					$url_pram = explode("?", $url);
 					$url_pram = explode("&", $url_pram[1]);

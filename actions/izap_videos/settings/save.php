@@ -50,6 +50,12 @@ if (!empty($params['izapKeepOriginal'])) {
 	$params['izapKeepOriginal'] = 'NO';
 }
 
+if (!empty($params['izapExtendedSidebarMenu'])) {
+	$params['izapExtendedSidebarMenu'] = 'YES';
+} else {
+	$params['izapExtendedSidebarMenu'] = 'NO';
+}
+
 foreach($params as $key => $values) {
 	if (!izapAdminSettings_izap_videos($key, $values, true)) {
 		register_error(elgg_echo('plugins:settings:save:fail', ['izap_videos']));

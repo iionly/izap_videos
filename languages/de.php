@@ -135,7 +135,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:adminSettings:izapVideoThumb' => 'Befehl für die Erstellung des Vorschaubildes:',
 	'izap_videos:adminSettings:izapMaxFileSize' => 'Maximal zulässige Dateigröße für hochgeladene Videodateien (in MB):',
 	'izap_videos:adminSettings:izapKeepOriginal' => 'Originaldatei von hochgeladenen Videodateien behalten?',
-	'izap_videos:adminSettings:keep-original' => 'Ja',
+	'izap_videos:adminSettings:extended_sidebar_menu' => 'Zusätzliche Menueinträge von iZAP Videos in der Seitenleise anzeigen?',
 	'izap_videos:adminSettings:resetSettings' => 'Einstellungen zurücksetzen',
 	'izap_videos:adminSettings:resetSettings_confirm' => 'Möchtest Du wirklich alle Einstellungen auf die Standardwerte zurücksetzen?',
 	'izap_videos:adminSettings:resetQueueAll' => 'Warteschlange leeren',
@@ -190,6 +190,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	// Info messages
 	'izap_videos:adminSettings:info:convert-command' => '(Befehl für optimierte Videos: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath] )',
 	'izap_videos:adminSettings:info:izapKeepOriginal' => '(Option abwählen, wenn Du die hochgeladene Original-Videodatei nach dem Konvertieren nicht zusätzlich auf dem Server behalten möchtest)',
+	'izap_videos:adminSettings:info:extended_sidebar_menu' => '(In der Seitenleiste werden zusätzliche Menueinträge angezeigt, um die Videos nach verschiedenen Kriterien sortiert aufzulisten wie beispielsweise die am häufigsten gesehensten Videos, nach der Anzahl der Kommentare oder nach ihrer Bewertung)',
 	'izap_videos:adminSettings:info:izapMaxFileSize' => '(Die maximal zulässige Dateigröße für hochgeladene Videos kann nicht größer sein als der Wert der PHP-Variablen upload_max_filesize, der in .htaccess oder php.ini definiert ist. Wenn ein größeres Limit eingegeben wird, wird es auf den Wert von upload_max_filesize reduziert)',
 
 	// Add/edit form

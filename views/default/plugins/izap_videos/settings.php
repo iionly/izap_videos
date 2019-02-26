@@ -88,9 +88,20 @@ echo elgg_view_field([
 	'#help' => elgg_echo('izap_videos:adminSettings:info:izapKeepOriginal'),
 	'name' => 'params[izapKeepOriginal]',
 	'options' => [
-		elgg_echo('izap_videos:adminSettings:keep-original') => 'YES',
+		elgg_echo('option:yes') => 'YES',
 	],
 	'value' => izapAdminSettings_izap_videos('izapKeepOriginal', 'YES', false, true),
+]);
+
+echo elgg_view_field([
+	'#type' => 'checkboxes',
+	'#label' => elgg_echo('izap_videos:adminSettings:extended_sidebar_menu'),
+	'#help' => elgg_echo('izap_videos:adminSettings:info:extended_sidebar_menu'),
+	'name' => 'params[izapExtendedSidebarMenu]',
+	'options' => [
+		elgg_echo('option:yes') => 'YES',
+	],
+	'value' => izapAdminSettings_izap_videos('izapExtendedSidebarMenu', 'NO', false, true),
 ]);
 
 echo elgg_view_field([

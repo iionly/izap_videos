@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.3.6
+-----
+
+- Fix: correct usage of 'DESC' constant with apostrophes in function calls instead of without as this would fail otherwise on future versions of PHP (deprecation warning),
+- New plugin option to enable / disable the sidebar menu entries of izapVideos ("Recently viewed videos" etc.).
+
 2.3.5
 -----
 

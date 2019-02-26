@@ -28,7 +28,7 @@ $result = elgg_list_entities_from_metadata([
 	],
 	'order_by_metadata' => [
 		'name' => 'views',
-		'direction' => DESC,
+		'direction' => 'DESC',
 		'as' => 'integer',
 	],
 	'full_view' => false,

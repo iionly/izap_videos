@@ -32,7 +32,7 @@ $result = elgg_list_entities_from_metadata([
 	],
 	'order_by_metadata' => [
 		'name' => 'views',
-		'direction' => DESC,
+		'direction' => 'DESC',
 		'as' => 'integer',
 	],
 	'joins' => ["JOIN {$db_prefix}metadata mdi ON mdi.entity_guid = e.guid"],
