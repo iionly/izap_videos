@@ -128,7 +128,7 @@ View and comment on the video:
 	'izap_videos:notifySub:video_deleted' => 'Your video has been deleted',
 
 	// River
-	'river:create:object:izap_videos' => '%s added a new video %s',
+	'river:object:izap_videos:creates' => '%s added a new video %s',
 	'river:comment:object:izap_videos' => '%s commented on the video %s',
 
 	// Admin settings

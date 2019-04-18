@@ -1,9 +1,7 @@
 <?php
 
-elgg_gatekeeper();
-elgg_group_gatekeeper();
-
 $guid = elgg_extract('guid', $vars);
+elgg_entity_gatekeeper($guid, 'object', 'izap_videos');
 
 $video = get_entity($guid);
 

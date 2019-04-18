@@ -2,26 +2,26 @@
 
 $tabs = [
 	'all' => [
-		'title' => elgg_echo('all'),
-		'url' => "videos/all",
+		'text' => elgg_echo('all'),
+		'href' => "videos/all",
 		'selected' => $vars['selected'] == 'all',
 		'priority' => 200,
 	],
 	'mine' => [
-		'title' => elgg_echo('mine'),
-		'url' => "videos/owner",
+		'text' => elgg_echo('mine'),
+		'href' => "videos/owner",
 		'selected' => $vars['selected'] == 'mine',
 		'priority' => 300,
 	],
 	'friend' => [
-		'title' => elgg_echo('friends'),
-		'url' => "videos/friends",
+		'text' => elgg_echo('friends'),
+		'href' => "videos/friends",
 		'selected' => $vars['selected'] == 'friends',
 		'priority' => 400,
 	],
 	'favorites' => [
-		'title' => elgg_echo('izap_videos:favorites_short'),
-		'url' => "videos/favorites",
+		'text' => elgg_echo('izap_videos:favorites_short'),
+		'href' => "videos/favorites",
 		'selected' => $vars['selected'] == 'favorites',
 		'priority' => 500,
 	],

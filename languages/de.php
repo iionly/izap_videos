@@ -114,7 +114,7 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'izap_videos:notifySub:video_deleted' => 'Dein Video wurde gelöscht',
 
 	// River
-	'river:create:object:izap_videos' => '%s hat das Video %s hinzugefügt',
+	'river:object:izap_videos:creates' => '%s hat das Video %s hinzugefügt',
 	'river:comment:object:izap_videos' => '%s schrieb einen Kommentar zum Video %s',
 
 	// Admin settings

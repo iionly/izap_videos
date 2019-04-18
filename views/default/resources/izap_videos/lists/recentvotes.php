@@ -4,6 +4,9 @@
  * Most recently voted videos - world view only
  *
  */
+if (!elgg_is_active_plugin('elggx_fivestar')) {
+	return;
+}
 
 $title = elgg_echo('izap_videos:recentlyvoted');
 

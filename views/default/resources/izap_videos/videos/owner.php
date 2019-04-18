@@ -1,6 +1,7 @@
 <?php
 
-elgg_group_gatekeeper();
+$guid = elgg_extract('guid', $vars);
+elgg_entity_gatekeeper($guid, 'object', 'izap_videos');
 
 $owner = elgg_get_page_owner_entity();
 

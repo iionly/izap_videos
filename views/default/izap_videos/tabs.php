@@ -55,8 +55,8 @@ foreach ($tabs as $tab => $tab_settings) {
 	}
 
 	$params['tabs'][] = [
-		'title' => elgg_echo("izap_videos:adminSettings:tabs_{$tab}", $args),
-		'url' => $href,
+		'text' => elgg_echo("izap_videos:adminSettings:tabs_{$tab}", $args),
+		'href' => $href,
 		'selected' => ($tab === $selected_tab),
 	];
 }

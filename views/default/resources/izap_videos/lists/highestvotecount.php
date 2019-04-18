@@ -4,6 +4,9 @@
  * Videos with highest vote count - world view only
  *
  */
+if (!elgg_is_active_plugin('elggx_fivestar')) {
+	return;
+}
 
 $title = elgg_echo('izap_videos:highestvotecount');
 

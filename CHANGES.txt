@@ -1,6 +1,11 @@
 Changelog
 =========
 
+3.0.0
+-----
+
+- Updated for Elgg 3.0
+
 2.3.6
 -----
 

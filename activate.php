@@ -1,10 +1,6 @@
 <?php
 
-if (get_subtype_id('object', IzapVideos::SUBTYPE)) {
-	update_subtype('object', IzapVideos::SUBTYPE, 'IzapVideos');
-} else {
-	add_subtype('object', IzapVideos::SUBTYPE, 'IzapVideos');
-}
+elgg_set_entity_class('object', IzapVideos::SUBTYPE, 'IzapVideos');
 
 // With version 2.3.4 the old upgrade stuff was removed taking as given that anyone
 // upgrading from an older version of iZAP Videos has already got it running before
@@ -17,5 +13,5 @@ require_once(dirname(__FILE__) . '/version.php');
 elgg_set_plugin_setting('local_version', $version, 'izap_videos');
 
 // save current version number
-$new_version = '2.3.6';
+$new_version = '3.0.0';
 elgg_set_plugin_setting('version_izap_videos', $new_version, 'izap_videos');

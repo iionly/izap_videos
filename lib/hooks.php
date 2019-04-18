@@ -55,39 +55,29 @@ function izap_videos_entity_menu_setup($hook, $type, $menu, $params) {
 				$url = elgg_get_site_url() . 'action/izap_videos/favorite_video?guid=' . $entity->guid . '&izap_action=remove';
 
 				$params = [
+					'name' => 'remove_favorite',
+					'text' => elgg_echo('izap_videos:remove_favorite'),
 					'href' => $url,
-					'text' => elgg_format_element('img', ['src' => elgg_get_simplecache_url('izap_videos/favorite_remove.png'), 'alt' => elgg_echo('izap_videos:remove_favorite')], ''),
-					'title' => elgg_echo('izap_videos:remove_favorite'),
 					'is_action' => true,
 					'is_trusted' => true,
-				];
-				$text = elgg_view('output/url', $params);
-
-				$options = [
-					'name' => 'remove_favorite',
-					'text' => $text,
+					'icon' => 'star-o',
 					'priority' => 80,
 				];
-				$menu[] = ElggMenuItem::factory($options);
+				$menu[] = ElggMenuItem::factory($params);
 
 			} else {
 				$url = elgg_get_site_url() . 'action/izap_videos/favorite_video?guid=' . $entity->guid;
 
 				$params = [
+					'name' => 'save_favorite',
+					'text' => elgg_echo('izap_videos:save_favorite'),
 					'href' => $url,
-					'text' => elgg_format_element('img', ['src' => elgg_get_simplecache_url('izap_videos/favorite_add.png'), 'alt' => elgg_echo('izap_videos:save_favorite')], ''),
-					'title' => elgg_echo('izap_videos:save_favorite'),
 					'is_action' => true,
 					'is_trusted' => true,
-				];
-				$text = elgg_view('output/url', $params);
-
-				$options = [
-					'name' => 'make_favorite',
-					'text' => $text,
+					'icon' => 'star',
 					'priority' => 80,
 				];
-				$menu[] = ElggMenuItem::factory($options);
+				$menu[] = ElggMenuItem::factory($params);
 			}
 		}
 

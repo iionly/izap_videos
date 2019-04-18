@@ -1,7 +1,6 @@
 <?php
 
 elgg_gatekeeper();
-elgg_group_gatekeeper();
 
 $owner = elgg_get_page_owner_entity();
 
