@@ -34,19 +34,11 @@ if ($comments_count != 0) {
 
 $owner_icon = elgg_view_entity_icon($video->getOwnerEntity(), 'tiny');
 
-$metadata = elgg_view_menu('entity', [
-	'entity' => $video,
-	'handler' => 'videos',
-	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz',
-]);
-
 $subtitle = "$author_text $date $comments_link $categories";
 
 $params = [
 	'entity' => $video,
 	'title' => false,
-	'metadata' => $metadata,
 	'subtitle' => $subtitle,
 ];
 $list_body = elgg_view('object/elements/summary', $params);

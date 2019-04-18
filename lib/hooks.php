@@ -23,17 +23,16 @@ function izap_videos_owner_block_menu($hook, $type, $return, $params) {
  * Add entries to entity menu
  */
 function izap_videos_entity_menu_setup($hook, $type, $menu, $params) {
-	if (elgg_in_context('widgets')) {
-		return $menu;
-	}
-
-	$entity = $params['entity'];
-	$handler = elgg_extract('handler', $params, false);
-	if ($handler != 'videos') {
-		return $menu;
-	}
-
-	if ($entity instanceof IzapVideos) {
+	
+	$result = $menu;
+		
+	if (elgg_in_context("widgets")) {
+    return $result;
+  }
+	
+	if(!empty($params) && is_array($params)){
+    if(($entity = elgg_extract("entity", $params)) && elgg_instanceof($entity, "object", "izap_videos")
+	){
 
 		foreach ($menu as $key => $item) {
 			switch ($item->getName()) {
@@ -88,12 +87,12 @@ function izap_videos_entity_menu_setup($hook, $type, $menu, $params) {
 			'name' => 'views',
 			'text' => elgg_format_element('span', [], $text),
 			'href' => false,
-			'priority' => 90,
+			'priority' => 70,
 		];
-		$menu[] = ElggMenuItem::factory($options);
-	}
-
-	return $menu;
+		$menu[] = ElggMenuItem::factory($options);			
+    }
+  }
+   return $result;
 }
 
 /**

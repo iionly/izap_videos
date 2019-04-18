@@ -46,20 +46,8 @@ if ($comments_count != 0) {
 
 $subtitle = "$author_text $date $comments_link $categories";
 
-// do not show the metadata and controls in widget view
-$metadata = '';
-if (!(elgg_in_context('widgets') || elgg_in_context('front') || elgg_in_context('groups'))) {
-	$metadata = elgg_view_menu('entity', [
-		'entity' => $video,
-		'handler' => 'videos',
-		'sort_by' => 'priority',
-		'class' => 'elgg-menu-hz',
-	]);
-}
-
 $params = [
 	'entity' => $video,
-	'metadata' => $metadata,
 	'subtitle' => $subtitle,
 	'content' => $excerpt,
 ];
