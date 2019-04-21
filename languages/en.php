@@ -15,6 +15,7 @@
  */
 
 return [
+	'collection:object:izap_videos' => 'iZAP Videos',
 	'admin:administer_utilities:izap_videos' => 'iZAP Videos',
 	'izap_videos' => "iZAP Videos",
 	'item:object:izap_videos' => "Videos",
