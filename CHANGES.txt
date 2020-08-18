@@ -1,6 +1,16 @@
 Changelog
 =========
 
+3.3.0
+-----
+
+If you are updating your site from Elgg 2.x to 3.x and have so far used a version of iZAP Videos older than 2.3.3, please make sure that you have done the migration to HTML 5 videos BEFORE upgrading to Elgg 3.x and this version of iZAP Videos. Read more about the necessary upgrade in README.md!!!
+
+- Minimum Elgg version required is 3.3.0,
+- Updated for Elgg 3.3.
+
+(If you are updating directly from a 2.x.x version of iZAP Videos to this version, you have to execute the upgrade shown on the iZAP Videos plugin settings page. If you have used the iZAP Videos fork of rohit1290 for Elgg 3.x before, the upgrade script should also show and you would need to run it)
+
 3.0.0
 -----
 

@@ -197,4 +197,12 @@ return [
 			'izap_videos_videojs/' => __DIR__ . '/vendors/videojs',
 		],
 	],
+	'view_extensions' => [
+		'css/elgg' => [
+			'izap_videos/css' => [],
+		],
+		'css/admin' => [
+			'izap_videos/css' => [],
+		],
+	],
 ];

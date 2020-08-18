@@ -5,15 +5,10 @@ use Elgg\DefaultPluginBootstrap;
 class IzapVideosBootstrap extends DefaultPluginBootstrap {
 
 	public function init() {
-		// CSS
-		elgg_extend_view('css/elgg', 'izap_videos/css');
-		elgg_extend_view('css/admin', 'izap_videos/css');
-
 		elgg_register_ajax_view('izap_videos/admin/getQueue');
 		elgg_register_ajax_view('izap_videos/playpopup');
 
 		// Register video.js stuff
-		elgg_register_css('izap_videos_videojs_css', elgg_get_simplecache_url('izap_videos_videojs/video-js.min.css'));
 		elgg_define_js('izap_videos_videojs_js', [
 			'src' => elgg_get_simplecache_url('izap_videos_videojs/video.min.js'),
 		]);

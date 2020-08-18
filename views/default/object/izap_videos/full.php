@@ -1,6 +1,6 @@
 <?php
 
-elgg_load_css('izap_videos_videojs_css');
+elgg_require_css('izap_videos_videojs/video-js.min');
 elgg_require_js('izap_videos/videojs');
 
 $video = elgg_extract('entity', $vars, false);

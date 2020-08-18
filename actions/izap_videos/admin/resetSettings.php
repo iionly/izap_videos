@@ -14,9 +14,9 @@
  *
  */
 
-$cleared = elgg_unset_all_plugin_settings('izap_videos');
+$plugin = elgg_get_plugin_from_id('izap_videos');
 
-if (!$cleared) {
+if (!$plugin->unsetAllSettings()) {
 	return elgg_error_response(elgg_echo('izap_videos:error:adminSettingsReset'));
 }
 
