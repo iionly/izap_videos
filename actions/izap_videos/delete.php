@@ -31,9 +31,9 @@ $owner = get_entity($izap_videos->container_guid);
 
 $forward_url = REFERER;
 if ($owner instanceof ElggUser) {
-	$forward_url = "videos/owner/$owner->username";
+	$forward_url = elgg_generate_url('collection:object:izap_videos:owner', ['username' => $owner->username]);
 } else if ($owner instanceof ElggGroup) {
-	$forward_url = "videos/group/$owner->guid";
+	$forward_url = elgg_generate_url('collection:object:izap_videos:group', ['guid' => $owner->guid]);
 }
 
 $uploaded = $izap_videos->videotype == 'uploaded';

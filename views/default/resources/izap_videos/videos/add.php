@@ -1,29 +1,26 @@
 <?php
 
-elgg_gatekeeper();
-elgg_group_gatekeeper();
-
-$owner = elgg_get_page_owner_entity();
-
-$owner_link = '';
-if ($owner instanceof ElggUser) {
-	$owner_link = "videos/owner/$owner->username";
-} else if ($owner instanceof ElggGroup) {
-	$owner_link = "videos/group/$owner->guid";
-} else {
-	forward('', '404');
+$guid = elgg_extract('guid', $vars);
+if (!$guid) {
+	$guid = elgg_get_logged_in_user_guid();
 }
 
-$title = elgg_echo('izap_videos:add');
+elgg_entity_gatekeeper($guid);
 
-// set up breadcrumbs
-elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-elgg_push_breadcrumb($owner->name, $owner_link);
-elgg_push_breadcrumb($title);
+$container = get_entity($guid);
+
+if (!$container->canWriteToContainer(0, 'object', 'izap_videos')) {
+	throw new \Elgg\EntityPermissionsException();
+}
+
+elgg_push_collection_breadcrumbs('object', 'izap_videos', $container);
+elgg_push_breadcrumb(elgg_echo('add:object:izap_videos'));
+
+$title = elgg_echo('add:object:izap_videos');
 
 $content = elgg_view('izap_videos/addedit_video');
 
-$body = elgg_view_layout('content', [
+$body = elgg_view_layout('default', [
 	'content' => $content,
 	'title' => $title,
 	'filter' => '',

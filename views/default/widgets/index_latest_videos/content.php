@@ -4,14 +4,9 @@
  *
  */
 
-// get widget settings
-/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
-$limit = (int) $widget->latest_videos_count;
-if ($limit < 1) {
-	$limit = 4;
-}
+$limit = (int) $widget->latest_videos_count ?: 4;
 
 elgg_push_context('front');
 echo elgg_list_entities([
@@ -22,5 +17,6 @@ echo elgg_list_entities([
 	'list_type_toggle' => false,
 	'pagination' => false,
 	'no_results' => elgg_echo('izap_videos:notfound'),
+	'distinct' => false,
 ]);
 elgg_pop_context();

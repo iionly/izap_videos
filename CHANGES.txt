@@ -1,6 +1,17 @@
 Changelog
 =========
 
+3.0.0
+-----
+
+If you are updating your site from Elgg 2.x to 3.x and have so far used a version of iZAP Videos older than 2.3.3, please make sure that you have done the migration to HTML 5 videos BEFORE upgrading to Elgg 3.x and this version of iZAP Videos. Read more about the necessary upgrade in README.md!!!
+
+- Minimum Elgg version required is 3.0.0,
+- Updated for Elgg 3,
+- Due to changes in handling of updates of metadata entries in database by Elgg core the "last viewed" stats of videos is now handled by a newly added second metadata (beside metadata views counter). This makes running an upgrade script necessary, so please go in any case to the iZAP Videos plugin settings page an run the Upgrade (by clicking on the corresponding link on the page) right after installing/upgrading this version of iZAP Videos. If you don't see the upgrade link, everything's fine.
+
+Thanks a lot to rohit1290 for the work on a preliminary version of iZAP Videos for Elgg 3 (even if I could not make use of it in the end).
+
 2.3.7
 -----
 

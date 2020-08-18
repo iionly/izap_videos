@@ -1,7 +1,5 @@
 <?php
 
-elgg_gatekeeper();
-
 $owner = elgg_get_page_owner_entity();
 
 if (!$owner) {
@@ -19,36 +17,35 @@ if (!$owner) {
 }
 
 if (!($owner instanceof ElggUser)) {
-	forward('', '404');
+	throw new \Elgg\EntityNotFoundException();
 }
 
-$title = elgg_echo('izap_videos:user_favorites', [$owner->name]);
+elgg_push_collection_breadcrumbs('object', 'izap_videos', $owner);
+elgg_push_breadcrumb(elgg_echo('izap_videos:favorites_short'));
 
-// set up breadcrumbs
-elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-elgg_push_breadcrumb($owner->name, "videos/favorites/$owner->username");
-elgg_push_breadcrumb(elgg_echo('izap_videos:favorites'));
+elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
 
-$offset = (int) get_input('offset', 0);
-$limit = (int) get_input('limit', 10);
+$title = elgg_echo('collection:object:izap_videos:favorites', [$owner->name]);
 
-$result = elgg_list_entities_from_metadata([
+$offset = (int) elgg_extract('offset', $vars);
+$limit = (int) elgg_extract('limit', $vars);
+
+$result = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
 	'metadata_name' => 'favorited_by',
 	'metadata_value' => $owner->guid,
 	'limit' =>  $limit,
 	'offset' => $offset,
+	'distinct' => false,
 	'full_view' => false,
 	'list_type_toggle' => false,
 	'no_results' => elgg_echo('izap_videos:no_favorites'),
 ]);
 
-elgg_register_title_button('videos');
-
-$body = elgg_view_layout('content', [
-	'filter_context' => 'favorites',
-	'filter_override' => elgg_view('izap_videos/nav', ['selected' => 'favorites']),
+$body = elgg_view_layout('default', [
+	'filter_id' => 'izap_videos_tabs',
+	'filter_value' => 'favorites',
 	'content' => $result,
 	'title' => $title,
 	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'favorites']),

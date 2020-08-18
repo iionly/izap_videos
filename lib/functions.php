@@ -26,7 +26,7 @@ function izapArrayToObject_izap_videos($array) {
 
 	$obj = new stdClass();
 	foreach ($array as $key => $value) {
-		if($key != '' && $value != '') {
+		if ($key != '' && $value != '') {
 			$obj->$key = $value;
 		}
 	}
@@ -129,9 +129,9 @@ function izapTrigger_izap_videos() {
 		ini_set('max_execution_time', 0);
 		ini_set('memory_limit', izapAdminSettings_izap_videos('izapMaxFileSize') + 100 . 'M');
 
-		izapGetAccess_izap_videos(); // get the complete access to the system
-		izapRunQueue_izap_videos();
-		izapRemoveAccess_izap_videos(); // remove the access from the system
+		elgg_call(ELGG_IGNORE_ACCESS, function() {
+			izapRunQueue_izap_videos();	
+		});
 	}
 }
 
@@ -161,52 +161,6 @@ function izapEmptyQueue_izap_videos() {
 }
 
 /**
- * Grants the access
- *
- * @param <type> $functionName
- */
-function izapGetAccess_izap_videos() {
-	izap_access_override(['status' => true]);
-}
-
-/**
- * Remove access
- *
- * @param string $functionName
- */
-function izapRemoveAccess_izap_videos() {
-	izap_access_override(['status' => false]);
-}
-
-
-function izap_access_override($params = []) {
-	if ($params['status']) {
-		$func = "elgg_register_plugin_hook_handler";
-	} else {
-		$func = "elgg_unregister_plugin_hook_handler";
-	}
-
-	$func_name = "izapGetAccessForAll_izap_videos";
-
-	$func("permissions_check", "all", $func_name, 9999);
-	$func("container_permissions_check", "all", $func_name, 9999);
-	$func("permissions_check:metadata", "all", $func_name, 9999);
-}
-
-/**
- * Elgg hook to override permission check of entities (izap_videos, izapVideoQueue, izap_recycle_bin)
- *
- * @param <type> $hook
- * @param <type> $entity_type
- * @param <type> $returnvalue
- * @param <type> $params
- * @return <type>
- */
-function izapGetAccessForAll_izap_videos($hook, $entity_type, $returnvalue, $params) {
-	return true;
-}
-
-/**
  * This function returns the FFmpeg video converting command
  *
  * @return string path
@@ -219,7 +173,6 @@ function izapGetFfmpegVideoConvertCommand_izap_videos() {
 	}
 	return $path;
 }
-
 
 /**
  * This function returns the FFmpeg video image command
@@ -331,19 +284,16 @@ function izapRunQueue_izap_videos() {
  * @return mix depends on the input and result
  */
 function izapGetSiteAdmin_izap_videos($guid = false) {
-	$admin = elgg_get_entities_from_metadata([
-		'type' => 'user',
-		'metadata_name' => 'admin',
-		'metadata_value' => 1,
+	$admin = elgg_get_admins([
 		'limit' => 1,
 	]);
-	if ($admin[0]->admin || $admin[0]->siteadmin) {
-		if($guid) {
-			return $admin[0]->getGUID();
-		} else {
-			return $admin[0];
-		}
+
+	if ($guid) {
+		return (int) $admin->guid;
+	} else {
+		return $admin;
 	}
+
 	return false;
 }
 
@@ -353,7 +303,7 @@ function izapGetSiteAdmin_izap_videos($guid = false) {
  * @return boolean or entites
  */
 function izapGetNotConvertedVideos_izap_videos() {
-	$not_converted_videos = elgg_get_entities_from_metadata([
+	$not_converted_videos = elgg_get_entities([
 		'type' => 'object',
 		'subtype' => IzapVideos::SUBTYPE,
 		'metadata_name' => 'converted',
@@ -427,19 +377,13 @@ function izap_get_video_name_prefix() {
 }
 
 //Hack to correct the access id of the uploaded video.
-function izap_update_all_defined_access_id($entity_guid, $accessId = ACCESS_PUBLIC) {
+function izap_update_all_defined_access_id($guid, $accessId = ACCESS_PUBLIC) {
 	$db_prefix = elgg_get_config('dbprefix');
-	// update metadata
-	$query = 'UPDATE ' . $db_prefix . 'metadata SET access_id = ' . $accessId . ' WHERE entity_guid = ' . $entity_guid;
-	$query = update_data($query);
-	if (!$query) {
-		return false;
-	}
-	$query = 'UPDATE ' . $db_prefix . 'entities SET access_id = ' . $accessId . ' WHERE guid = ' . $entity_guid;
-	update_data($query);
+	// update entity
+	$query = 'UPDATE ' . $db_prefix . 'entities SET access_id = ' . $accessId . ' WHERE guid = ' . $guid;
+	elgg()->db->updateData($query);
 	return $query;
 }
-
 
 function izap_is_my_favorited($video) {
 	$users = (array) $video->favorited_by;
@@ -464,9 +408,9 @@ function izap_remove_favorited($video, $user_guid = 0) {
 		unset($users[$key]);
 	}
 
-	izapGetAccess_izap_videos();
-	$video->favorited_by = array_unique($users);
-	izapRemoveAccess_izap_videos();
+	elgg_call(ELGG_IGNORE_ACCESS, function() use ($video, $users) {
+		$video->favorited_by = array_unique($users);
+	});
 
 	return true;
 }

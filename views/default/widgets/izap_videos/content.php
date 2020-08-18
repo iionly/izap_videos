@@ -4,36 +4,31 @@
  *
  */
 
-// get widget settings
-/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
-$limit = (int) $widget->num_display;
-if ($limit < 1) {
-	$limit = 4;
-}
-
-$owner = elgg_get_page_owner_entity();
+$limit = (int) $widget->num_display ?: 4;
 
 $content = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
+	'container_guid' => $widget->owner_guid,
 	'limit' => $limit,
-	'owner_guid' => $owner->guid,
-	'full_view' => false,
-	'list_type_toggle' => false,
 	'pagination' => false,
+	'distinct' => false,
 ]);
 
-if (!$content) {
+if (empty($content)) {
 	echo elgg_echo('izap_videos:notfound');
-} else {
-	echo $content;
-
-	$more_link = elgg_view('output/url', [
-		'href' => "/videos/owner/" . $owner->username,
-		'text' => elgg_echo('link:view:all'),
-		'is_trusted' => true,
-	]);
-	echo elgg_format_element('span', ['class' => 'elgg-widget-more'], $more_link);
+	return;
 }
+
+echo $content;
+
+$more_link = elgg_view('output/url', [
+	'href' => elgg_generate_url('collection:object:izap_videos:owner', [
+		'username' => $widget->getOwnerEntity()->username,
+	]),
+	'text' => elgg_echo('izap_videos:morevideos'),
+	'is_trusted' => true,
+]);
+echo "<div class=\"elgg-widget-more\">$more_link</div>";

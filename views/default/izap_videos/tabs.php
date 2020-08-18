@@ -1,13 +1,12 @@
 <?php
 
-// Old upgrade stuff removed with version 2.3.4
-//if (izap_videos_is_upgrade_available()) {
-//	echo elgg_format_element('div', ['class' => 'elgg-admin-notices'], elgg_autop(elgg_view('output/url', [
-//		'text' => elgg_echo('izap_videos:upgrade'),
-//		'href' => 'action/izap_videos/admin/upgrade',
-//		'is_action' => true,
-//	])));
-//}
+if (izap_videos_is_upgrade_available()) {
+	echo elgg_format_element('div', ['class' => 'elgg-admin-notices'], elgg_autop(elgg_view('output/url', [
+		'text' => elgg_echo('izap_videos:upgrade'),
+		'href' => 'action/izap_videos/admin/upgrade',
+		'is_action' => true,
+	])));
+}
 
 $selected_tab = elgg_extract('tab', $vars);
 
@@ -55,8 +54,8 @@ foreach ($tabs as $tab => $tab_settings) {
 	}
 
 	$params['tabs'][] = [
-		'title' => elgg_echo("izap_videos:adminSettings:tabs_{$tab}", $args),
-		'url' => $href,
+		'text' => elgg_echo("izap_videos:adminSettings:tabs_{$tab}", $args),
+		'href' => $href,
 		'selected' => ($tab === $selected_tab),
 	];
 }

@@ -5,11 +5,27 @@
 
 elgg_require_js('izap_videos/izapvidjs');
 
-$item = $vars['item'];
+$item = elgg_extract('item', $vars);
+if (!$item instanceof ElggRiverItem) {
+	return;
+}
+
+$comment = $item->getObjectEntity();
+if (!$comment instanceof ElggComment) {
+	return;
+}
+
+$video = $item->getTargetEntity();
+if (!$video instanceof IzapVideos) {
+	return;
+}
 
 $subject = $item->getSubjectEntity();
-$comment = $item->getObjectEntity();
-$target = $item->getTargetEntity();
+if (!$subject instanceof ElggUser) {
+	return;
+}
+
+$vars['message'] = elgg_get_excerpt($comment->description);
 
 $subject_link = elgg_view('output/url', [
 	'href' => $subject->getURL(),
@@ -19,26 +35,23 @@ $subject_link = elgg_view('output/url', [
 ]);
 
 $target_link = elgg_view('output/url', [
-	'href' => $target->getURL(),
-	'text' => $target->title,
+	'href' => $video->getURL(),
+	'text' => $video->title,
 	'class' => 'elgg-river-target',
 	'is_trusted' => true,
 ]);
 
-$attachments = '';
+$vars['summary'] = elgg_echo('river:object:izap_videos:comment', [$subject_link, $target_link]);
+
 $size = izapAdminSettings_izap_videos('izap_river_thumbnails');
 if ($size != 'none') {
-	$attachments = elgg_view_entity_icon($target, $size, [
-		'href' => 'ajax/view/izap_videos/playpopup?guid=' . $target->getGUID(),
-		'title' => $target->title,
+	$attachments = elgg_view_entity_icon($video, $size, [
+		'href' => "ajax/view/izap_videos/playpopup?guid={$video->getGUID()}",
+		'title' => $video->title,
 		'img_class' => 'elgg-photo izap-photo',
 		'link_class' => 'izapvid-river-lightbox',
 	]);
+$vars['attachments'] = $attachments;
 }
 
-echo elgg_view('river/elements/layout', [
-	'item' => $vars['item'],
-	'attachments' => $attachments,
-	'summary' => elgg_echo('river:comment:object:izap_videos', [$subject_link, $target_link]),
-	'message' => elgg_get_excerpt($comment->description),
-]);
+echo elgg_view('river/elements/layout', $vars);

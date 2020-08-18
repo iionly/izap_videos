@@ -21,6 +21,7 @@ $_SESSION['izapVideos'] = $params;
 if ($params['guid'] == 0) {
 	$izap_videos = new IzapVideos();
 	$izap_videos->views = 0;
+	$izap_videos->last_viewed = (int) time();
 } else {
 	$izap_videos = get_entity($params['guid']);
 }
@@ -106,7 +107,7 @@ switch ($params['videoType']) {
 		if ($videoValues->thumb) {
 			$izap_videos->imagesrc = $videoValues->thumb;
 		} else {
-			$izap_videos->imagesrc = elgg_get_simplecache_url('ajax_loader.gif');
+			$izap_videos->imagesrc = elgg_get_simplecache_url('izap_videos/ajax_loader.gif');
 		}
 
 		// Defining new preview attribute to be saved with the video entity

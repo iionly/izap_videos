@@ -1,44 +1,22 @@
 <?php
 
-// get the video id as input
+// get the video id
 $guid = (int) elgg_extract('guid', $vars);
+elgg_entity_gatekeeper($guid, 'object', 'izap_videos');
 
 $izap_videos = get_entity($guid);
-if (!($izap_videos instanceof IzapVideos)) {
-	forward('', '404');
-}
 
-elgg_set_page_owner_guid($izap_videos->getContainerGUID());
-$owner = elgg_get_page_owner_entity();
-
-$owner_link = '';
-if ($owner instanceof ElggUser) {
-	$owner_link = "videos/owner/$owner->username";
-} else if ($owner instanceof ElggGroup) {
-	$owner_link = "videos/group/$owner->guid";
-} else {
-	forward('', '404');
-}
+elgg_push_entity_breadcrumbs($izap_videos, false);
 
 $title = $izap_videos->title;
 
-// set up breadcrumbs
-elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-elgg_push_breadcrumb($owner->name, $owner_link);
-elgg_push_breadcrumb($title);
-
 if (elgg_is_logged_in()) {
-	elgg_register_menu_item('title', [
-		'name' => 'add',
-		'href' => 'videos/add/' . elgg_get_logged_in_user_guid(),
-		'text' => elgg_echo("videos:add"),
-		'link_class' => 'elgg-button elgg-button-action',
-	]);
+	elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
 }
 
 $content = elgg_view_entity($izap_videos, ['full_view' => true]);
 
-$body = elgg_view_layout('content', [
+$body = elgg_view_layout('default', [
 	'content' => $content,
 	'title' => $title,
 	'filter' => '',

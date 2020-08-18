@@ -1,35 +1,27 @@
 <?php
 
-elgg_group_gatekeeper();
+$username = elgg_extract('username', $vars);
 
-$owner = elgg_get_page_owner_entity();
-
-if (!$owner) {
-	$guid = elgg_extract('guid', $vars);
-	$owner = get_user($guid);
-}
-
-if (!$owner) {
-	$username = elgg_extract('username', $vars);
-	$owner = get_user_by_username($username);
-}
-
+$owner = get_user_by_username($username);
 if (!$owner) {
 	$owner = elgg_get_logged_in_user_entity();
 }
-
-if (!($owner instanceof ElggUser || $owner instanceof ElggGroup)) {
-	forward('', '404');
+if (!$owner) {
+	throw new \Elgg\EntityNotFoundException();
 }
 
-$title = elgg_echo('izap_videos:user', [$owner->name]);
+elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
 
-// set up breadcrumbs
-elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-elgg_push_breadcrumb($owner->name);
+elgg_push_collection_breadcrumbs('object', 'izap_videos', $owner);
 
-$offset = (int) get_input('offset', 0);
-$limit = (int) get_input('limit', 10);
+if ($owner->guid === elgg_get_logged_in_user_guid()) {
+	$title = elgg_echo('collection:object:izap_videos');
+} else {
+	$title = elgg_echo('collection:object:izap_videos:owner', [$owner->getDisplayName()]);
+}
+
+$offset = (int) elgg_extract('offset', $vars);
+$limit = (int) elgg_extract('limit', $vars);
 
 $result = elgg_list_entities([
 	'type' => 'object',
@@ -39,37 +31,24 @@ $result = elgg_list_entities([
 	'offset' => $offset,
 	'full_view' => false,
 	'list_type_toggle' => false,
+	'preload_owners' => false,
+	'distinct' => false,
 	'no_results' => elgg_echo('izap_videos:notfound'),
 ]);
 
-if (elgg_is_logged_in()) {
-	elgg_register_menu_item('title', [
-		'name' => 'add',
-		'href' => 'videos/add/' . $owner->getGUID(),
-		'text' => elgg_echo("videos:add"),
-		'link_class' => 'elgg-button elgg-button-action',
-	]);
-}
-
 $params = [
-	'filter_context' => 'mine',
-	'filter_override' => elgg_view('izap_videos/nav', ['selected' => 'mine']),
+	'filter_id' => 'izap_videos_tabs',
+	'filter_value' => 'mine',
 	'content' => $result,
 	'title' => $title,
 	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'owner']),
 ];
 
-// don't show filter if out of filter context
-if ($owner instanceof ElggGroup) {
-	$params['filter'] = false;
-	$params['filter_override'] = '';
+if ($owner->guid != elgg_get_logged_in_user_guid()) {
+	$params['filter_value'] = '';
+	$params['filter'] = '';
 }
 
-if (elgg_get_logged_in_user_guid() != elgg_get_page_owner_guid()) {
-	$params['filter_context'] = '';
-	$params['filter_override'] = '';
-}
-
-$body = elgg_view_layout('content', $params);
+$body = elgg_view_layout('default', $params);
 
 echo elgg_view_page($title, $body);

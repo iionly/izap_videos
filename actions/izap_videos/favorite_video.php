@@ -30,10 +30,10 @@ if ($izap_action == 'remove') {
 }
 
 // Adding to favorite list
-izapGetAccess_izap_videos();
-$old_array = $video->favorited_by;
-$new_array = array_merge((array) $old_array, (array) elgg_get_logged_in_user_guid());
-$video->favorited_by = array_unique($new_array);
-izapRemoveAccess_izap_videos();
+elgg_call(ELGG_IGNORE_ACCESS, function() use ($video) {
+	$old_array = $video->favorited_by;
+	$new_array = array_merge((array) $old_array, (array) elgg_get_logged_in_user_guid());
+	$video->favorited_by = array_unique($new_array);
+});
 
 return elgg_ok_response('', elgg_echo('izap_videos:favorite_saved'), REFERER);

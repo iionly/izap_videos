@@ -4,20 +4,12 @@
  *
  */
 
-/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
-$count = (int) $widget->latest_videos_count;
-if ($count < 1) {
-	$count = 4;
-}
-
-echo elgg_view_field([
-	'#type' => 'number',
-	'#label' => elgg_echo('izap_videos:numbertodisplay'),
-	'name' => 'params[latest_videos_count]',
-	'value' => $count,
-	'min' => 1,
+echo elgg_view('object/widget/edit/num_display', [
+	'entity' => $widget,
+	'name' => 'latest_videos_count',
+	'label' => elgg_echo('izap_videos:numbertodisplay'),
 	'max' => 25,
-	'step' => 1,
+	'default' => 4,
 ]);

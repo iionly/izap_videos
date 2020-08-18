@@ -15,10 +15,14 @@
  */
 
 $params = (array) get_input('params');
+$plugin = elgg_get_plugin_from_id('izap_videos');
+if (!$plugin) {
+	return elgg_error_response(elgg_echo('plugins:settings:save:fail', [$plugin_id]));
+}
+$plugin_name = $plugin->getDisplayName();
 
 if (!$params['izapVideoOptions']) {
-	register_error(elgg_echo('izap_videos:error:videoOptionBlank'));
-	forward(REFERER);
+	return elgg_error_response(elgg_echo('izap_videos:error:videoOptionBlank'));
 }
 
 // limit izapMaxFileSize to php value upload_max_filesize at maximum
@@ -58,8 +62,7 @@ if (!empty($params['izapExtendedSidebarMenu'])) {
 
 foreach($params as $key => $values) {
 	if (!izapAdminSettings_izap_videos($key, $values, true)) {
-		register_error(elgg_echo('plugins:settings:save:fail', ['izap_videos']));
-		forward(REFERER);
+		return elgg_error_response(elgg_echo('plugins:settings:save:fail', [$plugin_name]));
 		exit;
 	}
 	if ($key == 'izapVideoOptions') {
@@ -69,5 +72,4 @@ foreach($params as $key => $values) {
 	}
 }
 
-system_message(elgg_echo('izap_videos:success:adminSettingsSaved', ['tidypics']));
-forward(REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:success:adminSettingsSaved', [$plugin_name]));

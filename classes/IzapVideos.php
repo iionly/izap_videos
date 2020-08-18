@@ -222,9 +222,10 @@ class IzapVideos extends ElggFile {
 	 */
 	public function updateViews() {
 		if ($this->converted == 'yes') {
-			izapGetAccess_izap_videos();
-			$this->views = ((int) $this->views + 1);
-			izapRemoveAccess_izap_videos();
+			elgg_call(ELGG_IGNORE_ACCESS, function() {
+				$this->views = (int) $this->views + 1;
+				$this->last_viewed = (int) time();
+			});
 		}
 	}
 

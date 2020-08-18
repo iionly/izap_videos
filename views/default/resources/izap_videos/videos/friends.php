@@ -1,7 +1,5 @@
 <?php
 
-elgg_gatekeeper();
-
 $owner = elgg_get_page_owner_entity();
 
 if (!$owner) {
@@ -19,45 +17,42 @@ if (!$owner) {
 }
 
 if (!($owner instanceof ElggUser)) {
-	forward('', '404');
+	throw new \Elgg\EntityNotFoundException();
 }
 
-$title = elgg_echo('izap_videos:frnd');
+elgg_push_collection_breadcrumbs('object', 'izap_videos', $owner, true);
 
-// set up breadcrumbs
-elgg_push_breadcrumb(elgg_echo('videos'), 'videos/all');
-elgg_push_breadcrumb($owner->name, "videos/friends/$owner->username");
-elgg_push_breadcrumb(elgg_echo('friends'));
+elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
 
-$offset = (int) get_input('offset', 0);
-$limit = (int) get_input('limit', 10);
+$title = elgg_echo('collection:friends', [elgg_echo('collection:object:izap_videos')]);
 
-if ($friends = $owner->getFriends(['limit' => false])) {
-	$friendguids = [];
-	foreach ($friends as $friend) {
-		$friendguids[] = $friend->getGUID();
-	}
+$offset = (int) elgg_extract('offset', $vars);
+$limit = (int) elgg_extract('limit', $vars);
+
+$friends_count = $owner->getFriends(['count' => true]);
+if ($friends_count > 0) {
 	$result = elgg_list_entities([
 		'type' => 'object',
 		'subtype' => IzapVideos::SUBTYPE,
-		'owner_guids' => $friendguids,
+		'relationship' => 'friend',
+		'relationship_guid' => (int) $owner->guid,
+		'relationship_join_on' => 'owner_guid',
 		'limit' => $limit,
 		'offset' => $offset,
 		'full_view' => false,
+		'distinct' => false,
 		'pagination' => true,
 		'list_type_toggle' => false,
 		'no_results' => elgg_echo('izap_videos:notfound'),
 	]);
 
 } else {
-	$result = elgg_echo("friends:none:you");
+	$result = elgg_echo("izap_videos:friends:none");
 }
 
-elgg_register_title_button('videos');
-
-$body = elgg_view_layout('content', [
-	'filter_context' => 'friends',
-	'filter_override' => elgg_view('izap_videos/nav', ['selected' => 'friends']),
+$body = elgg_view_layout('default', [
+	'filter_id' => 'izap_videos_tabs',
+	'filter_value' => 'friends',
 	'content' => $result,
 	'title' => $title,
 	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'friends']),

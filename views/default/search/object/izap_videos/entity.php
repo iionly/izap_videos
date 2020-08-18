@@ -11,7 +11,9 @@ $categories = elgg_view('output/categories', $vars);
 $excerpt = elgg_get_excerpt($video->description);
 
 $owner_link = elgg_view('output/url', [
-	'href' => "videos/owner/$owner->username",
+	'href' => elgg_generate_url('collection:object:izap_videos:owner', [
+		'username' => $owner->username,
+	]),
 	'text' => $owner->name,
 	'is_trusted' => true,
 ]);

@@ -72,9 +72,9 @@ $memory_limit = ini_get('memory_limit');
 $rows = [];
 
 $row = [];
-$row[] = elgg_format_element('td', [], elgg_echo('izap_videos:server_analysis:exec'));
-$row[] = elgg_format_element('td', [], (($exec) ? elgg_echo('izap_videos:server_analysis:success') : elgg_echo('izap_videos:server_analysis:fail')));
-$row[] = elgg_format_element('td', [], elgg_echo('izap_videos:server_analysis:exec_info'));
+$row[] = elgg_format_element('td style="width:25%"', [], elgg_echo('izap_videos:server_analysis:exec'));
+$row[] = elgg_format_element('td style="width:25%"', [], (($exec) ? elgg_echo('izap_videos:server_analysis:success') : elgg_echo('izap_videos:server_analysis:fail')));
+$row[] = elgg_format_element('td style="width:50%"', [], elgg_echo('izap_videos:server_analysis:exec_info'));
 $rows[] = elgg_format_element('tr', ['class' => 'izap_server_report_' . (($exec) ? 'ok' : 'not_ok')], implode('', $row));
 
 $row = [];

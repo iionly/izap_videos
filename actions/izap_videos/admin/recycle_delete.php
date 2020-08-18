@@ -16,7 +16,7 @@
 
 $params = (array) get_input('params');
 
-foreach($params  as $key => $value) {
+foreach($params as $key => $value) {
 	if (is_integer($key)) {
 		$guid = $key;
 		break;

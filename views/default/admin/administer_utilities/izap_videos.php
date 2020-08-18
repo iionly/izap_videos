@@ -1,6 +1,13 @@
 <?php
 
-$tab = get_input('tab', 'queue_status');
+$activated_options = izapGetVideoOptions_izap_videos();
+if (in_array('ONSERVER', $activated_options)) {
+	$default_tab = 'queue_status';
+} else {
+	$default_tab = 'server_analysis';
+}
+
+$tab = get_input('tab', $default_tab);
 
 echo elgg_view('izap_videos/tabs', [
 	'tab' => $tab,
