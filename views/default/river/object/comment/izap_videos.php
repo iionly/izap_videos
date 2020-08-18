@@ -3,6 +3,8 @@
  * Post comment on videos river view
  */
 
+elgg_require_js('izap_videos/izapvidjs');
+
 $item = $vars['item'];
 
 $subject = $item->getSubjectEntity();
@@ -30,8 +32,7 @@ if ($size != 'none') {
 		'href' => 'ajax/view/izap_videos/playpopup?guid=' . $target->getGUID(),
 		'title' => $target->title,
 		'img_class' => 'elgg-photo izap-photo',
-		'link_class' => 'elgg-lightbox',
-		'data-colorboxOpts' => "{maxWidth:'95%', maxHeight:'95%'}",
+		'link_class' => 'izapvid-river-lightbox',
 	]);
 }
 

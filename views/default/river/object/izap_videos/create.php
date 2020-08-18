@@ -3,6 +3,8 @@
  * Video added river view
  */
 
+elgg_require_js('izap_videos/izapvidjs');
+
 $object = $vars['item']->getObjectEntity();
 $excerpt = strip_tags($object->description);
 $excerpt = elgg_get_excerpt($excerpt);
@@ -14,8 +16,7 @@ if ($size != 'none') {
 		'href' => 'ajax/view/izap_videos/playpopup?guid=' . $object->getGUID(),
 		'title' => $object->title,
 		'img_class' => 'elgg-photo izap-photo',
-		'link_class' => 'elgg-lightbox',
-		'data-colorboxOpts' => "{maxWidth:'95%', maxHeight:'95%'}",
+		'link_class' => 'izapvid-river-lightbox',
 	]);
 }
 

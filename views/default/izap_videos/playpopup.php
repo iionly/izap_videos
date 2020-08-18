@@ -53,8 +53,8 @@ $summary = elgg_view_image_block($owner_icon, $list_body, $params);
 
 $content = elgg_format_element('div', ['style' => 'word-wrap:break-word;'], $title);
 $content .= elgg_format_element('div', ['class' => ''], $summary);
-$content .= elgg_format_element('div', ['align' => 'center', 'class' => 'izapPlayer mbm'], $video->getPlayer());
-$content .= elgg_format_element('div', ['align' => 'center', 'class' => 'mbn'], elgg_view('output/url', [
+$content .= elgg_format_element('div', ['class' => 'izapPlayer'], elgg_format_element('div', ['class' => 'izap_responsive_video'], $video->getPlayer()));
+$content .= elgg_format_element('div', ['align' => 'center', 'class' => 'mts mbs'], elgg_view('output/url', [
 	'href' => $video->getURL() . '#comments',
 	'text' => elgg_echo('generic_comments:add'),
 	'is_trusted' => true,

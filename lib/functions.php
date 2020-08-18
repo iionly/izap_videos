@@ -188,7 +188,7 @@ function izap_access_override($params = []) {
 
 	$func_name = "izapGetAccessForAll_izap_videos";
 
-	$func("premissions_check", "all", $func_name, 9999);
+	$func("permissions_check", "all", $func_name, 9999);
 	$func("container_permissions_check", "all", $func_name, 9999);
 	$func("permissions_check:metadata", "all", $func_name, 9999);
 }

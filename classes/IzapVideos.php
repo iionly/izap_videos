@@ -177,7 +177,7 @@ class IzapVideos extends ElggFile {
 				if($this->converted == 'yes') {
 					$imageurl = elgg_get_site_url() . 'izap_videos_files/image/' . $this->getGUID();
 					$videourl = elgg_get_site_url() . 'izap_videos_files/file/' . $this->getGUID() . '/' . elgg_get_friendly_title($this->title) . '.mp4';
-					$html = "<video id='videojsPlayer' class='video-js vjs-default-skin' controls='true' preload='none' width='{$width}' height='{$height}' poster='{$imageurl}' data-setup='{}'><source src='{$videourl}' type='video/mp4'><p class='vjs-no-js'>To view this video please enable JavaScript, and consider upgrading to a web browser that <a href='http://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a></p></video>";
+					$html = "<video id='videojsPlayer' class='video-js vjs-default-skin vjs-16-9 vjs-big-play-centered' controls='true' preload='none' width='{$width}' height='{$height}' poster='{$imageurl}' data-setup='{}'><source src='{$videourl}' type='video/mp4'><p class='vjs-no-js'>To view this video please enable JavaScript, and consider upgrading to a web browser that <a href='http://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a></p></video>";
 				} else {
 					$html = elgg_echo('izap_videos:processed');
 				}

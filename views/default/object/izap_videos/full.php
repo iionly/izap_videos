@@ -56,7 +56,7 @@ $summary = elgg_view_image_block($owner_icon, $list_body, ['class' => 'mbl']);
 echo $summary;
 
 // Display the video player to allow for the video to be played
-echo elgg_format_element('div', ['align' => 'center'], $video->getPlayer());
+echo elgg_format_element('div', ['class' => 'izap_responsive_video'], $video->getPlayer());
 
 if ($video->description) {
 	echo elgg_view('output/longtext', [

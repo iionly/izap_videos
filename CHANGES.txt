@@ -1,6 +1,13 @@
 Changelog
 =========
 
+2.3.7
+-----
+
+- Updated Video.js to version 7.9.2,
+- Improved "responsiveness" of video player display both on video full view page and in river popups,
+- Fixed a typo in plugin hook name used in izap_access_override() function (not sure if this typo ever caused any trouble).
+
 2.3.6
 -----
 
