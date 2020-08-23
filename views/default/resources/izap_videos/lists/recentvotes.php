@@ -12,14 +12,9 @@ $title = elgg_echo('collection:object:izap_videos:recentlyvoted');
 elgg_push_collection_breadcrumbs('object', 'izap_videos');
 elgg_push_breadcrumb($title);
 
-$offset = (int) elgg_extract('offset', $vars);
-$limit = (int) elgg_extract('limit', $vars);
-
 $result = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
-	'limit' => $limit,
-	'offset' => $offset,
 	'annotation_name' => 'fivestar',
 	'order_by' => [
 		new \Elgg\Database\Clauses\OrderByClause('n_table.time_created', 'DESC'),

@@ -12,17 +12,12 @@ $title = elgg_echo('collection:object:izap_videos:mostcommentedthismonth');
 elgg_push_collection_breadcrumbs('object', 'izap_videos');
 elgg_push_breadcrumb($title);
 
-$offset = (int) elgg_extract('offset', $vars);
-$limit = (int) elgg_extract('limit', $vars);
-
 $start = mktime(0, 0, 0, date("m"), 1, date("Y"));
 $end = time();
 
 $result = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
-	'limit' => $limit,
-	'offset' => $offset,
 	'wheres' => function(\Elgg\Database\QueryBuilder $qb, $alias) use($start, $end) {
 		$qb->groupBy("$alias.guid");
 		$qb->innerJoin($alias, 'entities', 'ce', "ce.container_guid = e.guid");

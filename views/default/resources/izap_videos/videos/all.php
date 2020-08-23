@@ -6,14 +6,9 @@ elgg_push_collection_breadcrumbs('object', 'izap_videos');
 
 $title = elgg_echo('collection:object:izap_videos:all');
 
-$offset = (int) elgg_extract('offset', $vars);
-$limit = (int) elgg_extract('limit', $vars);
-
 $result = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
-	'limit' => $limit,
-	'offset' => $offset,
 	'distinct' => false,
 	'full_view' => false,
 	'list_type_toggle' => false,

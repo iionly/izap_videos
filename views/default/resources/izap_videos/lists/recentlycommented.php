@@ -12,14 +12,9 @@ $title = elgg_echo('collection:object:izap_videos:recentlycommented');
 elgg_push_collection_breadcrumbs('object', 'izap_videos');
 elgg_push_breadcrumb($title);
 
-$offset = (int) elgg_extract('offset', $vars);
-$limit = (int) elgg_extract('limit', $vars);
-
 $result = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
-	'limit' => $limit,
-	'offset' => $offset,
 	'wheres' => function(\Elgg\Database\QueryBuilder $qb, $alias) {
 		$qb->innerJoin($alias, 'entities', 'ce', "ce.container_guid = e.guid");
 		$qb->orderBy('ce.time_created', 'DESC');
