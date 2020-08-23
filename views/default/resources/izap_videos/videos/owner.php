@@ -20,15 +20,10 @@ if ($owner->guid === elgg_get_logged_in_user_guid()) {
 	$title = elgg_echo('collection:object:izap_videos:owner', [$owner->getDisplayName()]);
 }
 
-$offset = (int) elgg_extract('offset', $vars);
-$limit = (int) elgg_extract('limit', $vars);
-
 $result = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
 	'container_guid' => $owner->getGUID(),
-	'limit' => $limit,
-	'offset' => $offset,
 	'full_view' => false,
 	'list_type_toggle' => false,
 	'preload_owners' => false,

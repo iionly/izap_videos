@@ -82,7 +82,7 @@ class IzapVideosBootstrap extends DefaultPluginBootstrap {
 	public function activate() {
 		// save current version number
 		$old_version_izap_videos = elgg_get_plugin_setting('version_izap_videos', 'izap_videos');
-		$new_version_izap_videos = '3.0.0';
+		$new_version_izap_videos = '3.0.1';
 		if (version_compare($new_version_izap_videos, $old_version_izap_videos, '!=')) {
 			// Set new version
 			elgg_set_plugin_setting('version_izap_videos', $new_version_izap_videos, 'izap_videos');

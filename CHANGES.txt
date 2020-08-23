@@ -1,6 +1,11 @@
 Changelog
 =========
 
+3.0.1
+-----
+
+- Fixed pagination for listing pages.
+
 3.0.0
 -----
 

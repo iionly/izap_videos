@@ -12,17 +12,12 @@ $title = elgg_echo('collection:object:izap_videos:mostviewedlastmonth');
 elgg_push_collection_breadcrumbs('object', 'izap_videos');
 elgg_push_breadcrumb($title);
 
-$offset = (int) elgg_extract('offset', $vars);
-$limit = (int) elgg_extract('limit', $vars);
-
 $start = strtotime("-1 months", mktime(0, 0, 0, date("m"), 1, date("Y")));
 $end = mktime(0, 0, 0, date("m"), 0, date("Y"));
 
 $result = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => IzapVideos::SUBTYPE,
-	'limit' => $limit,
-	'offset' => $offset,
 	'metadata_name_value_pairs' => [
 		[
 			'name' => 'views',
