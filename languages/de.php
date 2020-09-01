@@ -230,5 +230,5 @@ Schau Dir das Video an und schreibe einen Kommentar:
 	'widgets:index_latest_videos:description' => 'Dieses Widget listet die neuesten Videos auf, die zur Community-Seite hinzugefügt wurden.',
 	'widgets:groups_latest_videos:name' => 'Neuste Videos',
 	'widgets:groups_latest_videos:description' => 'Dieses Widget listet die neuesten Videos auf, die zu dieser Gruppe hinzugefügt wurden.',
-    'izap_videos:numbertodisplay' => "Anzahl der anzuzeigenden Videos",
+	'izap_videos:numbertodisplay' => "Anzahl der anzuzeigenden Videos",
 ];

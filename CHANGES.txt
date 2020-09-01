@@ -1,6 +1,10 @@
 Changelog
 =========
 
+3.3.2
+-----
+
+- Spanish translation added (thanks to yusoy).
 
 3.3.1
 -----

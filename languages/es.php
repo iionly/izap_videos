@@ -1,0 +1,248 @@
+<?php
+/**
+ * iZAP Videos plugin by iionly
+ * (based on version 3.71b of the original izap_videos plugin for Elgg 1.7)
+ * Contact: iionly@gmx.de
+ * https://github.com/iionly
+ *
+ * Original developer of the iZAP Videos plugin:
+ * @package Elgg videotizer, by iZAP Web Solutions
+ * @license GNU Public License version 2
+ * @Contact iZAP Team "<support@izap.in>"
+ * @Founder Tarun Jangra "<tarun@izap.in>"
+ * @link http://www.izap.in/
+ *
+ */
+
+return [
+	'admin:administer_utilities:izap_videos' => 'iZAP Videos',
+	'izap_videos' => "iZAP Videos",
+	'item:object:izap_videos' => "Videos",
+	'item:object:izapVideoQueue' => 'Videos en cola',
+	'item:object:izap_recycle_bin' => 'Vídeos en la papelera',
+	'collection:object:izap_videos' => 'Videos',
+	'collection:object:izap_videos:all' => 'Todos los videos del sitio',
+	'collection:object:izap_videos:owner' => 'Videos de %s',
+	'collection:object:izap_videos:group' => 'Videos del grupo',
+	'collection:object:izap_videos:friends' => 'Videos de amigos',
+	'collection:object:izap_videos:favorites' => 'Videos favoritos de %s',
+	'collection:object:izap_videos:mostcommented' => 'Vídeos más comentados',
+	'collection:object:izap_videos:mostcommentedtoday' => 'Más comentado hoy',
+	'collection:object:izap_videos:mostcommentedthismonth' => 'Más comentado este mes',
+	'collection:object:izap_videos:mostcommentedlastmonth' => 'Más comentado el mes pasado',
+	'collection:object:izap_videos:mostcommentedthisyear' => 'Más comentado este año',
+	'collection:object:izap_videos:mostviewed' => 'Vídeos más vistos',
+	'collection:object:izap_videos:mostviewedtoday' => 'Más vistos hoy',
+	'collection:object:izap_videos:mostviewedthismonth' => 'Más vistos este mes',
+	'collection:object:izap_videos:mostviewedlastmonth' => 'Más vistos el mes pasado',
+	'collection:object:izap_videos:mostviewedthisyear' => 'Más vistos este año',
+	'collection:object:izap_videos:recentlyviewed' => 'Videos vistos recientemente',
+	'collection:object:izap_videos:recentlycommented' => 'Vídeos comentados recientemente',
+	'collection:object:izap_videos:highestrated' => "Vídeos mejor valorados",
+	'collection:object:izap_videos:highestvotecount' => "Vídeos más valorados",
+	'collection:object:izap_videos:recentlyvoted' => "Videos calificados recientemente",
+
+	'add:object:izap_videos' => 'Agregar nuevo video',
+	'edit:object:izap_videos' => 'Editar video',
+
+	'videos' => "Videos",
+	'izap_videos:videos' => "Videos",
+	'izap_videos:add' => "Agregar nuevo video",
+	'izap_videos:deleted' => "El video se ha eliminado correctamente.",
+	'izap_videos:notdeleted' => "Se produjo un error al eliminar el video. El video no fue eliminado.",
+
+	'izap_videos:views' => "%s vistas",
+	'izap_videos:morevideos' => 'Más videos',
+	'izap_videos:notfound' => "Ningún video ha sido agregado todavía.",
+
+	'izap_videos:editVideo' => "Editar video",
+	'izap_videos:group:enablevideo' => "Habilitar videos de grupo",
+	'izap_videos:processed' => 'El video está en cola para conversión.',
+	'izap_videos:queueStatus' => 'Estado de la cola: ',
+	'izap_videos:queueStatus:none' => 'Actualmente no hay videos en cola para conversión.',
+	'izap_videos:notRunning' => 'No funciona',
+	'izap_videos:running' => 'Funcionando',
+	'izap_videos:error_videos' => 'Vídeos con errores durante la conversión',
+	'izap_videos:error_videos:none' => 'Actualmente no hay videos que hayan tenido errores durante la conversión.',
+	'izap_videos:restore' => 'Restaurar',
+	'izap_videos:restore_size' => 'Tamaño',
+	'izap_videos:send_user_message' => 'Enviar mensaje al usuario',
+
+	'izap_videos:OFFSERVER:supported_sites' => '(Sitios web compatibles: Dailymotion.com, Vimeo.com y Youtube.com)',
+	'izap_videos:ONSERVER:supported_formats' => '(Formatos de video compatibles: avi, flv, 3gp, mp4, wmv, mpg y mpeg)',
+
+	'izap_videos:upgrade' => 'Actualizar',
+	'izap_videos:upgrade:success' => 'La actualización de los videos de iZAP se realizó correctamente.',
+
+	'izap_videos:all_videos' => 'Todos los videos',
+	'izap_videos:friends:none' => 'Aún no tienes amigos.',
+	'izap_videos:mostcommented:nosuccess' => 'Aún no se han comentado videos.',
+	'izap_videos:mostcommentedthismonth:nosuccess' => 'Aún no se han comentado videos este mes.',
+	'izap_videos:mostcommentedlastmonth:nosuccess' => 'No se han comentado videos el mes pasado.',
+	'izap_videos:mostcommentedthisyear:nosuccess' => 'No se ha comentado ningún video este año todavía.',
+	'izap_videos:mostcommentedtoday:nosuccess' => 'Aún no se han comentado videos hoy.',
+	'izap_videos:mostviewed:nosuccess' => 'Aún no se han visto videos en este sitio.',
+	'izap_videos:mostviewedthisyear:nosuccess' =>  'Aún no se han visto videos este año.',
+	'izap_videos:mostviewedthismonth:nosuccess' => 'Aún no se vieron videos este mes.',
+	'izap_videos:mostviewedlastmonth:nosuccess' => 'No se vieron videos el mes pasado.',
+	'izap_videos:mostviewedtoday:nosuccess' => 'Todavía no se han visto videos hoy.',
+	'izap_videos:recentlyviewed:nosuccess' => 'No hay videos que se hayan visto recientemente.',
+	'izap_videos:recentlycommented:nosuccess' => 'No hay videos que hayan sido comentados recientemente.',
+	'izap_videos:highestrated:nosuccess' => "Aún no se han calificado videos.",
+	'izap_videos:highestvotecount:nosuccess' => "Aún no se han calificado videos.",
+	'izap_videos:recentlyvoted:nosuccess' => "Aún no se han calificado videos.",
+
+	// Error messages
+	'izap_videos:error:notUploaded' => 'Error al cargar el archivo.',
+	'izap_videos:error:videoOptionBlank' => 'La opción de video no se puede dejar en blanco.',
+	'izap_videos:error:adminSettingsReset' => 'Se produjo un error al restablecer. No se han restablecido los ajustes.',
+	'izap_videos:error:notValidUrl' => 'Esta URL no es válida.',
+	'izap_videos:error:code:101' => 'No puedo obtener el video del sitio. El sitio no responde.',
+	'izap_videos:error:code:102' => 'Error desconocido al recuperar el video. Esto puede deberse a los derechos limitados asignados al video.',
+	'izap_videos:error:code:103' => 'Esta URL no es compatible.',
+	'izap_videos:error:code:104' => 'Hubo un error al cargar el archivo.',
+	'izap_videos:error:code:105' => 'El archivo proporcionado está vacío o no es un archivo de entrada válido.',
+	'izap_videos:error:code:106' => 'El formato de archivo no es compatible.',
+	'izap_videos:error:code:107' => 'El archivo proporcionado es más grande que el tamaño máximo permitido.',
+	'izap_videos:error:emptyTitle' => 'El título del video no se puede dejar en blanco.',
+	'izap_videos:error:save' => 'Error al guardar el video.',
+	'izap_videos:error:unsupported' => 'Formato de archivo no soportado.',
+	'izap_videos:error:emptyEmbedCode' => 'Proporcione el código de inserción.',
+	'izap_videos:error:sqliteDrivers' => 'Instale los controladores PDO sqlite para habilitar la compatibilidad con el servidor.',
+	'izap_videos:upgrade:not_required' => 'No se requiere actualización.',
+
+	// Success message
+	'izap_videos:success:adminSettingsSaved' => 'La configuración se ha guardado correctamente.',
+	'izap_videos:success:adminSettingsReset' => 'La configuración se ha restablecido correctamente.',
+	'izap_videos:success:save' => 'El video se guardó correctamente.',
+
+	// Notify messages
+	'izap_videos:notify:summary_newvideo' => 'Nuevo video llamado %s',
+	'izap_videos:notify:subject_newvideo' => 'Nuevo video: %s',
+	'izap_videos:notify:body_newvideo' => '%s agregó un nuevo video: %s
+
+Ver y comentar el video:
+%s',
+	'izap_videos:notifySub:videoConverted' => 'El video se ha convertido',
+	'izap_videos:notifyMsg:videoConverted' => 'Tu video se ha convertido correctamente. Haga clic aquí para ver su video convertido: %s',
+	'izap_videos:notifySub:videoNotConverted' => 'Video not converted',
+	'izap_videos:notifyAdminMsg:videoNotConverted' => "Hubo un error mientras uno de los usuarios intentaba subir un video.<br>Error: <b>%s</b>",
+	'izap_videos:notifySub:video_deleted' => 'Tu video ha sido eliminado',
+
+	// River
+	'river:object:izap_videos:create' => '%s agregó un nuevo video %s',
+	'river:object:izap_videos:comment' => '%s comentó en el video %s',
+
+	// Admin settings
+	'izap_videos:adminSettings:tabs_settings' => 'Configuraciones',
+	'izap_videos:adminSettings:tabs_api_keys' => 'API Keys',
+	'izap_videos:adminSettings:tabs_queue_status' => 'Estado de la cola (%s)',
+	'izap_videos:adminSettings:tabs_recycle_bin' => 'Papelera (%s)',
+	'izap_videos:adminSettings:tabs_server_analysis' => 'Análisis del servidor',
+
+	'izap_videos:adminSettings:settings' => 'Configuraciones para iZAP Videos',
+	'izap_videos:adminSettings:onServerVideos_okay' => 'Videos en el servidor',
+	'izap_videos:adminSettings:onServerVideos_notokay' => 'Videos en el servidor <em class="elgg-subtext">(Habilite los controladores PDO sqlite para usar en la función de video del servidor)</em>',
+	'izap_videos:adminSettings:offServerVideos' => 'Vídeos fuera del servidor <em class="elgg-subtext">(Sitios compatibles ver README.txt)</em>',
+	'izap_videos:adminSettings:embedCode' => 'Código de inserción <em class="elgg-subtext">(No funciona si el complemento htmlawed está habilitado. ¡¡¡Lea README.txt !!!)</em>',
+	'izap_videos:adminSettings:izapVideoOptions' => 'Opciones de video:',
+	'izap_videos:adminSettings:izapPhpInterpreter' => 'Ruta para el intérprete de PHP:',
+	'izap_videos:adminSettings:izapVideoCommand' => 'Comando de conversión de video:',
+	'izap_videos:adminSettings:izapVideoThumb' => 'Comando de miniatura de video:',
+	'izap_videos:adminSettings:izapMaxFileSize' => 'Ingrese el tamaño máximo de archivo de video permitido (en MB):',
+	'izap_videos:adminSettings:izapKeepOriginal' => '¿Mantener el archivo original en el servidor?',
+	'izap_videos:adminSettings:extended_sidebar_menu' => '¿Mostrar entradas de menú de videos de iZAP adicionales en la barra lateral para obtener opciones de listado adicionales?',
+	'izap_videos:adminSettings:resetSettings' => 'Restablecer los valores predeterminados',
+	'izap_videos:adminSettings:resetSettings_confirm' => '¿Realmente desea restablecer la configuración a los valores predeterminados?',
+	'izap_videos:adminSettings:resetQueueAll' => 'Cola vacía',
+	'izap_videos:adminSettings:resetQueue_info' => 'Actualizar cada 5 segundos.',
+	'izap_videos:adminSettings:resetQueueAll_confirm' => '¿Estás seguro? Esto eliminará todos los videos de la cola y, en consecuencia, de la base de datos.',
+	'izap_videos:adminSettings:resetQueue_confirm' => '¿Estás seguro? Esto eliminará estos videos de la cola y, en consecuencia, de la base de datos.',
+	'izap_videos:adminSettings:izap_cron_time' => 'Establecer el intervalo cron para activar la cola:',
+	'izap_videos:adminSettings:minute' => '1 minuto',
+	'izap_videos:adminSettings:fiveminute' => '5 minutos',
+	'izap_videos:adminSettings:fifteenmin' => '15 minutos',
+	'izap_videos:adminSettings:halfhour' => '30 minutos',
+	'izap_videos:adminSettings:hourly' => '1 hora',
+	'izap_videos:adminSettings:cron_off' => 'Queue-cron-trigger deshabilitado',
+	'izap_videos:adminSettings:info:izap_cron_time' => '(Se requiere configurar el intervalo cron para activar la cola para que los videos en el servidor funcionen. Cuanto más corto sea el intervalo, antes se convertirá un video después de que se haya cargado. Por ejemplo, si el intervalo se establece en 1 minuto, la conversión comienza a más tardar un minuto después de que la carga haya terminado, pero si ha seleccionado 1 hora, puede comenzar solo una hora después de que se haya cargado en el peor de los casos. Para que el disparador de cola funcione, debe haber configurado el correspondiente Elgg cronjob. Si no usa la opción de videos en el servidor en su sitio, puede desactivar el queue-cron-trigger)',
+	'izap_videos:adminSettings:save' => 'Guardar ajustes',
+	'izap_videos:adminSettings:messages_plugin_missing' => '<em class="elgg-subtext">Habilite el complemento de mensajes para informar al usuario sobre el motivo de la eliminación permanente de un video.</em>',
+	'izap_videos:adminSettings:deleted_from_trash' => 'Eliminado correctamente de la papelera.',
+	'izap_videos:adminSettings:deleted_from_trash_error' => 'Error al eliminar de la papelera.',
+	'izap_videos:adminSettings:reset_queue' => 'La cola ahora está vacía.',
+	'izap_videos:adminSettings:reset_queue_error' => 'Se produjo un error al restablecer la cola.',
+	'izap_videos:adminSettings:restore_video' => 'Restaurado con éxito.',
+	'izap_videos:adminSettings:restore_video_error' => 'Hubo un error. La restauración falló.',
+	'izap_videos:adminSettings:izap_river_thumbnails' => 'Vista previa del tamaño de la imagen en las entradas del río de actividad (nuevos videos agregados y comentarios en los videos):',
+	'izap_videos:adminSettings:thumbnails_small' => "Imagen en tamaño 'pequeño'",
+	'izap_videos:adminSettings:thumbnails_medium' => "Imagen en tamaño 'mediano'",
+	'izap_videos:adminSettings:thumbnails_large' => "Imagen en tamaño 'grande'",
+	'izap_videos:adminSettings:thumbnails_none' => "Sin imagen de vista previa",
+
+	'izap_videos:adminSettings:youtube_api_key' => 'Youtube (Google API key):',
+	'izap_videos:adminSettings:youtube_api_key_description' => "(Por favor visita <a href=\"https://developers.google.com/youtube/registering_an_application\">https://developers.google.com/youtube/registering_an_application</a> para aprender cómo registrar la API KEY necesaria para agregar videos de Youtube para que funcione, luego registre una API KEY e ingrese la clave que obtuvo arriba. Debe configurar el uso de la clave API sin restricciones, p. Ej. sin restricciones de IP o dominio. La clave de API solo se utiliza internamente y no está disponible para los usuarios de su sitio, por lo que otros pueden utilizarla de forma incorrecta. Asegúrese de que el uso de la API de datos de Youtube v3 esté habilitado para la clave API después de haberla creado)",
+
+	'izap_videos:server_analysis:success' => 'Hecho',
+	'izap_videos:server_analysis:fail' => 'Falló',
+	'izap_videos:server_analysis:exec' => 'exec()',
+	'izap_videos:server_analysis:exec_info' => 'Requerido para ejecutar los comandos.',
+	'izap_videos:server_analysis:curl' => 'Soporte cURL',
+	'izap_videos:server_analysis:curl_info' => 'Obligatorio para obtener el feed remoto.',
+	'izap_videos:server_analysis:pdo' => 'Soporte PDO_SQLITE',
+	'izap_videos:server_analysis:pdo_info' => 'Requerido para administrar la cola para la base de datos sqlite.',
+	'izap_videos:server_analysis:php' => 'Prueba de intérprete de PHP',
+	'izap_videos:server_analysis:php_not_found' => 'Intérprete PHP no encontrado.',
+	'izap_videos:server_analysis:php_action' => '<em>(Asegúrese de que la ruta en el campo de entrada "Ruta del intérprete de PHP" en la pestaña "Configuración" sea correcta)</em>',
+	'izap_videos:server_analysis:ffmpeg' => 'FFmpeg',
+	'izap_videos:server_analysis:ffmpeg_action' => '<em>(Copie el comando de éxito y péguelo en el campo de entrada "Comando de conversión de video" en la pestaña "Configuración")</em>',
+	'izap_videos:server_analysis:simple_command' => '<em><b>Probado solo con formato avi.</b></em>',
+	'izap_videos:server_analysis:upload_max_filesize' => 'El tamaño máximo de archivos que PHP aceptará para cargas. Aumente en .htaccess si es necesario para archivos más grandes.',
+	'izap_videos:server_analysis:post_max_size' => 'Debe ser al menos tan grande como upload_max_filesize. Es mejor configurarlo un poco más grande que upload_max_filesize en .htaccess para poder manejar una ligera sobrecarga que podría ocurrir.',
+	'izap_videos:server_analysis:max_input_time' => 'El tiempo en segundos que PHP esperará al recibir datos / cargas de archivos. Configúrelo lo suficientemente grande en .htaccess. Establecerlo en "0" significa que no hay límite.',
+	'izap_videos:server_analysis:max_execution_time' => 'El tiempo máximo en segundos que se permite que un script se ejecute antes de finalizar. Configúrelo lo suficientemente grande en .htaccess. Establecerlo en "0" significa que no hay límite.',
+	'izap_videos:server_analysis:memory_limit' => 'Límite de memoria para un hilo PHP. Establezca el límite lo suficientemente alto en .htaccess para permitir el procesamiento de los archivos más grandes esperados por ffmpeg.',
+
+	// Info messages
+	'izap_videos:adminSettings:info:convert-command' => '(Comando optimizado: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath] )',
+	'izap_videos:adminSettings:info:izapKeepOriginal' => '(Desmarque, si no desea mantener los archivos originales en el servidor)',
+	'izap_videos:adminSettings:info:extended_sidebar_menu' => '(Habrá entradas de menú adicionales en el menú de páginas para permitir ordenar la lista de videos, por ejemplo, por número de vistas, número de comentarios, calificación y más.)',
+	'izap_videos:adminSettings:info:izapMaxFileSize' => '(El tamaño máximo permitido del archivo de video no puede ser mayor que el valor de la variable php upload_max_filesize establecida en .htaccess o php.ini. Si se ingresa un límite mayor, se reducirá al valor de upload_max_filesize)',
+
+	// Add/edit form
+	'izap_videos:addEditForm:ONSERVER' => 'Subir video',
+	'izap_videos:addEditForm:OFFSERVER' => 'Agregar URL',
+	'izap_videos:addEditForm:EMBED' => 'Agregar código de inserción',
+	'izap_videos:addEditForm:title' => 'Titulo',
+	'izap_videos:addEditForm:videoImage' => 'Miniatura (opcional)',
+	'izap_videos:addEditForm:description' => 'Descripción',
+	'izap_videos:addEditForm:access_id' => 'Acceso',
+	'izap_videos:addEditForm:tags' => 'Etiquetas',
+	'izap_videos:addEditForm:guid' => '',
+	'izap_videos:addEditForm:container_guid' => '',
+	'izap_videos:addEditForm:videoUrl' => 'URL del vídeo',
+	'izap_videos:addEditForm:maxFilesize' => '(el tamaño de archivo máximo permitido es %s MB)',
+	'izap_videos:addEditForm:videoType' => '',
+	'izap_videos:addEditForm:videoFile' => 'Archivo de vídeo',
+	'izap_videos:addEditForm:videoEmbed' => 'Código de inserción de video',
+	'izap_videos:addEditForm:' => '',
+	'izap_videos:addEditForm:save' => 'Guardar',
+
+	'izap_videos:please_wait' => 'Espere hasta que hayamos guardado sus datos...',
+	'izap_videos:favorites_short' => 'Favoritos',
+	'izap_videos:save_favorite' => 'Guardar como favorito',
+	'izap_videos:favorite_saved' => 'El video se ha agregado a tu lista de favoritos.',
+	'izap_videos:favorite_removed' => 'Video eliminado de tu lista de favoritos.',
+	'izap_videos:favorite_error' => 'Ocurrió un error. Video no encontrado.',
+	'izap_videos:remove_favorite' => 'Eliminar de la lista de favoritos',
+	'izap_videos:no_favorites' => 'Aún no hay videos favoritos.',
+
+	// Widgets
+	'widgets:izap_videos:name' => 'Videos',
+	'widgets:izap_videos:description' => 'Enumera los últimos videos agregados.',
+	'widgets:index_latest_videos:name' => 'Videos mas recientes',
+	'widgets:index_latest_videos:description' => 'Este widget enumera los videos más recientes agregados al sitio.',
+	'widgets:groups_latest_videos:name' => 'Videos mas recientes',
+	'widgets:groups_latest_videos:description' => 'Este widget enumera los videos más recientes agregados a este grupo.',
+	'izap_videos:numbertodisplay' => "Número de videos para mostrar",
+];

@@ -244,5 +244,5 @@ View and comment on the video:
 	'widgets:index_latest_videos:description' => 'This widget lists the most recent videos added to the site.',
 	'widgets:groups_latest_videos:name' => 'Most recent videos',
 	'widgets:groups_latest_videos:description' => 'This widget lists the most recent videos added to this group.',
-    'izap_videos:numbertodisplay' => "Number of videos to display",	
+	'izap_videos:numbertodisplay' => "Number of videos to display",
 ];
