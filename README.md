@@ -1,7 +1,7 @@
-iZAP Videos plugin for Elgg 4.0 and newer Elgg 4.X - revised edition by iionly
+iZAP Videos plugin for Elgg 4.3 and newer Elgg 4.X - revised edition by iionly
 ==============================================================================
 
-Latest Version: 4.0.0  
+Latest Version: 4.3.0  
 Released: 2024-03-09  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  

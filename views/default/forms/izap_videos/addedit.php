@@ -24,7 +24,7 @@ if ($page_owner instanceof ElggGroup) {
 	}
 }
 if (is_null($izapLoadedValues->access_id)) {
-	$izapLoadedValues->access_id = get_default_access();
+	$izapLoadedValues->access_id = elgg_get_default_access();
 }
 
 $izapLoadedValues->container_guid = elgg_get_page_owner_guid();

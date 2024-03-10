@@ -35,10 +35,11 @@ $result = elgg_list_entities([
 			'operand' => '<=',
 		],
 	],
-	'order_by_metadata' => [
-		'name' => 'views',
+	'sort_by' => [
+		'property' => 'views',
 		'direction' => 'DESC',
-		'as' => 'integer',
+		'signed' => true,
+		'property_type' => 'metadata',
 	],
 	'full_view' => false,
 	'no_results' => elgg_echo('izap_videos:mostviewedlastmonth:nosuccess'),

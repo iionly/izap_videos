@@ -28,10 +28,11 @@ $result = elgg_list_entities([
 		],
 		
 	],
-	'order_by_metadata' => [
-		'name' => 'last_viewed',
+	'sort_by' => [
+		'property' => 'last_viewed',
 		'direction' => 'DESC',
-		'as' => 'integer',
+		'signed' => true,
+		'property_type' => 'metadata',
 	],
 	'full_view' => false,
 	'no_results' => elgg_echo('izap_videos:recentlyviewed:nosuccess'),

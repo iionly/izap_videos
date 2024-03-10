@@ -10,7 +10,7 @@ $IZAPSETTINGS->allowedExtensions = ['avi', 'flv', '3gp', 'mp4', 'wmv', 'mpg', 'm
 return [
 	'plugin' => [
 		'name' => 'iZAP Videos - revised edition by iionly',
-		'version' => '4.0.0',
+		'version' => '4.3.0',
 	],
 	'bootstrap' => \IzapVideosBootstrap::class,
 	'entities' => [
@@ -18,7 +18,11 @@ return [
 			'type' => 'object',
 			'subtype' => 'izap_videos',
 			'class' => 'IzapVideos',
-			'searchable' => true,
+			'capabilities' => [
+				'commentable' => true,
+				'searchable' => true,
+				'likable' => true,
+			],
 		],
 	],
 	'actions' => [
@@ -192,11 +196,6 @@ return [
 			'object' => [
 				"\IzapHooks::izap_videos_urlhandler" => [],
 				"\IzapHooks::izap_videos_widget_urls" => [],
-			],
-		],
-		'likes:is_likable' => [
-			'object:izap_videos' => [
-				'Elgg\Values::getTrue' => [],
 			],
 		],
 		'register' => [

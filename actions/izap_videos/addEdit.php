@@ -33,7 +33,7 @@ if (!$title) {
 $izap_videos->title = htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 $izap_videos->description = $params['description'];
 $izap_videos->access_id = $params['access_id'];
-$tags = string_to_tag_array($params['tags']);
+$tags = elgg_string_to_array($params['tags']);
 if (is_array($tags)) {
 	$izap_videos->tags = $tags;
 }
@@ -65,7 +65,7 @@ switch ($params['videoType']) {
 		}
 		if ($params['tags'] == '') {
 			if ($videoValues->videoTags != '') {
-				$izap_videos->tags = string_to_tag_array($videoValues->videoTags);
+				$izap_videos->tags = elgg_string_to_array($videoValues->videoTags);
 			}
 		}
 		$izap_videos->videosrc = $videoValues->videoSrc;

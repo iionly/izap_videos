@@ -35,7 +35,7 @@ class IzapQueue {
 		catch(PDOException $e) {
 			if (self::$pdoSupport && elgg_is_admin_logged_in()) {
 				self::$pdoSupport = false;
-				register_error(elgg_echo("izap_videos:error:sqliteDrivers"));
+				 elgg_error_response(elgg_echo("izap_videos:error:sqliteDrivers"));
 				\IzapFunctions::izapAdminSettings_izap_videos('izapVideoOptions', ['OFFSERVER'], true);
 			}
 		}

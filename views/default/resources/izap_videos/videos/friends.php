@@ -26,7 +26,12 @@ elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
 
 $title = elgg_echo('collection:friends', [elgg_echo('collection:object:izap_videos')]);
 
-$friends_count = $owner->getFriends(['count' => true]);
+$friends_count = elgg_count_entities([
+	'type' => 'user',
+	'relationship' => 'friend',
+	'relationship_guid' => $owner->guid,
+]);
+
 if ($friends_count > 0) {
 	$result = elgg_list_entities([
 		'type' => 'object',
