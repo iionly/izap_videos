@@ -19,6 +19,16 @@
             "issues": "https://github.com/iionly/izap_videos/issues"
     },
     "require": {
-        "composer/installers": ">=1.0.8"
+        "composer/installers": ">=1.0.8",
+        "ext-curl": "^7.4",
+        "ext-pdo_sqlite": "^7.4"
+    },
+    "conflict": {
+        "elgg/elgg": "<4.0"
+    },
+    "suggest": {
+        "coldtrick/widget_manager": "With the Widget Manager plugin available the iZAP Videos plugin offers widgets for the index page (homepage) and group profile pages listing the latest videos.",
+        "iionly/elggx_fivestar": "With the Elggx Fivestar plugin enabled the site members can rate videos.",
+        "iionly/elggx_userpoints": "With the Elggx Userpoints plugin enabled the site members gain userpoints on adding videos."
     }
 }

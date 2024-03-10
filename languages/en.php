@@ -56,7 +56,7 @@ return [
 	'izap_videos:notfound' => "No video has been added yet.",
 
 	'izap_videos:editVideo' => "Edit video",
-	'izap_videos:group:enablevideo' => "Enable group videos",
+	'groups:tool:izap_videos' => "Enable group videos",
 	'izap_videos:processed' => 'Video is queued up for conversion.',
 	'izap_videos:queueStatus' => 'Queue status: ',
 	'izap_videos:queueStatus:none' => 'There are currently no videos in queue for conversion.',

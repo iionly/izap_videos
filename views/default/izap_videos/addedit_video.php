@@ -23,7 +23,7 @@ $page_owner = elgg_get_page_owner_entity();
 $video = elgg_extract('entity', $vars, false);
 
 // get the add options
-$options = izapGetVideoOptions_izap_videos();
+$options = \IzapFunctions::izapGetVideoOptions_izap_videos();
 
 // get the selected option
 $selectedOption = get_input('option', '');
@@ -34,7 +34,7 @@ if (empty($selectedOption) || !in_array($selectedOption, $options)) {
 // get values from session if any
 $izapLoadedValues = new stdClass();
 if (isset($_SESSION['izapVideos']) && !empty($_SESSION['izapVideos'])) {
-	$izapLoadedValues = izapArrayToObject_izap_videos($_SESSION['izapVideos']);
+	$izapLoadedValues = \IzapFunctions::izapArrayToObject_izap_videos($_SESSION['izapVideos']);
 }
 $izapLoadedValues->access_id = null;
 

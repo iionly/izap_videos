@@ -25,7 +25,7 @@ class IzapConvert {
 
 	public function __construct($in = '') {
 		$this->invideo = $in;
-		$extension_length = strlen(izap_get_file_extension($this->invideo));
+		$extension_length = strlen(\IzapFunctions::izap_get_file_extension($this->invideo));
 		$outputPath = substr($this->invideo, 0, '-' . ($extension_length + 1));
 		$this->outvideo =  $outputPath . '_c.' . $this->format;
 		$this->outimage = $outputPath . '_i.png';
@@ -33,7 +33,7 @@ class IzapConvert {
 	}
 
 	public function izap_video_convert() {
-		$videoCommand = izapGetFfmpegVideoConvertCommand_izap_videos();
+		$videoCommand = \IzapFunctions::izapGetFfmpegVideoConvertCommand_izap_videos();
 		$videoCommand = str_replace('[inputVideoPath]', $this->invideo, $videoCommand);
 		$videoCommand = str_replace('[outputVideoPath]', $this->outvideo, $videoCommand);
 
@@ -52,7 +52,7 @@ class IzapConvert {
 	}
 
 	public function photo() {
-		$videoThumb = izapGetFfmpegVideoImageCommand_izap_videos();
+		$videoThumb = \IzapFunctions::izapGetFfmpegVideoImageCommand_izap_videos();
 		$videoThumb = str_replace('[inputVideoPath]', $this->invideo, $videoThumb);
 		$videoThumb = str_replace('[outputImage]', $this->outimage, $videoThumb);
 		// run command to take snapshot

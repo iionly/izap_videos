@@ -1,12 +1,12 @@
 <?php
 
-if (izap_videos_is_upgrade_available()) {
-	echo elgg_format_element('div', ['class' => 'elgg-admin-notices'], elgg_autop(elgg_view('output/url', [
-		'text' => elgg_echo('izap_videos:upgrade'),
-		'href' => 'action/izap_videos/admin/upgrade',
-		'is_action' => true,
-	])));
-}
+// if (\IzapFunctions::izap_videos_is_upgrade_available()) {
+// 	echo elgg_format_element('div', ['class' => 'elgg-admin-notices'], elgg_autop(elgg_view('output/url', [
+// 		'text' => elgg_echo('izap_videos:upgrade'),
+// 		'href' => 'action/izap_videos/admin/upgrade',
+// 		'is_action' => true,
+// 	])));
+// }
 
 $selected_tab = elgg_extract('tab', $vars);
 
@@ -20,7 +20,7 @@ $tabs = [
 	'server_analysis' => [],
 ];
 
-$activated_options = izapGetVideoOptions_izap_videos();
+$activated_options = \IzapFunctions::izapGetVideoOptions_izap_videos();
 $count_queue = $count_trash = 0;
 if (in_array('ONSERVER', $activated_options)) {
 	$tabs['queue_status'] = [];

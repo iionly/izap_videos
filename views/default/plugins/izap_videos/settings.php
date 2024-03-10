@@ -33,14 +33,14 @@ echo elgg_view_field([
 		(extension_loaded('pdo_sqlite') ? elgg_echo('izap_videos:adminSettings:onServerVideos_okay') : elgg_echo('izap_videos:adminSettings:onServerVideos_notokay')) => 'ONSERVER',
 		elgg_echo('izap_videos:adminSettings:embedCode') => 'EMBED',
 	],
-	'value' => izapAdminSettings_izap_videos('izapVideoOptions', ['OFFSERVER']),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapVideoOptions', ['OFFSERVER']),
 ]);
 
 echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('izap_videos:adminSettings:izapPhpInterpreter'),
 	'name' => 'params[izapPhpInterpreter]',
-	'value' => izapAdminSettings_izap_videos('izapPhpInterpreter', '/usr/bin/php'),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapPhpInterpreter', '/usr/bin/php'),
 ]);
 
 echo elgg_view_field([
@@ -48,14 +48,14 @@ echo elgg_view_field([
 	'#label' => elgg_echo('izap_videos:adminSettings:izapVideoCommand'),
 	'#help' => elgg_echo('izap_videos:adminSettings:info:convert-command'),
 	'name' => 'params[izapVideoCommand]',
-	'value' => izapAdminSettings_izap_videos('izapVideoCommand', '/usr/bin/ffmpeg -y -i [inputVideoPath] [outputVideoPath]'),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapVideoCommand', '/usr/bin/ffmpeg -y -i [inputVideoPath] [outputVideoPath]'),
 ]);
 
 echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('izap_videos:adminSettings:izapVideoThumb'),
 	'name' => 'params[izapVideoThumb]',
-	'value' => izapAdminSettings_izap_videos('izapVideoThumb', '/usr/bin/ffmpeg -y -i [inputVideoPath] -vframes 1 -ss 00:00:10 -an -vcodec png -f rawvideo -s 320x240 [outputImage]'),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapVideoThumb', '/usr/bin/ffmpeg -y -i [inputVideoPath] -vframes 1 -ss 00:00:10 -an -vcodec png -f rawvideo -s 320x240 [outputImage]'),
 ]);
 
 echo elgg_view_field([
@@ -71,7 +71,7 @@ echo elgg_view_field([
 		'hourly' => elgg_echo('izap_videos:adminSettings:hourly'),
 		'none' => elgg_echo('izap_videos:adminSettings:cron_off'),
 	],
-	'value' => izapAdminSettings_izap_videos('izap_cron_time', 'minute', false),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izap_cron_time', 'minute', false),
 ]);
 
 echo elgg_view_field([
@@ -79,7 +79,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('izap_videos:adminSettings:izapMaxFileSize'),
 	'#help' => elgg_echo('izap_videos:adminSettings:info:izapMaxFileSize'),
 	'name' => 'params[izapMaxFileSize]',
-	'value' => izapAdminSettings_izap_videos('izapMaxFileSize', '5'),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapMaxFileSize', '5'),
 ]);
 
 echo elgg_view_field([
@@ -90,7 +90,7 @@ echo elgg_view_field([
 	'options' => [
 		elgg_echo('option:yes') => 'YES',
 	],
-	'value' => izapAdminSettings_izap_videos('izapKeepOriginal', 'YES', false, true),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapKeepOriginal', 'YES', false, true),
 ]);
 
 echo elgg_view_field([
@@ -101,7 +101,7 @@ echo elgg_view_field([
 	'options' => [
 		elgg_echo('option:yes') => 'YES',
 	],
-	'value' => izapAdminSettings_izap_videos('izapExtendedSidebarMenu', 'NO', false, true),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapExtendedSidebarMenu', 'NO', false, true),
 ]);
 
 echo elgg_view_field([
@@ -114,5 +114,5 @@ echo elgg_view_field([
 		'large' => elgg_echo('izap_videos:adminSettings:thumbnails_large'),
 		'none' => elgg_echo('izap_videos:adminSettings:thumbnails_none'),
 	],
-	'value' => izapAdminSettings_izap_videos('izap_river_thumbnails', 'medium', false),
+	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izap_river_thumbnails', 'medium', false),
 ]);

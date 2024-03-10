@@ -61,7 +61,7 @@ if (!empty($params['izapExtendedSidebarMenu'])) {
 }
 
 foreach($params as $key => $values) {
-	if (!izapAdminSettings_izap_videos($key, $values, true)) {
+	if (!\IzapFunctions::izapAdminSettings_izap_videos($key, $values, true)) {
 		return elgg_error_response(elgg_echo('plugins:settings:save:fail', [$plugin_name]));
 		exit;
 	}

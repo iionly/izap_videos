@@ -5,7 +5,7 @@ elgg_entity_gatekeeper($guid, 'object', 'izap_videos');
 
 $video = get_entity($guid);
 if (!$video->canEdit()) {
-	throw new \Elgg\EntityPermissionsException();
+	throw new \Elgg\Exceptions\Http\EntityPermissionsException();
 }
 
 elgg_push_entity_breadcrumbs($video);

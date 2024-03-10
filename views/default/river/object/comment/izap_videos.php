@@ -43,7 +43,7 @@ $target_link = elgg_view('output/url', [
 
 $vars['summary'] = elgg_echo('river:object:izap_videos:comment', [$subject_link, $target_link]);
 
-$size = izapAdminSettings_izap_videos('izap_river_thumbnails');
+$size = \IzapFunctions::izapAdminSettings_izap_videos('izap_river_thumbnails');
 if ($size != 'none') {
 	$attachments = elgg_view_entity_icon($video, $size, [
 		'href' => "ajax/view/izap_videos/playpopup?guid={$video->getGUID()}",

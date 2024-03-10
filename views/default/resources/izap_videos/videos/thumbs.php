@@ -58,4 +58,6 @@ if (!$contents) {
 	$contents = elgg_get_simplecache_url("izap_videos/izapdesign_logo.gif");
 }
 
-forward($contents);
+$forward = new \Elgg\Exceptions\HttpException();
+$forward->setRedirectUrl($contents);
+throw $forward;

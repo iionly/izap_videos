@@ -40,6 +40,6 @@ if (!get_entity($guid)->delete()) {
 	return elgg_error_response(elgg_echo('izap_videos:adminSettings:deleted_from_trash_error'));
 }
 
-izapTrigger_izap_videos();
+\IzapFunctions::izapTrigger_izap_videos();
 
 return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:deleted_from_trash'), REFERER);

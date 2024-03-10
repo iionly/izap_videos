@@ -1,10 +1,17 @@
 <?php
 
-require_once(dirname(__FILE__) . '/lib/settings.php');
-require_once(dirname(__FILE__) . '/lib/functions.php');
-require_once(dirname(__FILE__) . '/lib/hooks.php');
+global $IZAPSETTINGS;
+
+$IZAPSETTINGS = new stdClass();
+
+$IZAPSETTINGS->filesPath = elgg_get_site_url() . '/izap_videos_files/';
+$IZAPSETTINGS->allowedExtensions = ['avi', 'flv', '3gp', 'mp4', 'wmv', 'mpg', 'mpeg'];
 
 return [
+	'plugin' => [
+		'name' => 'iZAP Videos - revised edition by iionly',
+		'version' => '4.0.0',
+	],
 	'bootstrap' => \IzapVideosBootstrap::class,
 	'entities' => [
 		[
@@ -21,7 +28,7 @@ return [
 		'izap_videos/admin/recycle' => ['access' => 'admin'],
 		'izap_videos/admin/recycle_delete' => ['access' => 'admin'],
 		'izap_videos/admin/reset' => ['access' => 'admin'],
-		'izap_videos/admin/upgrade' => ['access' => 'admin'],
+//		'izap_videos/admin/upgrade' => ['access' => 'admin'],
 		'izap_videos/addEdit' => [
 			'access' => 'logged_in',
 		],
@@ -180,6 +187,59 @@ return [
 			'resource' => 'izap_videos/videos/thumbs',
 		],	
 	],
+	'hooks' => [
+		'entity:url' => [
+			'object' => [
+				"\IzapHooks::izap_videos_urlhandler" => [],
+				"\IzapHooks::izap_videos_widget_urls" => [],
+			],
+		],
+		'likes:is_likable' => [
+			'object:izap_videos' => [
+				'Elgg\Values::getTrue' => [],
+			],
+		],
+		'register' => [
+			'menu:owner_block' => [
+				"\IzapHooks::izap_videos_owner_block_menu" => [],
+			],
+			'menu:site' => [
+				"\IzapHooks::izap_videos_site_menu" => [],
+			],
+			'menu:page' => [
+				"\IzapHooks::izap_videos_page_menu" => [],
+			],
+			'menu:entity' => [
+				"\IzapHooks::izap_videos_entity_menu_setup" => [],
+			],
+			'menu:social' => [
+				"\IzapHooks::izap_videos_social_menu_setup" => [],
+			],
+			'menu:filter:izap_videos_tabs' => [
+				"\IzapHooks::izap_videos_setup_tabs" => [],
+			],
+		],
+		'prepare' => [
+			'notification:create:object:izap_videos' => [
+				"\IzapHooks::izap_videos_notify_message" => [],
+			],
+		],
+		'group_tool_widgets' => [
+			'widget_manager' => [
+				"\IzapHooks::izap_videos_tool_widget_handler" => [],
+			],
+		],
+		'view' => [
+			'river/object/comment/create' => [
+				"\IzapHooks::izap_videos_river_comment" => [],
+			],
+		],
+		'cron' => [
+			'all' => [
+				"\IzapHooks::izap_queue_cron" => [],
+			],
+		],
+	],
 	'widgets' => [
 		'izap_videos' => [
 			'context' => ['profile', 'dashboard'],
@@ -189,6 +249,11 @@ return [
 		],
 		'groups_latest_videos' => [
 			'context' => ['groups'],
+		],
+	],
+	'group_tools' => [
+		'izap_videos' => [
+			'default_on' => false,
 		],
 	],
 	'views' => [
@@ -203,6 +268,13 @@ return [
 		],
 		'css/admin' => [
 			'izap_videos/css' => [],
+		],
+	],
+	'notifications' => [
+		'object' => [
+			'izap_videos' => [
+				'create' => true,
+			],
 		],
 	],
 ];

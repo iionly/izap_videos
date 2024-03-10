@@ -25,7 +25,7 @@ $izap_action = get_input('izap_action', false);
 
 // Removing from favorite list
 if ($izap_action == 'remove') {
-	izap_remove_favorited($video);
+	\IzapFunctions::izap_remove_favorited($video);
 	return elgg_ok_response('', elgg_echo('izap_videos:favorite_removed'), REFERER);
 }
 

@@ -99,17 +99,17 @@ class IzapVideos extends ElggFile {
 		}
 
 		// check supported video type
-		if (!izapSupportedVideos_izap_videos($fileName)) {
+		if (!\IzapFunctions::izapSupportedVideos_izap_videos($fileName)) {
 			return 106;
 		}
 
 		// check supported video size
-		if (!izapCheckFileSize_izap_videos($size)) {
+		if (!\IzapFunctions::izapCheckFileSize_izap_videos($size)) {
 			return 107;
 		}
 
 		// upload the tmp file
-		$newFileName = izapGetFriendlyFileName_izap_videos($fileName);
+		$newFileName = \IzapFunctions::izapGetFriendlyFileName_izap_videos($fileName);
 		$this->setFilename('tmp/' . $newFileName);
 		$this->open("write");
 		$this->write(file_get_contents($tmpName));
@@ -183,7 +183,7 @@ class IzapVideos extends ElggFile {
 				}
 				break;
 			case 'embed':
-				$html = izapGetReplacedHeightWidth_izap_videos($height, $width, $this->videosrc);
+				$html = IzapFunctions::izapGetReplacedHeightWidth_izap_videos($height, $width, $this->videosrc);
 				break;
 		}
 		return $html;

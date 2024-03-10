@@ -2,7 +2,7 @@
 
 $base = elgg_get_site_url() . 'videos/';
 
-if (izapAdminSettings_izap_videos('izapExtendedSidebarMenu') != 'NO') {
+if (\IzapFunctions::izapAdminSettings_izap_videos('izapExtendedSidebarMenu') != 'NO') {
 	elgg_register_menu_item('page', [
 		'name' => 'A10_izap_videos_albums',
 		'text' => elgg_echo('izap_videos:all_videos'),

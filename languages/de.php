@@ -42,7 +42,7 @@ return [
 	'izap_videos:notfound' => "Es wurde noch kein Video hinzugefügt.",
 
 	'izap_videos:editVideo' => "Video bearbeiten",
-	'izap_videos:group:enablevideo' => "Gruppen-Videos aktivieren",
+	'groups:tool:izap_videos' => "Gruppen-Videos aktivieren",
 	'izap_videos:processed' => 'Das Video wurde in die Warteschlange für die Konvertierung eingestellt.',
 	'izap_videos:queueStatus' => 'Warteschlangen-Status: ',
 	'izap_videos:queueStatus:none' => 'Derzeit sind keine Videos zur Konvertierung in der Warteschlange.',

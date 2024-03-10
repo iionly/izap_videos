@@ -19,7 +19,7 @@ $excerpt = strip_tags($video->description);
 $excerpt = elgg_get_excerpt($excerpt);
 $vars['message'] = $excerpt;
 
-$size = izapAdminSettings_izap_videos('izap_river_thumbnails');
+$size = \IzapFunctions::izapAdminSettings_izap_videos('izap_river_thumbnails');
 if ($size != 'none') {
 	$attachments = elgg_view_entity_icon($video, $size, [
 		'href' => "ajax/view/izap_videos/playpopup?guid={$video->getGUID()}",

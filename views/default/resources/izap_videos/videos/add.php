@@ -10,7 +10,7 @@ elgg_entity_gatekeeper($guid);
 $container = get_entity($guid);
 
 if (!$container->canWriteToContainer(0, 'object', 'izap_videos')) {
-	throw new \Elgg\EntityPermissionsException();
+	throw new \Elgg\Exceptions\Http\EntityPermissionsException();
 }
 
 elgg_push_collection_breadcrumbs('object', 'izap_videos', $container);

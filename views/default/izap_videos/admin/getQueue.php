@@ -14,11 +14,11 @@
  *
  */
 
-$queueStatus = (izapIsQueueRunning_izap_videos()) ? elgg_echo('izap_videos:running') : elgg_echo('izap_videos:notRunning');
+$queueStatus = (\IzapFunctions::izapIsQueueRunning_izap_videos()) ? elgg_echo('izap_videos:running') : elgg_echo('izap_videos:notRunning');
 $queue_object = new IzapQueue();
 $queuedVideos = $queue_object->get();
 
-$content = elgg_format_element('h3', [], elgg_echo('izap_videos:queueStatus') . $queueStatus . ' (' . izap_count_queue() . ')');
+$content = elgg_format_element('h3', [], elgg_echo('izap_videos:queueStatus') . $queueStatus . ' (' . \IzapFunctions::izap_count_queue() . ')');
 
 if (count($queuedVideos)) {
 	$rows = [];
@@ -26,15 +26,15 @@ if (count($queuedVideos)) {
 	foreach($queuedVideos as $queuedVideo) {
 		$row = [];
 
-		$extension_length = strlen(izap_get_file_extension($queuedVideo['main_file']));
+		$extension_length = strlen(\IzapFunctions::izap_get_file_extension($queuedVideo['main_file']));
 		$outputPath = substr($queuedVideo['main_file'], 0, '-' . ($extension_length + 1));
 
 		$ORIGNAL_name = basename($queuedVideo['main_file']);
-		$ORIGNAL_size = izapFormatBytes(filesize($queuedVideo['main_file']));
+		$ORIGNAL_size = \IzapFunctions::izapFormatBytes(filesize($queuedVideo['main_file']));
 
 		$VIDEO_name = basename($outputPath . '_c.mp4');
 		if (file_exists($outputPath . '_c.mp4')) {
-			$VIDEO_size = izapFormatBytes(filesize($outputPath . '_c.mp4'));
+			$VIDEO_size = \IzapFunctions::izapFormatBytes(filesize($outputPath . '_c.mp4'));
 		} else {
 			$VIDEO_size = '0 KB';
 		}
@@ -53,7 +53,7 @@ if (count($queuedVideos)) {
 		}
 		$row[] = elgg_format_element('td', [], $link);
 
-		$rows[] = elgg_format_element('tr', ['class' => (!$i && izapIsQueueRunning_izap_videos()) ? 'queue_selected' : ''], implode('', $row));
+		$rows[] = elgg_format_element('tr', ['class' => (!$i && \IzapFunctions::izapIsQueueRunning_izap_videos()) ? 'queue_selected' : ''], implode('', $row));
 		$i++;
 	}
 	$table_content = elgg_format_element('tbody', [], implode('', $rows));

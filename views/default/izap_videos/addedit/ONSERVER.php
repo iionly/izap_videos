@@ -14,7 +14,7 @@
  *
  */
 
-$maxFileSize = (int) izapAdminSettings_izap_videos('izapMaxFileSize');
+$maxFileSize = (int) \IzapFunctions::izapAdminSettings_izap_videos('izapMaxFileSize');
 
 echo elgg_view_field([
 	'#type' => 'file',

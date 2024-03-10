@@ -163,7 +163,7 @@ if (!$izap_videos->save()) {
 // save the file info for converting it later in queue
 if ($params['videoType'] == 'ONSERVER' && $params['guid'] == 0) {
 	$izap_videos->videosrc = elgg_get_site_url() . 'izap_videos_files/file/' . $izap_videos->guid . '/' . elgg_get_friendly_title($izap_videos->title) . '.mp4';
-	izapSaveFileInfoForConverting_izap_videos($tmpUploadedFile, $izap_videos, $params['access_id']);
+	\IzapFunctions::izapSaveFileInfoForConverting_izap_videos($tmpUploadedFile, $izap_videos, $params['access_id']);
 }
 
 if ($params['guid'] == 0) {

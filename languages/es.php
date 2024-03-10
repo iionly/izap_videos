@@ -56,7 +56,7 @@ return [
 	'izap_videos:notfound' => "Ningún video ha sido agregado todavía.",
 
 	'izap_videos:editVideo' => "Editar video",
-	'izap_videos:group:enablevideo' => "Habilitar videos de grupo",
+	'groups:tool:izap_videos' => "Habilitar videos de grupo",
 	'izap_videos:processed' => 'El video está en cola para conversión.',
 	'izap_videos:queueStatus' => 'Estado de la cola: ',
 	'izap_videos:queueStatus:none' => 'Actualmente no hay videos en cola para conversión.',

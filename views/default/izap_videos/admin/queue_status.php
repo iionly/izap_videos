@@ -20,12 +20,12 @@ elgg_require_js('izap_videos/queue_status');
 $action = (string) get_input('action');
 switch ($action) {
 	case 'reset':
-		izapResetQueue_izap_videos();
-		forward(elgg_http_add_url_query_elements('admin/administer_utilities/izap_videos', ['tab' => 'queue_status']));
+		\IzapFunctions::izapResetQueue_izap_videos();
+		elgg_redirect_response(elgg_http_add_url_query_elements('admin/administer_utilities/izap_videos', ['tab' => 'queue_status']));
 		break;
 	case 'delete':
-		izapEmptyQueue_izap_videos();
-		forward(elgg_http_add_url_query_elements('admin/administer_utilities/izap_videos', ['tab' => 'queue_status']));
+		\IzapFunctions::izapEmptyQueue_izap_videos();
+		elgg_redirect_response(elgg_http_add_url_query_elements('admin/administer_utilities/izap_videos', ['tab' => 'queue_status']));
 		break;
 	default:
 		break;

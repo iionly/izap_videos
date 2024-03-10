@@ -7,7 +7,7 @@ foreach($buggy_videos as $video_to_be_recycled) {
 	$row = '';
 
 	$ORIGNAL_name = $video_to_be_recycled['main_file'];
-	$ORIGNAL_size = izapFormatBytes(filesize($video_to_be_recycled['main_file']));
+	$ORIGNAL_size = \IzapFunctions::izapFormatBytes(filesize($video_to_be_recycled['main_file']));
 
 	$row = $ORIGNAL_name;
 	$row .= '<br>';

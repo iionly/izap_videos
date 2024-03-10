@@ -1,8 +1,8 @@
-iZAP Videos plugin for Elgg 3.3 and newer Elgg 3.X - revised edition by iionly
+iZAP Videos plugin for Elgg 4.0 and newer Elgg 4.X - revised edition by iionly
 ==============================================================================
 
-Latest Version: 3.3.2  
-Released: 2020-09-01  
+Latest Version: 4.0.0  
+Released: 2024-03-09  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  
 Copyright: (C) iZAP Web Solutions 2008 (Original developer) / (C) iionly 2014 (for this fork)
@@ -14,6 +14,8 @@ Description
 Video plugin for Elgg. Supports addition of both on-server and off-server videos.
 
 This version of the iZAP Videos plugin is based on version 3.71b of the original iZAP Videos plugin for Elgg 1.7 developed and released by iZAP Web Solutions. This present version of the iZAP Videos plugin works independently of an external feed server. Compatibility with an original version 3.X of the official iZAP Videos plugin should exist. If switching from an original version 4.X of the official iZAP Videos plugin also works has NOT been tested. It might work or not. If the Widget Manager plugin is installed, a Latest videos plugin for the index page is available. With Elggx Fivestar plugin installed users can rate the videos.
+
+You need to have the curl, pdo and sqlite php extensions installed and working on your server.
 
 
 There are three video options available in this present version of the iZAP Videos plugin:
@@ -38,31 +40,8 @@ There are three video options available in this present version of the iZAP Vide
 Installation
 ------------
 
-1. If any older version of the iZAP Videos plugin is installed, disable it on your site and remove the old plugin folder from the mod directory,
-2. Copy the izap_videos folder in your mod directory,
-3. Enable the iZAP Videos plugin on your site,
-4. Check the plugin settings ("Administer" - "Utilities" - "iZAP Videos") for a pending iZAP Videos-specific upgrade and configure the settings according to your likings. If you want to allow for on-server videos you need to have the necessary additional requirements described above fulfilled. For adding of Youtube off-server videos to work you need to register a Google API key.
-
-
-Upgrading from a version older than 2.3.4
------------------------------------------
-
-With version 2.3.4 of iZAP Videos an old upgrade script was removed that was only necessary if you ever used the original iZAP Videos plugin (version 3.71b or older) and then moved over to my fork of iZAP Videos. If you have used and version of my fork of iZAP Videos starting from version 1.8.0 to 2.3.3 this upgrade script already. And if you started with iZAP Videos directly with any version between 1.8.0 and 2.3.3 the upgrade script was not needed anyway. So, if you are in doubt if you need this script, first upgrade to version 2.3.3, check if an "Upgrade" button is displayed on the plugin settings page and run it and only then upgrade to version 2.3.4.
-
-With version 2.3.4 the iZAP Videos plugin makes use of the HTML5 video functionality. This means that the Flash plugin is no longer required. If you already have on-server videos on your site that were uploaded with a version older than 2.3.4 you need to install the iZAP Videos HTML5 Migration plugin to convert these existing videos to MP4 format. You also very likely need to adjust the ffmpeg conversion command for the conversion of new uploaded videos to work correctly. Mainly the audio codec to be used would have to be changed. If you have a conversion command in use that does not set the audio codec like
-```
-/usr/bin/ffmpeg -y -i [inputVideoPath] [outputVideoPath]
-```
-you should at least add the parameter -acodec aac so the command should be
-```
-/usr/bin/ffmpeg -y -i [inputVideoPath] -acodec acc [outputVideoPath]
-```
-If you used the optimized command 
-```
-/usr/bin/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec libmp3lame -ar 22050 -ab 48k [outputVideoPath] 
-```
-change it to
-```
-/usr/bin/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath]
-```
-Of course, you can make other adjustments in the command as you like. But please make sure that the results of the video conversion works for you before using the iZAP Videos HTML5 Migration plugin to update all your existing on-server videos. I would suggest to test it on a separate Elgg test installation first.
+1. Make sure that curl, pdo and sqlite PHP extensions are installed and working on your server,
+2. If any older version of the iZAP Videos plugin is installed, disable it on your site and remove the old plugin folder from the mod directory,
+3. Copy the izap_videos folder in your mod directory,
+4. Enable the iZAP Videos plugin on your site,
+5. Check the plugin settings ("Administer" - "Utilities" - "iZAP Videos") for a pending iZAP Videos-specific upgrade and configure the settings according to your likings. If you want to allow for on-server videos you need to have the necessary additional requirements described above fulfilled. For adding of Youtube off-server videos to work you need to register a Google API key.

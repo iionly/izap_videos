@@ -1,6 +1,6 @@
 <?php
 
-$activated_options = izapGetVideoOptions_izap_videos();
+$activated_options = \IzapFunctions::izapGetVideoOptions_izap_videos();
 if (in_array('ONSERVER', $activated_options)) {
 	$default_tab = 'queue_status';
 } else {

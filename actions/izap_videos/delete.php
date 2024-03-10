@@ -43,7 +43,7 @@ if (!$izap_videos->delete()) {
 }
 
 if ($uploaded) {
-	izapTrigger_izap_videos();
+	\IzapFunctions::izapTrigger_izap_videos();
 }
 
 return elgg_ok_response('', elgg_echo('izap_videos:deleted'), $forward_url);

@@ -20,11 +20,11 @@ $Fail_functions = ini_get('disable_functions');
 
 $exec = (!strstr($Fail_functions, 'exec') && is_callable('exec')) ? true : false;
 $curl = (extension_loaded('curl')) ? true : false;
-$ffmpeg_path = current(explode(' ', izapAdminSettings_izap_videos('izapVideoCommand')));
+$ffmpeg_path = current(explode(' ', \IzapFunctions::izapAdminSettings_izap_videos('izapVideoCommand')));
 $pdo_sqlite = (extension_loaded('pdo_sqlite')) ? true : false;
 
 if ($exec) {
-	$php_command = exec(izapAdminSettings_izap_videos('izapPhpInterpreter') . ' --version', $output_PHP, $return_value);
+	$php_command = exec(\IzapFunctions::izapAdminSettings_izap_videos('izapPhpInterpreter') . ' --version', $output_PHP, $return_value);
 	if ($return_value === 0) {
 		$php = nl2br(implode('', $output_PHP));
 	}
@@ -63,8 +63,8 @@ if ($exec) {
 	}
 }
 
-$max_file_upload = izapReadableSize_izap_videos(ini_get('upload_max_filesize'));
-$max_post_size = izapReadableSize_izap_videos(ini_get('post_max_size'));
+$max_file_upload = \IzapFunctions::izapReadableSize_izap_videos(ini_get('upload_max_filesize'));
+$max_post_size = \IzapFunctions::izapReadableSize_izap_videos(ini_get('post_max_size'));
 $max_input_time = ini_get('max_input_time');
 $max_execution_time = ini_get('max_execution_time');
 $memory_limit = ini_get('memory_limit');

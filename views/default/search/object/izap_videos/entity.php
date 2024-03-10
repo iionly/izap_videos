@@ -19,7 +19,7 @@ $owner_link = elgg_view('output/url', [
 ]);
 $author_text = elgg_echo('byline', [$owner_link]);
 
-$size = izapAdminSettings_izap_videos('izap_river_thumbnails');
+$size = \IzapFunctions::izapAdminSettings_izap_videos('izap_river_thumbnails');
 if (!$size || ($size == 'none')) {
 	$size = 'medium';
 }

@@ -43,6 +43,7 @@ if ($handle = opendir($base_dir)) {
 	}
 }
 
-elgg_set_plugin_setting('local_version', $version, 'izap_videos');
+$plugin = elgg_get_plugin_from_id('izap_videos');
+$plugin->setSetting('local_version', $version);
 
 return elgg_ok_response('', elgg_echo('izap_videos:upgrade:success'), REFERER);

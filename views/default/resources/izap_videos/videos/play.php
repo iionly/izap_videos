@@ -18,6 +18,7 @@ $content = elgg_view_entity($izap_videos, ['full_view' => true]);
 
 $body = elgg_view_layout('default', [
 	'content' => $content,
+	'entity' => $izap_videos,
 	'title' => $title,
 	'filter' => '',
 	'sidebar' => elgg_view('izap_videos/sidebar', ['page' => 'play']),
