@@ -3,7 +3,7 @@
 $owner = elgg_get_page_owner_entity();
 
 if (!$owner) {
-	$guid = elgg_extract('guid', $vars);
+	$guid = (int) elgg_extract('guid', $vars);
 	$owner = get_user($guid);
 }
 
@@ -29,7 +29,7 @@ $title = elgg_echo('collection:object:izap_videos:favorites', [$owner->name]);
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'metadata_name' => 'favorited_by',
 	'metadata_value' => $owner->guid,
 	'distinct' => false,

@@ -15,7 +15,7 @@
  */
 
 class IzapFunctions {
-	
+
 	/**
 	* This converts the array into object
 	*
@@ -23,8 +23,9 @@ class IzapFunctions {
 	* @return object
 	*/
 	public static function izapArrayToObject_izap_videos($array) {
-		if (!is_array($array))
+		if (!is_array($array)) {
 			return false;
+		}
 
 		$obj = new stdClass();
 		foreach ($array as $key => $value) {
@@ -308,7 +309,7 @@ class IzapFunctions {
 	public static function izapGetNotConvertedVideos_izap_videos() {
 		$not_converted_videos = elgg_get_entities([
 			'type' => 'object',
-			'subtype' => IzapVideos::SUBTYPE,
+			'subtype' => \IzapVideos::SUBTYPE,
 			'metadata_name' => 'converted',
 			'metadata_value' => 'no',
 			'limit' => false,
@@ -379,6 +380,15 @@ class IzapFunctions {
 		return $domain . '_izap_videos_';
 	}
 
+	public static function izap_get_friendly_title(string $title): string {
+		// titles are often stored HTML encoded
+		$title = html_entity_decode($title ?? '', ENT_QUOTES, 'UTF-8');
+	
+		$title = \Elgg\Translit::urlize($title);
+
+		return $title;
+	}
+
 	//Hack to correct the access id of the uploaded video.
 	public static function izap_update_all_defined_access_id($guid, $accessId = ACCESS_PUBLIC) {
 		// update entity
@@ -424,7 +434,7 @@ class IzapFunctions {
 	* @return string all formated file name
 	*/
 	public static function izapGetFriendlyFileName_izap_videos($fileName) {
-		$new_name .= self::izap_get_video_name_prefix();
+		$new_name = self::izap_get_video_name_prefix();
 		$new_name .= time() . '_';
 		$new_name .= preg_replace('/[^A-Za-z0-9\.]+/','_',$fileName);
 		return $new_name;
@@ -437,8 +447,7 @@ class IzapFunctions {
 	* @return boolean TRUE if supported else FALSE
 	*/
 	public static function izapSupportedVideos_izap_videos($videoFileName) {
-		global $IZAPSETTINGS;
-		$supportedFormats = $IZAPSETTINGS->allowedExtensions;
+		$supportedFormats = ['avi', 'flv', '3gp', 'mp4', 'wmv', 'mpg', 'mpeg'];
 		$extension = self::izap_get_file_extension($videoFileName);
 		if (in_array($extension, $supportedFormats)) {
 			return true;

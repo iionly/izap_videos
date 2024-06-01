@@ -23,7 +23,7 @@ $all_link = elgg_view('output/url', [
 elgg_push_context('widgets');
 $options = [
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'container_guid' => elgg_get_page_owner_guid(),
 	'limit' => 6,
 	'full_view' => false,

@@ -15,6 +15,7 @@
  */
 
 class IzapCurl {
+
 	var $m_caseless;
 	var $m_handle;
 	var $m_header;

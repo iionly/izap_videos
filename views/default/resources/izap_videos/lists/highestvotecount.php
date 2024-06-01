@@ -14,7 +14,7 @@ elgg_push_breadcrumb($title);
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'annotation_name' => 'fivestar',
 	'annotation_sort_by_calculation' => 'count',
 	'order_by' => [

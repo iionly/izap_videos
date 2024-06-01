@@ -33,7 +33,7 @@ echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('izap_videos:addEditForm:title'),
 	'name' => 'params[title]',
-	'value' => $izapLoadedValues->title,
+	'value' => isset($izapLoadedValues->title) ? $izapLoadedValues->title : '',
 	'required' => ($video || ($selectedOption != 'OFFSERVER') ? true : false),
 ]);
 
@@ -41,21 +41,21 @@ echo elgg_view_field([
 	'#type' => 'file',
 	'#label' => elgg_echo('izap_videos:addEditForm:videoImage'),
 	'name' => 'params[videoImage]',
-	'value' => $izapLoadedValues->videoImage,
+	'value' => isset($izapLoadedValues->videoImage) ? $izapLoadedValues->videoImage : null,
 ]);
 
 echo elgg_view_field([
 	'#type' => 'longtext',
 	'#label' => elgg_echo('izap_videos:addEditForm:description'),
 	'name' => 'params[description]',
-	'value' => $izapLoadedValues->description,
+	'value' => isset($izapLoadedValues->description) ? $izapLoadedValues->description : '',
 ]);
 
 echo elgg_view_field([
 	'#type' => 'tags',
 	'#label' => elgg_echo('izap_videos:addEditForm:tags'),
 	'name' => 'params[tags]',
-	'value' => $izapLoadedValues->tags,
+	'value' => isset($izapLoadedValues->tags) ? $izapLoadedValues->tags : '',
 ]);
 
 $categories = elgg_view('input/categories', $vars);
@@ -87,7 +87,7 @@ echo elgg_view_field([
 echo elgg_view_field([
 	'#type' => 'hidden',
 	'name' => 'params[guid]',
-	'value' => $izapLoadedValues->guid,
+	'value' => isset($izapLoadedValues->guid) ? $izapLoadedValues->guid : 0,
 ]);
 
 $footer = elgg_view_field([

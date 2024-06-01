@@ -1,16 +1,9 @@
 <?php
 
-global $IZAPSETTINGS;
-
-$IZAPSETTINGS = new stdClass();
-
-$IZAPSETTINGS->filesPath = elgg_get_site_url() . '/izap_videos_files/';
-$IZAPSETTINGS->allowedExtensions = ['avi', 'flv', '3gp', 'mp4', 'wmv', 'mpg', 'mpeg'];
-
 return [
 	'plugin' => [
 		'name' => 'iZAP Videos - revised edition by iionly',
-		'version' => '4.3.0',
+		'version' => '4.3.1',
 	],
 	'bootstrap' => \IzapVideosBootstrap::class,
 	'entities' => [
@@ -48,7 +41,7 @@ return [
 		'izapVideoOptions' => 'OFFSERVER',
 		'izapPhpInterpreter' => '/usr/bin/php',
 		'izapVideoCommand' => '/usr/bin/ffmpeg -y -i [inputVideoPath] [outputVideoPath]',
-		'izapVideoThumb' => '/usr/bin/ffmpeg -y -i [inputVideoPath] -vframes 1 -ss 00:00:10 -an -vcodec png -f rawvideo -s 320x240',
+		'izapVideoThumb' => '/usr/bin/ffmpeg -y -i [inputVideoPath] -vframes 1 -ss 00:00:10 -an -vcodec png -f rawvideo -s 320x240 [outputImage]',
 		'izapMaxFileSize' => 5,
 		'izapKeepOriginal' => 'YES',
 		'izapExtendedSidebarMenu' => 'YES',

@@ -14,7 +14,7 @@ $group = get_entity($container_guid);
 elgg_push_context('groups');
 echo elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'container_guid' => $container_guid,
 	'limit' => $limit,
 	'full_view' => false,

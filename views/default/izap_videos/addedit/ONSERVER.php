@@ -21,7 +21,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('izap_videos:addEditForm:videoFile') . ' ' . elgg_echo('izap_videos:addEditForm:maxFilesize', [$maxFileSize]),
 	'#help' => elgg_echo('izap_videos:ONSERVER:supported_formats'),
 	'name' => 'params[videoFile]',
-	'value' => $vars['loaded_data']->videoFile,
+	'value' => isset($vars['loaded_data']->videoFile) ? $vars['loaded_data']->videoFile : null,
 	'required' => true,
 ]);
 

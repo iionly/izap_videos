@@ -1,6 +1,17 @@
 Changelog
 =========
 
+4.3.1
+-----
+
+- Get it to work on PHP 8,
+- PHP extension required: adjustment in composer.json to work on PHP 7 and 8,
+- Fix handling of (friendly) titles of videos internally,
+- Fixed default thumbnail creation command (forgotten image output path added),
+- Fix handling the uploading of image file to be used instead of ffmpeg-created thumbnail (especially in case video is too short for thumbnail to be created in the first place),
+- Updated Video.js to version 8.12.0,
+- Minor code cleanup.
+
 4.3.0
 -----
 

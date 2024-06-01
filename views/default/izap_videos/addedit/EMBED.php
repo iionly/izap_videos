@@ -18,7 +18,7 @@ echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('izap_videos:addEditForm:videoEmbed'),
 	'name' => 'params[videoEmbed]',
-	'value' => $vars['loaded_data']->videoEmbed,
+	'value' => isset($vars['loaded_data']->videoEmbed) ? $vars['loaded_data']->videoEmbed : '',
 	'required' => true,
 ]);
 

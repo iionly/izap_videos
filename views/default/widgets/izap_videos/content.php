@@ -10,7 +10,7 @@ $limit = (int) $widget->num_display ?: 4;
 
 $content = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'container_guid' => $widget->owner_guid,
 	'limit' => $limit,
 	'pagination' => false,

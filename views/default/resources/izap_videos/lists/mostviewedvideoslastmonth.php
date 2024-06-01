@@ -17,7 +17,7 @@ $end = mktime(0, 0, 0, date("m"), 0, date("Y"));
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'metadata_name_value_pairs' => [
 		[
 			'name' => 'views',

@@ -23,4 +23,4 @@ foreach ($queue_object->get($guid) as $key => $prods) {
 	}
 }
 
-return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:reset_queue'), REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:reset_queue'), REFERRER);

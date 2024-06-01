@@ -5,7 +5,7 @@ elgg_require_js('izap_videos/videojs');
 
 $video = elgg_extract('entity', $vars, false);
 
-if (!($video instanceof IzapVideos)) {
+if (!($video instanceof \IzapVideos)) {
 	return true;
 }
 

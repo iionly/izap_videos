@@ -2,13 +2,13 @@
 
 $video = elgg_extract('entity', $vars, false);
 
-if (!($video) instanceof IzapVideos) {
+if (!($video instanceof \IzapVideos)) {
 	return true;
 }
 
 $owner = $video->getOwnerEntity();
 $categories = elgg_view('output/categories', $vars);
-$excerpt = elgg_get_excerpt($video->description);
+$excerpt = $video->description ? elgg_get_excerpt($video->description) : '';
 
 $owner_link = elgg_view('output/url', [
 	'href' => elgg_generate_url('collection:object:izap_videos:owner', [
@@ -24,10 +24,10 @@ if (!$size || ($size == 'none')) {
 	$size = 'medium';
 }
 $video_icon = elgg_view_entity_icon($video, $size, [
-		'href' => $video->getURL(),
-		'title' => $video->title,
-		'is_trusted' => true,
-		'img_class' => 'elgg-photo izap-photo',
+	'href' => $video->getURL(),
+	'title' => $video->title,
+	'is_trusted' => true,
+	'img_class' => 'elgg-photo izap-photo',
 ]);
 
 $date = elgg_view_friendly_time($video->time_created);

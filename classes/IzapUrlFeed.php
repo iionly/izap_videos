@@ -15,6 +15,7 @@
  */
 
 class IzapUrlFeed extends IzapGetFeed {
+
 	private $youtube_api_capture = ['api_location' => 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id='];
 	private $vimeo_api_capture = ['api_location' => 'https://vimeo.com/api/v2/video/'];
 	private $dailymotion_api_capture = ['api_location' => 'https://api.dailymotion.com/video/'];

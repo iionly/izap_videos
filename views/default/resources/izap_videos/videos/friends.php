@@ -3,7 +3,7 @@
 $owner = elgg_get_page_owner_entity();
 
 if (!$owner) {
-	$guid = elgg_extract('guid', $vars);
+	$guid = (int) elgg_extract('guid', $vars);
 	$owner = get_user($guid);
 }
 
@@ -16,7 +16,7 @@ if (!$owner) {
 	$owner = elgg_get_logged_in_user_entity();
 }
 
-if (!($owner instanceof ElggUser)) {
+if (!($owner instanceof \ElggUser)) {
 	throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }
 
@@ -35,7 +35,7 @@ $friends_count = elgg_count_entities([
 if ($friends_count > 0) {
 	$result = elgg_list_entities([
 		'type' => 'object',
-		'subtype' => IzapVideos::SUBTYPE,
+		'subtype' => \IzapVideos::SUBTYPE,
 		'relationship' => 'friend',
 		'relationship_guid' => (int) $owner->guid,
 		'relationship_join_on' => 'owner_guid',

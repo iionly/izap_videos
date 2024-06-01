@@ -55,7 +55,7 @@ class IzapQueue {
 	public function setup() {
 		$queue_db = $this->db_connection;
 		try{
-			$queue_db->query("CREATE TABLE video_queue(
+			$queue_db->query("CREATE TABLE IF NOT EXISTS video_queue(
 				guid INTEGER PRIMARY KEY ASC,
 				main_file VARCHAR(255),
 				title VARCHAR(255),
@@ -64,7 +64,7 @@ class IzapQueue {
 				owner_id INTERGER,
 				conversion INTEGER DEFAULT ".PENDING.",
 				timestamp TIMESTAMP)");
-			$queue_db->query("CREATE TABLE video_trash(
+			$queue_db->query("CREATE TABLE IF NOT EXISTS video_trash(
 				guid INTEGER PRIMARY KEY ASC,
 				main_file VARCHAR(255),
 				title VARCHAR(255),
@@ -160,17 +160,12 @@ class IzapQueue {
 	// Fetch all records from queue and change their flags to conversion in process
 	public function fetch_videos($guid = false) {
 		$select = $this->db_connection->query("SELECT * FROM video_queue WHERE conversion = ".PENDING." ORDER BY timestamp", PDO::FETCH_ASSOC)->fetchall();
-		if (count($select)) {
-			foreach($select as $row) {
-				$guid_array[]=$row->guid;
-			}
-		}
 		return $select;
 	}
 
 	public function count() {
 		$select = $this->db_connection->query("SELECT count(*) AS count FROM video_queue", PDO::FETCH_ASSOC)->fetch();
-     return $select['count'];
+		return $select['count'];
 	}
 
 	public function count_trash() {

@@ -20,4 +20,4 @@ if (!$plugin->unsetAllSettings()) {
 	return elgg_error_response(elgg_echo('izap_videos:error:adminSettingsReset'));
 }
 
-return elgg_ok_response('', elgg_echo('izap_videos:success:adminSettingsReset'), REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:success:adminSettingsReset'), REFERRER);

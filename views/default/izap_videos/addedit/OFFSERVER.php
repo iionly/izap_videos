@@ -19,7 +19,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('izap_videos:addEditForm:videoUrl'),
 	'#help' => elgg_echo('izap_videos:OFFSERVER:supported_sites'),
 	'name' => 'params[videoUrl]',
-	'value' => $vars['loaded_data']->videoUrl,
+	'value' => isset($vars['loaded_data']->videoUrl) ? $vars['loaded_data']->videoUrl : '',
 	'required' => true,
 ]);
 

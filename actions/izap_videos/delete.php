@@ -17,19 +17,19 @@
 $guid = (int) get_input('guid');
 
 $izap_videos = get_entity($guid);
-if (!($izap_videos instanceof IzapVideos)) {
+if (!($izap_videos instanceof \IzapVideos)) {
 	// unable to get Elgg entity
-	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERER);
+	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERRER);
 }
 
 if (!$izap_videos->canEdit()) {
 	// user doesn't have permissions
-	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERER);
+	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERRER);
 }
 
 $owner = get_entity($izap_videos->container_guid);
 
-$forward_url = REFERER;
+$forward_url = REFERRER;
 if ($owner instanceof ElggUser) {
 	$forward_url = elgg_generate_url('collection:object:izap_videos:owner', ['username' => $owner->username]);
 } else if ($owner instanceof ElggGroup) {
@@ -39,7 +39,7 @@ if ($owner instanceof ElggUser) {
 $uploaded = $izap_videos->videotype == 'uploaded';
 
 if (!$izap_videos->delete()) {
-	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERER);
+	return elgg_error_response(elgg_echo('izap_videos:notdeleted'), REFERRER);
 }
 
 if ($uploaded) {

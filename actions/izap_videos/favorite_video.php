@@ -17,7 +17,7 @@
 $video_guid = (int) get_input('guid', 0);
 $video = get_entity($video_guid);
 
-if (!($video instanceof IzapVideos)) {
+if (!($video instanceof \IzapVideos)) {
 	return elgg_error_response(elgg_echo('izap_videos:favorite_error'));
 }
 
@@ -26,7 +26,7 @@ $izap_action = get_input('izap_action', false);
 // Removing from favorite list
 if ($izap_action == 'remove') {
 	\IzapFunctions::izap_remove_favorited($video);
-	return elgg_ok_response('', elgg_echo('izap_videos:favorite_removed'), REFERER);
+	return elgg_ok_response('', elgg_echo('izap_videos:favorite_removed'), REFERRER);
 }
 
 // Adding to favorite list
@@ -36,4 +36,4 @@ elgg_call(ELGG_IGNORE_ACCESS, function() use ($video) {
 	$video->favorited_by = array_unique($new_array);
 });
 
-return elgg_ok_response('', elgg_echo('izap_videos:favorite_saved'), REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:favorite_saved'), REFERRER);

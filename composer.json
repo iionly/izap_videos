@@ -20,8 +20,8 @@
     },
     "require": {
         "composer/installers": ">=1.0.8",
-        "ext-curl": "^7.4",
-        "ext-pdo_sqlite": "^7.4"
+        "ext-curl": "*",
+        "ext-pdo_sqlite": "*"
     },
     "conflict": {
         "elgg/elgg": "<4.3"

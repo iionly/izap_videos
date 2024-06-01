@@ -15,6 +15,7 @@
  */
 
 class IzapGetFeed {
+
 	private $url;
 	private $type;
 	private $feedArray = [];
@@ -60,15 +61,24 @@ class IzapGetFeed {
 		}
 
 		// Thumbnail image url might not be available in all sizes, so trying from largest (maxres not considered - seems too large) to smallest
-		$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['standard']['url'];
-		if (!$videoThumbnail_url) {
-			$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['high']['url'];
+		$videoThumbnail_url = '';
+		if (isset($this->mainArray['items'][0]['snippet']['thumbnails']['standard']['url'])) {
+			$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['standard']['url'];
 		}
 		if (!$videoThumbnail_url) {
-			$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['medium']['url'];
+			if (isset($this->mainArray['items'][0]['snippet']['thumbnails']['high']['url'])) {
+				$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['high']['url'];
+			}
 		}
 		if (!$videoThumbnail_url) {
-			$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['default']['url'];
+			if (isset($this->mainArray['items'][0]['snippet']['thumbnails']['medium']['url'])) {
+				$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['medium']['url'];
+			}
+		}
+		if (!$videoThumbnail_url) {
+			if (isset($this->mainArray['items'][0]['snippet']['thumbnails']['default']['url'])) {
+				$videoThumbnail_url = $this->mainArray['items'][0]['snippet']['thumbnails']['default']['url'];
+			}
 		}
 
 		$this->returnArray['title'] = $this->mainArray['items'][0]['snippet']['title'];

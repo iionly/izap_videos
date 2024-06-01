@@ -3,7 +3,7 @@
 elgg_require_css('izap_videos_videojs/video-js.min');
 elgg_require_js('izap_videos/videojs');
 
-$video_guid = get_input('guid', false);
+$video_guid = (int) get_input('guid', false);
 
 if (!$video_guid) {
 	return true;
@@ -11,7 +11,7 @@ if (!$video_guid) {
 
 $video = get_entity($video_guid);
 
-if (!($video instanceof IzapVideos)) {
+if (!($video instanceof \IzapVideos)) {
 	return true;
 }
 

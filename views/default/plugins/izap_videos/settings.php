@@ -54,6 +54,7 @@ echo elgg_view_field([
 echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('izap_videos:adminSettings:izapVideoThumb'),
+	'#help' => elgg_echo('izap_videos:adminSettings:info:izapVideoThumb'),
 	'name' => 'params[izapVideoThumb]',
 	'value' => \IzapFunctions::izapAdminSettings_izap_videos('izapVideoThumb', '/usr/bin/ffmpeg -y -i [inputVideoPath] -vframes 1 -ss 00:00:10 -an -vcodec png -f rawvideo -s 320x240 [outputImage]'),
 ]);

@@ -32,7 +32,7 @@ if ($guid) {
 	$izap_videos = get_entity($guid);
 }
 $contents = '';
-if ($izap_videos && ($izap_videos instanceof IzapVideos)) {
+if ($izap_videos && ($izap_videos instanceof \IzapVideos)) {
 	// check what is needed
 	if ($what == 'image') {
 		$filename = $izap_videos->imagesrc;
@@ -42,7 +42,7 @@ if ($izap_videos && ($izap_videos instanceof IzapVideos)) {
 
 	// only works if there is some file name
 	if ($filename != '') {
-		$fileHandler = new ElggFile();
+		$fileHandler = new \ElggFile();
 		$fileHandler->owner_guid = $izap_videos->owner_guid;
 		$fileHandler->setFilename($filename);
 		

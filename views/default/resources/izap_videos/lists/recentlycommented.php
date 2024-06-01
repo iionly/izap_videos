@@ -14,7 +14,7 @@ elgg_push_breadcrumb($title);
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'wheres' => function(\Elgg\Database\QueryBuilder $qb, $alias) {
 		$qb->innerJoin($alias, 'entities', 'ce', "ce.container_guid = e.guid");
 		$qb->orderBy('ce.time_created', 'DESC');

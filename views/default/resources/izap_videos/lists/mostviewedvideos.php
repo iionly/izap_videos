@@ -14,7 +14,7 @@ elgg_push_breadcrumb($title);
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'metadata_name_value_pairs' => [
 		[
 			'name' => 'views',

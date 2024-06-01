@@ -12,4 +12,4 @@ foreach ($params as $k => $v) {
 	}
 }
 
-return elgg_ok_response('', elgg_echo('izap_videos:success:adminSettingsSaved'), REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:success:adminSettingsSaved'), REFERRER);

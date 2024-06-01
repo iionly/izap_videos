@@ -6,26 +6,26 @@
 elgg_require_js('izap_videos/izapvidjs');
 
 $item = elgg_extract('item', $vars);
-if (!$item instanceof ElggRiverItem) {
+if (!$item instanceof \ElggRiverItem) {
 	return;
 }
 
 $comment = $item->getObjectEntity();
-if (!$comment instanceof ElggComment) {
+if (!$comment instanceof \ElggComment) {
 	return;
 }
 
 $video = $item->getTargetEntity();
-if (!$video instanceof IzapVideos) {
+if (!$video instanceof \IzapVideos) {
 	return;
 }
 
 $subject = $item->getSubjectEntity();
-if (!$subject instanceof ElggUser) {
+if (!$subject instanceof \ElggUser) {
 	return;
 }
 
-$vars['message'] = elgg_get_excerpt($comment->description);
+$vars['message'] = $comment->description ? elgg_get_excerpt($comment->description) : '';
 
 $subject_link = elgg_view('output/url', [
 	'href' => $subject->getURL(),

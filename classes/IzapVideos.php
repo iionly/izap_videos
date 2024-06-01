@@ -15,7 +15,8 @@
  */
 
 
-class IzapVideos extends ElggFile {
+class IzapVideos extends \ElggFile {
+
 	/**
 	 * A single-word arbitrary string that defines what
 	 * kind of object this is
@@ -24,17 +25,13 @@ class IzapVideos extends ElggFile {
 	 */
 	const SUBTYPE = 'izap_videos';
 
-	private $IZAPSETTINGS;
-
 	public function __construct($row = null) {
 		parent::__construct($row);
 	}
 
 	protected function initializeAttributes() {
-		global $IZAPSETTINGS;
 		parent::initializeAttributes();
 		$this->attributes['subtype'] = self::SUBTYPE;
-		$this->IZAPSETTINGS = $IZAPSETTINGS;
 	}
 
 	/**
@@ -176,14 +173,14 @@ class IzapVideos extends ElggFile {
 			case 'uploaded':
 				if($this->converted == 'yes') {
 					$imageurl = elgg_get_site_url() . 'izap_videos_files/image/' . $this->getGUID();
-					$videourl = elgg_get_site_url() . 'izap_videos_files/file/' . $this->getGUID() . '/' . elgg_get_friendly_title($this->title) . '.mp4';
+					$videourl = elgg_get_site_url() . 'izap_videos_files/file/' . $this->getGUID() . '/' . \IzapFunctions::izap_get_friendly_title($this->title) . '.mp4';
 					$html = "<video id='videojsPlayer' class='video-js vjs-default-skin vjs-16-9 vjs-big-play-centered' controls='true' preload='none' width='{$width}' height='{$height}' poster='{$imageurl}' data-setup='{}'><source src='{$videourl}' type='video/mp4'><p class='vjs-no-js'>To view this video please enable JavaScript, and consider upgrading to a web browser that <a href='http://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a></p></video>";
 				} else {
 					$html = elgg_echo('izap_videos:processed');
 				}
 				break;
 			case 'embed':
-				$html = IzapFunctions::izapGetReplacedHeightWidth_izap_videos($height, $width, $this->videosrc);
+				$html = \IzapFunctions::izapGetReplacedHeightWidth_izap_videos($height, $width, $this->videosrc);
 				break;
 		}
 		return $html;
@@ -197,9 +194,8 @@ class IzapVideos extends ElggFile {
 	 * @return HTML <img /> tag or image src
 	 */
 	public function getThumb($pathOnly = false, $attArray = []) {
-		global $IZAPSETTINGS;
 		$html = '';
-		$imagePath = $IZAPSETTINGS->filesPath . 'image/' . $this->guid . '/' . elgg_get_friendly_title($this->title) . '.jpg';
+		$imagePath = elgg_get_site_url() . '/izap_videos_files/image/' . $this->guid . '/' . \IzapFunctions::izap_get_friendly_title($this->title) . '.jpg';
 
 		if ($pathOnly) {
 			$html = $imagePath;
@@ -270,7 +266,7 @@ class IzapVideos extends ElggFile {
 	 *
 	 * @return boolean
 	 */
-	public function delete($follow_symlinks = true) {
+	public function delete($follow_symlinks = true): bool {
 		// in case of an uploaded video make sure it's also deleted from queue and trash
 		// with related media if it still remained there
 		if ($this->videotype == 'uploaded') {
@@ -279,9 +275,9 @@ class IzapVideos extends ElggFile {
 			$queue_object->delete($this->guid, true);
 		}
 
-		$imagesrc = $this->imagesrc;
-		$filesrc = $this->videofile;
-		$ofilesrc = $this->orignalfile;
+		$imagesrc = $this->imagesrc ? $this->imagesrc : '';
+		$filesrc = $this->videofile ? $this->videofile : '';
+		$ofilesrc = $this->orignalfile ? $this->orignalfile : '';
 		//delete entity from elgg db and corresponding files if exist
 		$this->setFilename($imagesrc);
 		$image_file = $this->getFilenameOnFilestore();

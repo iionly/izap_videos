@@ -30,6 +30,7 @@ $php_max_file_upload = ini_get('upload_max_filesize');
 if ($php_max_file_upload) {
 	$php_max_file_upload = trim($php_max_file_upload);
 	$last = strtolower($php_max_file_upload[strlen($php_max_file_upload) - 1]);
+	$php_max_file_upload = (int) substr($php_max_file_upload, 0, -1);
 	switch($last) {
 		case 'g':
 			$php_max_file_upload *= 1024;

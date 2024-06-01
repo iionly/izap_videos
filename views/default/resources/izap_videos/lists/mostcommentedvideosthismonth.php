@@ -17,7 +17,7 @@ $end = time();
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'wheres' => function(\Elgg\Database\QueryBuilder $qb, $alias) use($start, $end) {
 		$qb->groupBy("$alias.guid");
 		$qb->innerJoin($alias, 'entities', 'ce', "ce.container_guid = e.guid");

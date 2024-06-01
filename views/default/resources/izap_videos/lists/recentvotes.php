@@ -14,7 +14,7 @@ elgg_push_breadcrumb($title);
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'annotation_name' => 'fivestar',
 	'order_by' => [
 		new \Elgg\Database\Clauses\OrderByClause('n_table.time_created', 'DESC'),

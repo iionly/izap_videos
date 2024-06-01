@@ -6,17 +6,17 @@
 elgg_require_js('izap_videos/izapvidjs');
 
 $item = elgg_extract('item', $vars);
-if (!$item instanceof ElggRiverItem) {
+if (!$item instanceof \ElggRiverItem) {
 	return;
 }
 
 $video = $item->getObjectEntity();
-if (!$video instanceof IzapVideos) {
+if (!$video instanceof \IzapVideos) {
 	return;
 }
 
 $excerpt = strip_tags($video->description);
-$excerpt = elgg_get_excerpt($excerpt);
+$excerpt = $excerpt ? elgg_get_excerpt($excerpt) : '';
 $vars['message'] = $excerpt;
 
 $size = \IzapFunctions::izapAdminSettings_izap_videos('izap_river_thumbnails');

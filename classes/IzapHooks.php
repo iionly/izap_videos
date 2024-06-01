@@ -43,7 +43,7 @@ class IzapHooks {
 		$menu = $hook->getValue();
 		$entity = $hook->getParam('entity');
 
-		if ($entity instanceof ElggUser) {
+		if ($entity instanceof \ElggUser) {
 			$url = "videos/owner/{$entity->username}";
 			$item = new ElggMenuItem('izap_videos', elgg_echo('videos'), $url);
 			$menu[] = $item;
@@ -66,7 +66,7 @@ class IzapHooks {
 
 		$entity = $hook->getParam('entity');
 
-		if (!($entity instanceof IzapVideos)) {
+		if (!($entity instanceof \IzapVideos)) {
 			return $menu;
 		}
 
@@ -98,7 +98,7 @@ class IzapHooks {
 
 		$entity = $hook->getParam('entity');
 
-		if (!($entity instanceof IzapVideos)) {
+		if (!($entity instanceof \IzapVideos)) {
 			return $menu;
 		}
 
@@ -163,15 +163,15 @@ class IzapHooks {
 	*/
 	public static function izap_videos_urlhandler(\Elgg\Hook $hook) {
 		$entity = $hook->getParam('entity');
-		if ($entity instanceof IzapVideos) {
+		if ($entity instanceof \IzapVideos) {
 			if (!$entity->getOwnerEntity()) {
 				// default to a standard view if no owner.
 				return false;
 			}
 			$container = get_entity($entity->container_guid);
-			if ($container instanceof ElggUser) {
+			if ($container instanceof \ElggUser) {
 				$username = $container->username;
-			} else if ($container instanceof ElggGroup) {
+			} else if ($container instanceof \ElggGroup) {
 				$username = "group:" . $container->guid;
 			} else {
 				return false;
@@ -180,7 +180,7 @@ class IzapHooks {
 			$url = elgg_generate_url('view:object:izap_videos', [
 				'username' => $username,
 				'guid' => $entity->guid,
-				'title' => elgg_get_friendly_title($entity->title),
+				'title' => \IzapFunctions::izap_get_friendly_title($entity->title),
 			]);
 
 			return $url;
@@ -213,7 +213,7 @@ class IzapHooks {
 
 		$entity = $params['event']->getObject();
 
-		if ($entity instanceof IzapVideos) {
+		if ($entity instanceof \IzapVideos) {
 			$owner = $params['event']->getActor();
 			$recipient = $params['recipient'];
 			$language = $params['language'];
@@ -245,7 +245,7 @@ class IzapHooks {
 		$result = $hook->getValue();
 		$widget = $hook->getParam('entity');
 
-		if (empty($result) && ($widget instanceof ElggWidget)) {
+		if (empty($result) && ($widget instanceof \ElggWidget)) {
 			$owner = $widget->getOwnerEntity();
 			switch ($widget->handler) {
 				case "izap_videos":
@@ -271,7 +271,7 @@ class IzapHooks {
 		$return_value = $hook->getValue();
 		$entity = $hook->getParam('entity', false);
 
-		if ($entity && ($entity instanceof ElggGroup)) {
+		if ($entity && ($entity instanceof \ElggGroup)) {
 			if (!is_array($return_value)) {
 				$return_value = [];
 			}
@@ -303,7 +303,7 @@ class IzapHooks {
 	public static function izap_videos_setup_tabs(\Elgg\Hook $hook) {
 		$result = $hook->getValue();
 		$filter_value = $hook->getParam('filter_value');
-		
+
 		$result['all'] = \ElggMenuItem::factory([
 			'name' => 'izap_videos_all_tab',
 			'text' => elgg_echo('all'),
@@ -332,7 +332,7 @@ class IzapHooks {
 			'selected' => $filter_value === 'favorites',
 			'priority' => 500,
 		]);
-		
+
 		return $result;
 	}
 }

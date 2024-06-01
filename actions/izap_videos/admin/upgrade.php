@@ -10,7 +10,7 @@ require_once "{$plugins_path}izap_videos/version.php";
 $local_version = elgg_get_plugin_setting('local_version', 'izap_videos');
 
 if ($version <= $local_version) {
-	return elgg_error_response(elgg_echo('izap_videos:upgrade:not_required'), REFERER);
+	return elgg_error_response(elgg_echo('izap_videos:upgrade:not_required'), REFERRER);
 }
 
 set_time_limit(0);
@@ -46,4 +46,4 @@ if ($handle = opendir($base_dir)) {
 $plugin = elgg_get_plugin_from_id('izap_videos');
 $plugin->setSetting('local_version', $version);
 
-return elgg_ok_response('', elgg_echo('izap_videos:upgrade:success'), REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:upgrade:success'), REFERRER);

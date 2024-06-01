@@ -4,7 +4,7 @@
  *
  * derived from default Elgg core icon view
  *
- * @uses $vars['entity']     The entity the icon represents - uses IzapVideos::getThumb() method
+ * @uses $vars['entity']     The entity the icon represents - uses \IzapVideos::getThumb() method
  * @uses $vars['size']       topbar, tiny, small, medium (default), large, master
  * @uses $vars['href']       Optional override for link
  * @uses $vars['img_class']  Optional CSS class added to img
@@ -13,7 +13,7 @@
 
 $entity = $vars['entity'];
 
-$icon_sizes = elgg_get_icon_sizes('object', IzapVideos::SUBTYPE);
+$icon_sizes = elgg_get_icon_sizes('object', \IzapVideos::SUBTYPE);
 // Get size
 if (!array_key_exists($vars['size'], $icon_sizes)) {
 	$vars['size'] = 'medium';

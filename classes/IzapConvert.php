@@ -15,6 +15,7 @@
  */
 
 class IzapConvert {
+
 	private $invideo;
 	private $outvideo;
 	private $outimage;
@@ -55,6 +56,7 @@ class IzapConvert {
 		$videoThumb = \IzapFunctions::izapGetFfmpegVideoImageCommand_izap_videos();
 		$videoThumb = str_replace('[inputVideoPath]', $this->invideo, $videoThumb);
 		$videoThumb = str_replace('[outputImage]', $this->outimage, $videoThumb);
+
 		// run command to take snapshot
 		exec($videoThumb, $out2, $ret2);
 

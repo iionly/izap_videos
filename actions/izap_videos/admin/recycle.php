@@ -23,4 +23,4 @@ if (!($queue_object->restore($guid))) {
 
 \IzapFunctions::izapTrigger_izap_videos();
 
-return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:restore_video'), REFERER);
+return elgg_ok_response('', elgg_echo('izap_videos:adminSettings:restore_video'), REFERRER);

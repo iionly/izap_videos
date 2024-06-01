@@ -1,6 +1,6 @@
 <?php
 
-$group_guid = elgg_extract('guid', $vars);
+$group_guid = (int) elgg_extract('guid', $vars);
 
 elgg_entity_gatekeeper($group_guid, 'group');
 
@@ -16,7 +16,7 @@ $title = elgg_echo('collection:object:izap_videos:group');
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'container_guid' => (int) $group->guid,
 	'full_view' => false,
 	'list_type_toggle' => false,

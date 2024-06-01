@@ -204,7 +204,8 @@ View and comment on the video:
 	'izap_videos:server_analysis:memory_limit' => 'Memory limit for a PHP thread. Set the limit high enough in .htaccess to allow processing of the largest to be expected files by ffmpeg.',
 
 	// Info messages
-	'izap_videos:adminSettings:info:convert-command' => '(Optimized command: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath] )',
+	'izap_videos:adminSettings:info:convert-command' => "(Example command: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -acodec aac -ar 22050 -ab 48k [outputVideoPath] <br> Optimized command: /path/of/ffmpeg -y -i [inputVideoPath] -vcodec libx264 -preset medium -b:v 330k -s 480x360 -acodec aac -ar 22050 -ab 48k [outputVideoPath] )",
+	'izap_videos:adminSettings:info:izapVideoThumb' => "(Example command: /path/of/ffmpeg -y -i [inputVideoPath] -vframes 1 -ss 00:00:10 -an -vcodec png -f rawvideo -s 320x240 [outputImage] )",
 	'izap_videos:adminSettings:info:izapKeepOriginal' => '(Uncheck, if you don\'t want to keep the original files on the server)',
 	'izap_videos:adminSettings:info:extended_sidebar_menu' => '(There will be additional menu entries in the pages menu to allow for sorting video listing for example by number of views, number of comments, rating and more)',
 	'izap_videos:adminSettings:info:izapMaxFileSize' => '(Max allowed video file size can\'t be larger than the value of the php variable upload_max_filesize set in .htaccess or php.ini. If a larger limit is entered it will be reduced to the value of upload_max_filesize)',

@@ -8,7 +8,7 @@ $title = elgg_echo('collection:object:izap_videos:all');
 
 $result = elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'distinct' => false,
 	'full_view' => false,
 	'list_type_toggle' => false,

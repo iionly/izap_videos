@@ -11,7 +11,7 @@ $limit = (int) $widget->latest_videos_count ?: 4;
 elgg_push_context('front');
 echo elgg_list_entities([
 	'type' => 'object',
-	'subtype' => IzapVideos::SUBTYPE,
+	'subtype' => \IzapVideos::SUBTYPE,
 	'limit' => $limit,
 	'full_view' => false,
 	'list_type_toggle' => false,
