@@ -12,7 +12,7 @@ echo elgg_view_field([
 
 $footer = elgg_view_field([
 	'#type' => 'submit',
-	'value' => elgg_echo('izap_videos:adminSettings:save'),
+	'text' => elgg_echo('izap_videos:adminSettings:save'),
 ]);
 
 elgg_set_form_footer($footer);

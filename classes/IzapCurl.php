@@ -166,7 +166,7 @@ class IzapCurl {
 		$thePostString = '';
 		$thePrefix = $theName;
 
-		if (is_array($theData)) {
+		if (isset($theData) && is_array($theData)) {
 			foreach ($theData as $theKey => $theValue) {
 				if ($thePrefix === null) {
 					$thePostString .= '&' . curl::asPostString($theValue, $theKey);

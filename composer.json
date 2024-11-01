@@ -24,7 +24,7 @@
         "ext-pdo_sqlite": "*"
     },
     "conflict": {
-        "elgg/elgg": "<4.3"
+        "elgg/elgg": "<5.0"
     },
     "suggest": {
         "coldtrick/widget_manager": "With the Widget Manager plugin available the iZAP Videos plugin offers widgets for the index page (homepage) and group profile pages listing the latest videos.",

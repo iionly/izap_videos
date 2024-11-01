@@ -50,7 +50,7 @@ class IzapFunctions {
 		// get the old value
 		$oldSetting = elgg_get_plugin_setting($settingName, 'izap_videos');
 
-		if (is_array($values)) {
+		if (isset($values) && is_array($values)) {
 			$pluginValues = implode('|', $values);
 		} else {
 			$pluginValues = $values;
@@ -264,7 +264,7 @@ class IzapFunctions {
 	public static function izapRunQueue_izap_videos() {
 		$queue_object = new IzapQueue();
 		$queue = $queue_object->fetch_videos();
-		if (is_array($queue)) {
+		if (isset($queue) && is_array($queue)) {
 			foreach($queue as $pending) {
 				$converted = self::izapConvertVideo_izap_videos($pending['main_file'], $pending['guid'], $pending['title'], $pending['url'], $pending['owner_id']);
 				if (!$converted) {

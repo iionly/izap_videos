@@ -1,6 +1,6 @@
 <?php
 
-elgg_register_title_button('izap_videos', 'add', 'object', 'izap_videos');
+elgg_register_title_button('add', 'object', 'izap_videos');
 
 elgg_push_collection_breadcrumbs('object', 'izap_videos');
 

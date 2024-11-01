@@ -8,7 +8,7 @@ elgg_group_tool_gatekeeper('izap_videos', $group_guid);
 
 $group = get_entity($group_guid);
 
-elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
+elgg_register_title_button('add', 'object', 'izap_videos');
 
 elgg_push_collection_breadcrumbs('object', 'izap_videos', $group);
 

@@ -11,7 +11,7 @@ elgg_push_entity_breadcrumbs($izap_videos, false);
 $title = $izap_videos->title;
 
 if (elgg_is_logged_in()) {
-	elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
+	elgg_register_title_button('add', 'object', 'izap_videos');
 }
 
 $content = elgg_view_entity($izap_videos, ['full_view' => true]);

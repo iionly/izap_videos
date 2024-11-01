@@ -35,7 +35,7 @@ $izap_videos->title = htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF
 $izap_videos->description = $params['description'];
 $izap_videos->access_id = $params['access_id'];
 $tags = elgg_string_to_array($params['tags']);
-if (is_array($tags)) {
+if (isset($tags) && is_array($tags)) {
 	$izap_videos->tags = $tags;
 }
 

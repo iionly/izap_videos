@@ -1,12 +1,12 @@
 <?php
 
-class IzapHooks {
+class IzapEvents {
 
 	/**
 	* Add a menu item to the site menu
 	*/
-	public static function izap_videos_site_menu(\Elgg\Hook $hook) {
-		$menu = $hook->getValue();
+	public static function izap_videos_site_menu(\Elgg\Event $event) {
+		$menu = $event->getValue();
 
 		$menu[] = \ElggMenuItem::factory([
 			'name' => 'videos',
@@ -19,29 +19,30 @@ class IzapHooks {
 	}
 
 	/**
-	* Add a menu item to the page menu
+	* Add a menu item to the admin header menu
 	*/
-	public static function izap_videos_page_menu(\Elgg\Hook $hook) {
-		$menu = $hook->getValue();
+	public static function izap_videos_admin_menu(\Elgg\Event $event) {
+		if (!elgg_in_context('admin') || !elgg_is_admin_logged_in()) {
+			return;
+		}
+		$menu = $event->getValue();
 
 		$menu[] = \ElggMenuItem::factory([
 			'name' => 'administer_utilities:izap_videos',
 			'href' => 'admin/administer_utilities/izap_videos',
 			'text' => elgg_echo('admin:administer_utilities:izap_videos'),
-			'context' => 'admin',
 			'parent_name' => 'administer_utilities',
-			'section' => 'administer',
 		]);
 
 		return $menu;
 	}
-
+	
 	/**
 	* Add a menu item to an ownerblock
 	*/
-	public static function izap_videos_owner_block_menu(\Elgg\Hook $hook) {
-		$menu = $hook->getValue();
-		$entity = $hook->getParam('entity');
+	public static function izap_videos_owner_block_menu(\Elgg\Event $event) {
+		$menu = $event->getValue();
+		$entity = $event->getParam('entity');
 
 		if ($entity instanceof \ElggUser) {
 			$url = "videos/owner/{$entity->username}";
@@ -61,10 +62,10 @@ class IzapHooks {
 	/**
 	* Add entries to entity menu
 	*/
-	public static function izap_videos_entity_menu_setup(\Elgg\Hook $hook) {
-		$menu = $hook->getValue();
+	public static function izap_videos_entity_menu_setup(\Elgg\Event $event) {
+		$menu = $event->getValue();
 
-		$entity = $hook->getParam('entity');
+		$entity = $event->getParam('entity');
 
 		if (!($entity instanceof \IzapVideos)) {
 			return $menu;
@@ -89,14 +90,14 @@ class IzapHooks {
 	/**
 	* Add entries to social menu
 	*/
-	public static function izap_videos_social_menu_setup(\Elgg\Hook $hook) {
-		$menu = $hook->getValue();
+	public static function izap_videos_social_menu_setup(\Elgg\Event $event) {
+		$menu = $event->getValue();
 
 		if (elgg_in_context('widgets')) {
 			return $menu;
 		}
 
-		$entity = $hook->getParam('entity');
+		$entity = $event->getParam('entity');
 
 		if (!($entity instanceof \IzapVideos)) {
 			return $menu;
@@ -161,8 +162,8 @@ class IzapHooks {
 	* Returns the url for the video to play
 	*
 	*/
-	public static function izap_videos_urlhandler(\Elgg\Hook $hook) {
-		$entity = $hook->getParam('entity');
+	public static function izap_videos_urlhandler(\Elgg\Event $event) {
+		$entity = $event->getParam('entity');
 		if ($entity instanceof \IzapVideos) {
 			if (!$entity->getOwnerEntity()) {
 				// default to a standard view if no owner.
@@ -187,9 +188,9 @@ class IzapHooks {
 		}
 	}
 
-	public static function izap_videos_river_comment(\Elgg\Hook $hook) {
-		$return_value = $hook->getValue();
-		$params = $hook->getParams();
+	public static function izap_videos_river_comment(\Elgg\Event $event) {
+		$return_value = $event->getValue();
+		$params = $event->getParams();
 
 		$view = $params["view"];
 
@@ -207,9 +208,9 @@ class IzapHooks {
 	* Prepare a notification message about a new video added to the site
 	*
 	*/
-	public static function izap_videos_notify_message(\Elgg\Hook $hook) {
-		$notification = $hook->getValue();
-		$params = $hook->getParams();
+	public static function izap_videos_notify_message(\Elgg\Event $event) {
+		$notification = $event->getValue();
+		$params = $event->getParams();
 
 		$entity = $params['event']->getObject();
 
@@ -231,8 +232,8 @@ class IzapHooks {
 	}
 
 	// Register cronjob that triggers on-site video conversion
-	public static function izap_queue_cron(\Elgg\Hook $hook) {
-		$period = $hook->getType();
+	public static function izap_queue_cron(\Elgg\Event $event) {
+		$period = $event->getType();
 
 		if ($period !== \IzapFunctions::izapAdminSettings_izap_videos('izap_cron_time')) {
 			return;
@@ -241,9 +242,9 @@ class IzapHooks {
 		\IzapFunctions::izapTrigger_izap_videos();
 	}
 
-	public static function izap_videos_widget_urls(\Elgg\Hook $hook) {
-		$result = $hook->getValue();
-		$widget = $hook->getParam('entity');
+	public static function izap_videos_widget_urls(\Elgg\Event $event) {
+		$result = $event->getValue();
+		$widget = $event->getParam('entity');
 
 		if (empty($result) && ($widget instanceof \ElggWidget)) {
 			$owner = $widget->getOwnerEntity();
@@ -267,9 +268,9 @@ class IzapHooks {
 	}
 
 	// Add or remove a group's iZAP Videos widget based on the corresponding group tools option
-	public static function izap_videos_tool_widget_handler(\Elgg\Hook $hook) {
-		$return_value = $hook->getValue();
-		$entity = $hook->getParam('entity', false);
+	public static function izap_videos_tool_widget_handler(\Elgg\Event $event) {
+		$return_value = $event->getValue();
+		$entity = $event->getParam('entity', false);
 
 		if ($entity && ($entity instanceof \ElggGroup)) {
 			if (!is_array($return_value)) {
@@ -296,13 +297,13 @@ class IzapHooks {
 	/**
 	* Add favorites tab to /videos/all /videos/mine /videos/friends /videos/favorites pages
 	*
-	* @param \Elgg\Hook $hook "register", "menu:filter:izap_videos_tabs"
+	* @param \Elgg\Event $event "register", "menu:filter:izap_videos_tabs"
 	*
 	* @return ElggMenuItem[]
 	*/
-	public static function izap_videos_setup_tabs(\Elgg\Hook $hook) {
-		$result = $hook->getValue();
-		$filter_value = $hook->getParam('filter_value');
+	public static function izap_videos_setup_tabs(\Elgg\Event $event) {
+		$result = $event->getValue();
+		$filter_value = $event->getParam('filter_value');
 
 		$result['all'] = \ElggMenuItem::factory([
 			'name' => 'izap_videos_all_tab',

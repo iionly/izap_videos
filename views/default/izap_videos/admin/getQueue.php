@@ -45,7 +45,7 @@ if (count($queuedVideos)) {
 		if ($queuedVideo['conversion'] != IN_PROCESS) {
 			$link = elgg_view('output/url', [
 				'href' => elgg_http_add_url_query_elements('action/izap_videos/admin/reset', ['guid' => $queuedVideo['guid']]),
-				'text' => elgg_view_icon('delete-alt'),
+				'text' => elgg_view_icon('delete-alt', []),
 				'is_action' => true,
 				'is_trusted' => true,
 				'confirm'=> elgg_echo('izap_videos:adminSettings:resetQueue_confirm'),

@@ -9,7 +9,7 @@ if (!$owner) {
 
 if (!$owner) {
 	$username = elgg_extract('username', $vars);
-	$owner = get_user_by_username($username);
+	$owner = elgg_get_user_by_username($username);
 }
 
 if (!$owner) {
@@ -22,7 +22,7 @@ if (!($owner instanceof \ElggUser)) {
 
 elgg_push_collection_breadcrumbs('object', 'izap_videos', $owner, true);
 
-elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
+elgg_register_title_button('add', 'object', 'izap_videos');
 
 $title = elgg_echo('collection:friends', [elgg_echo('collection:object:izap_videos')]);
 

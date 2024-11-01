@@ -46,7 +46,7 @@ foreach($buggy_videos as $video_to_be_recycled) {
 	$row .=  elgg_view_field([
 			'#type' => 'submit',
 			'name' => "params[{$video_to_be_recycled['guid']}]",
-			'value' => elgg_echo('delete'),
+			'text' => elgg_echo('delete'),
 		]);
 
 	$row = elgg_format_element('td', [], $row);

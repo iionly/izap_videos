@@ -3,7 +3,7 @@
 return [
 	'plugin' => [
 		'name' => 'iZAP Videos - revised edition by iionly',
-		'version' => '4.3.1',
+		'version' => '5.0.0',
 	],
 	'bootstrap' => \IzapVideosBootstrap::class,
 	'entities' => [
@@ -184,51 +184,51 @@ return [
 			'resource' => 'izap_videos/videos/thumbs',
 		],	
 	],
-	'hooks' => [
+	'events' => [
 		'entity:url' => [
 			'object' => [
-				"\IzapHooks::izap_videos_urlhandler" => [],
-				"\IzapHooks::izap_videos_widget_urls" => [],
+				"\IzapEvents::izap_videos_urlhandler" => [],
+				"\IzapEvents::izap_videos_widget_urls" => [],
 			],
 		],
 		'register' => [
 			'menu:owner_block' => [
-				"\IzapHooks::izap_videos_owner_block_menu" => [],
+				"\IzapEvents::izap_videos_owner_block_menu" => [],
 			],
 			'menu:site' => [
-				"\IzapHooks::izap_videos_site_menu" => [],
+				"\IzapEvents::izap_videos_site_menu" => [],
 			],
-			'menu:page' => [
-				"\IzapHooks::izap_videos_page_menu" => [],
+			'menu:admin_header' => [
+				"\IzapEvents::izap_videos_admin_menu" => [],
 			],
 			'menu:entity' => [
-				"\IzapHooks::izap_videos_entity_menu_setup" => [],
+				"\IzapEvents::izap_videos_entity_menu_setup" => [],
 			],
 			'menu:social' => [
-				"\IzapHooks::izap_videos_social_menu_setup" => [],
+				"\IzapEvents::izap_videos_social_menu_setup" => [],
 			],
 			'menu:filter:izap_videos_tabs' => [
-				"\IzapHooks::izap_videos_setup_tabs" => [],
+				"\IzapEvents::izap_videos_setup_tabs" => [],
 			],
 		],
 		'prepare' => [
 			'notification:create:object:izap_videos' => [
-				"\IzapHooks::izap_videos_notify_message" => [],
+				"\IzapEvents::izap_videos_notify_message" => [],
 			],
 		],
 		'group_tool_widgets' => [
 			'widget_manager' => [
-				"\IzapHooks::izap_videos_tool_widget_handler" => [],
+				"\IzapEvents::izap_videos_tool_widget_handler" => [],
 			],
 		],
 		'view' => [
 			'river/object/comment/create' => [
-				"\IzapHooks::izap_videos_river_comment" => [],
+				"\IzapEvents::izap_videos_river_comment" => [],
 			],
 		],
 		'cron' => [
 			'all' => [
-				"\IzapHooks::izap_queue_cron" => [],
+				"\IzapEvents::izap_queue_cron" => [],
 			],
 		],
 	],

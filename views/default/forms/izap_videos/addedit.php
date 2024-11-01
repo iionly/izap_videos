@@ -92,7 +92,7 @@ echo elgg_view_field([
 
 $footer = elgg_view_field([
 	'#type' => 'submit',
-	'value' => elgg_echo('izap_videos:addEditForm:save'),
+	'text' => elgg_echo('izap_videos:addEditForm:save'),
 	'id' => 'submit_button',
 ]);
 $footer .= elgg_format_element('div', [

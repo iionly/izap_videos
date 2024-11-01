@@ -2,7 +2,7 @@
 
 $username = elgg_extract('username', $vars);
 
-$owner = get_user_by_username($username);
+$owner = elgg_get_user_by_username($username);
 if (!$owner) {
 	$owner = elgg_get_logged_in_user_entity();
 }
@@ -10,7 +10,7 @@ if (!$owner instanceof \ElggUser) {
 	throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }
 
-elgg_register_title_button('videos', 'add', 'object', 'izap_videos');
+elgg_register_title_button('add', 'object', 'izap_videos');
 
 elgg_push_collection_breadcrumbs('object', 'izap_videos', $owner);
 

@@ -5,7 +5,7 @@
  *
  */
 
-elgg_register_title_button('izap_videos', 'add', 'object', 'izap_videos');
+elgg_register_title_button('add', 'object', 'izap_videos');
 
 $title = elgg_echo('collection:object:izap_videos:recentlyvoted');
 
